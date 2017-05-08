@@ -1,0 +1,13 @@
+{
+  "name": "jenkins-techlab",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "reveal-md jenkins-pipeline.md --theme puzzle",
+    "static": "reveal-md jenkins-pipeline.md --theme puzzle --static out"
+  },
+  "dependencies": {
+    "reveal-md": "^0.1.3"
+  }
+}

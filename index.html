@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>reveal-md</title>
+        <link rel="stylesheet" href="./css/reveal.css">
+        <link rel="stylesheet" href="./theme/puzzle.css" id="theme">
+        <link rel="stylesheet" href="./css/highlight/zenburn.css">
+        <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print">
+
+    </head>
+    <body>
+
+        <div class="reveal">
+            <div class="slides"><section  data-markdown><script type="text/template"><!--section -->
+# Jenkins Pipeline - Pipeline as Code
+
+<!-- .slide: class="master02" -->
+</script></section><section  data-markdown><script type="text/template">
+## Agenda
+
+* Jenkinsfile Intro
+  * Advantages
+  * Imperative
+  * Declarative <https://jenkins.io/doc/book/pipeline/syntax/>
+  * Best Practices
+    * Folders
+    * Slaves stateless
+  * Jenkins Book
+  * Examples
+    * <https://jenkins.io/doc/pipeline/examples/>
+    * <https://github.com/openshift/origin/tree/master/examples/jenkins/pipeline>
+
+* global defaults, e.g. logrotate
+https://jenkins.io/blog/2017/02/15/declarative-notifications/
+
+https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_new_way_to_define_jenkins_pipelines_1.pdf
+
+* Setup
+* Hello Pipeline
+* Stages, Locks, Milestones
+* Build properties
+   * log rotate
+   * scm trigger
+   * cron trigger
+* Artefact archiving/stashing
+* Credentials
+  * ssh-agent
+  * with_credentials
+* Umgebungsvariabeln
+* Build Tools
+  * tools()
+  * Automatisierung Puzzle
+* Snippet Generator
+* Error handling
+* Quoting/Escaping
+* Notification
+  * mail
+  * rocketchat
+  * swoa committer only
+* Debugging
+   * replay
+   * https://jenkins.io/doc/book/pipeline/development/
+   * ...?
+* Shared Libraries
+* Multibranch
+* OpenShift 3 Integration
+  * Both plugins
+* OpenShift Image Triggers
+* OpenShift Slaves
+* Image Promotion
+* Blue Ocean
+
+</script></section><section ><section data-markdown><script type="text/template">
+## Pipeline Advantages
+
+* Can be reviewed, forked, iterated upon and audited
+* Running pipelines survive master restart
+* Can stop and wait for human input
+* Support complex CI/CD requirements
+* DSL can be extended through shared libraries
+</script></section><section data-markdown><script type="text/template">
+## Declarative vs Scripted
+
+* Declarative: Validation => better error reporting
+* Declarative: Better GUI support (Blue Ocean)
+</script></section><section data-markdown><script type="text/template"></script></section></section></div>
+        </div>
+
+        <script src="./lib/js/head.min.js"></script>
+        <script src="./js/reveal.js"></script>
+
+        <script>
+            function extend() {
+              var target = {};
+              for (var i = 0; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) {
+                  if (source.hasOwnProperty(key)) {
+                    target[key] = source[key];
+                  }
+                }
+              }
+              return target;
+            }
+
+            // Optional libraries used to extend on reveal.js
+            var deps = [
+              { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: './plugin/zoom-js/zoom.js', async: true },
+              { src: './plugin/notes/notes.js', async: true },
+              { src: './plugin/math/math.js', async: true }
+            ];
+
+            // default options to init reveal.js
+            var defaultOptions = {
+              controls: true,
+              progress: true,
+              history: true,
+              center: true,
+              transition: 'default', // none/fade/slide/convex/concave/zoom
+              dependencies: deps
+            };
+
+            // options from URL query string
+            var queryOptions = Reveal.getQueryHash() || {};
+
+            var options = {};
+            options = extend(defaultOptions, options, queryOptions);
+            Reveal.initialize(options);
+        </script>
+        
+    </body>
+</html>
