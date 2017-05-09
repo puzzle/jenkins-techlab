@@ -1,0 +1,23 @@
+[honeypot]
+hostname = COWRIE_HOSTNAME
+log_path = log
+download_path = dl
+download_limit_size = COWRIE_DOWNLOAD_SIZE_LIMIT
+contents_path = honeyfs
+filesystem_file = data/fs.pickle
+data_path = data
+auth_class = AuthRandom
+auth_class_parameters = 1, 3, 30
+txtcmds_path = txtcmds
+rsa_public_key = data/ssh_host_rsa_key.pub
+rsa_private_key = data/ssh_host_rsa_key
+dsa_public_key = data/ssh_host_dsa_key.pub
+dsa_private_key = data/ssh_host_dsa_key
+exec_enabled = true
+sftp_enabled = true
+ssh_version_string = SSH-2.0-OpenSSH
+exit_jail = false
+interact_enabled = false
+
+[output_jsonlog]
+logfile = log/cowrie.json
