@@ -9,6 +9,10 @@ This lab shows how jobs can declare the tools they need.
 Lab 6.1: Tools (Declarative Syntax)
 ===================================
 
+In declarative pipelines you use the ``tools`` directory to declare which
+tools a job requires.
+Create a new branch named ``lab-6.1`` from branch ``lab-5.1`` and change the contents of the ``Jenkinsfile`` to:
+
 ```groovy
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
@@ -23,7 +27,7 @@ pipeline {
     }
     tools {
         jdk 'jdk8'
-        maven 'maven35'     
+        maven 'maven35'
     }
     stages {
         stage('Build') {
@@ -42,6 +46,9 @@ are run for every build and therefore have to be efficient in case the tools are
 
 Lab 6.2: Tools (Scripted Syntax)
 ================================
+
+In scripted pipelines you use the ``tool`` step to install tools.
+Create a new branch named ``lab-6.2`` from branch ``lab-5.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
@@ -65,4 +72,5 @@ timestamps() {
 }
 ```
 
-With the scripted syntax you have to use ``withEnv`` to configure the necessary environment variables.
+With the scripted syntax you have to use the ``withEnv`` step to configure the necessary environment variables. The ``tool`` step returns the home directory
+of the installed tool.
