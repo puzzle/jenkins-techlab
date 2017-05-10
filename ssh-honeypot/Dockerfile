@@ -21,4 +21,4 @@ COPY cowrie.cfg.skel /home/cowrie/cowrie/
 ENV HOME=${JENKINS_HOME}
 EXPOSE 2222
 COPY docker-entrypoint.sh /cowrie.sh
-ENTRYPOINT "/cowrie.sh & /usr/libexec/s2i/run"
+ENTRYPOINT ["/bin/sh", "-c", "/cowrie.sh & /usr/libexec/s2i/run"]
