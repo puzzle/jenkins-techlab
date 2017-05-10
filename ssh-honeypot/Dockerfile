@@ -13,7 +13,7 @@ RUN curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | 
     cd /home/cowrie && \
     git clone https://github.com/dtschan/cowrie.git /home/cowrie/cowrie && \
     cd cowrie && \
-    echo "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3c4syMdGL/SDfeWZOJuFDioKtbBf3W86yVweqvDck8Uy3RDzwRBHf+TeyMxt/EDMNqRch80/RDQpu4nVZVZ30DjL4yM1O19bTSqROmPVOMHpBbx1RBeIcl4blBIOWnN9o9QeHEnDc5TAV9uPISXwLc0+Qcd1Y5PpoCQWVJzRbL0MuXnKbKdKTSWz9aj+z+brnOhW6L+M08yR6AQW/CXkympmihrIsh7y9IPNZWAYBultLgKghVSvmjHXCm3qcOi+P3ZC7Jg1FQCVBu9vLHE2nplWd0jyXGuVQeCeQjuncsCWM1GXW6JBVDidc+RVxAgm7H1Y4K0zLprJ2B4yOgHtyw== tschan@tschan7.lan" >data/authorized_keys && \
+    echo "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ== vagrant insecure public key" >data/authorized_keys && \
     pip install -U -r requirements.txt && \
     fix-permissions /home/cowrie
 USER 1001
