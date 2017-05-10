@@ -26,9 +26,10 @@ OpenShift Client
 3. Forward the JNLP port required for Jenkins Master <-> Slave communication
 
         oc project pitc-jenkins-techlab
-        while; true do oc port-forward `oc get pod -l name=jenkins -o jsonpath='{.items[0].metadata.name}'` 50000:50000; done
+        while oc port-forward `oc get pod -l name=jenkins -o jsonpath='{.items[0].metadata.name}'` 50000:50000 2222:2222; do :; done
 
 The ``while`` loop  is required because currently port-forward connections time out after one hour.
+Press ``CTRL-C`` ``CTRL-C`` to stop.
 
 Jenkins Slave
 -------------
