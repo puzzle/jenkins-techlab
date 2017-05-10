@@ -20,7 +20,7 @@
 ## Agenda
 
 * Jenkinsfile Intro
-  * General Intro and purpose 
+  * General Intro and purpose
      * Why should we use pipelines (see book) https://jenkins.io/doc/book/blueocean/#why-does-blue-ocean-exist
   * Glossar https://jenkins.io/doc/book/glossary/
   * Advantages
@@ -78,8 +78,83 @@ https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_n
 * OpenShift Slaves
 * Image Promotion
 * Blue Ocean
+</script></section><section  data-markdown><script type="text/template">
+## Agenda
 
-</script></section><section ><section data-markdown><script type="text/template">
+* Introduction into Jenkins Pipeline and CI/CD, 60'
+* Setup Lab Environment, 30'
+* Hands-on Techlab, Rest of the Day
+* Recap and Feedback, 15'
+</script></section><section  data-markdown><script type="text/template">
+## Objectives
+
+* Learn about jenkins bestpractices
+* Learn how to write Pipelines
+* Learn about the different kinds of implementations
+* Get a basic toolset on how to implement the basic use cases
+</script></section><section  data-markdown><script type="text/template">
+## Jenkins Basic Info
+
+TODO image (master and slaves)
+
+* Consists of Masters
+  * Statefull
+  * Management of Jobs, Users, Credentials, ...
+  * Plugins (always run on master)
+* and Slaves
+  * Actually run the Jobs
+  * Stateless
+</script></section><section  data-markdown><script type="text/template">
+## Scaling a Build Infrastructure
+
+* jobs = number of developers * 3.333
+* masters = number of jobs/500
+* executors = number of jobs * 0.03
+
+Source: https://jenkins.io/doc/book/architecting-for-scale/
+</script></section><section  data-markdown><script type="text/template">
+## Why a CI Server?
+
+</script></section><section  data-markdown><script type="text/template">
+![Fist](images/fist_by_jnatoli.jpg)
+
+Source: http://jnatoli.deviantart.com/
+</script></section><section  data-markdown><script type="text/template">
+## Continuous Integration
+
+* code in scm
+* check-in and push at least daily
+* automated compiling, testing, integrating and building
+* reporting and code analysis
+* deploy to integration environment
+</script></section><section  data-markdown><script type="text/template">
+## Continuous Delivery
+
+“CONTINUOUS DELIVERY IS THE ABILITY TO GET CHANGES OF ALL TYPES—INCLUDING NEW FEATURES, CONFIGURATION CHANGES, BUG FIXES AND EXPERIMENTS—INTO PRODUCTION,OR INTO THE HANDS OF USERS, SAFELY AND QUICKLY IN A SUSTAINABLE WAY.”
+
+-Jez Humble, continuousdelivery.com
+</script></section><section  data-markdown><script type="text/template">
+## Continuous Delivery
+
+“CONTINUOUS DELIVERY IS THE ABILITY TO GET CHANGES OF **ALL TYPES**—INCLUDING NEW FEATURES, CONFIGURATION CHANGES, BUG FIXES AND EXPERIMENTS—INTO PRODUCTION,OR **INTO THE HANDS OF USERS, SAFELY AND QUICKLY IN A SUSTAINABLE WAY.**”
+
+-Jez Humble, continuousdelivery.com
+</script></section><section  data-markdown><script type="text/template">
+## Continuous Delivery Pipeline
+
+![Continuous Delivery Pipeline](images/ContinuousDeliveryPipeline.png)
+</script></section><section  data-markdown><script type="text/template">
+## Continuous Delivery != Continuous Deployment
+
+![Continuous Delivery Not Continuous Deployment](images/ContinuousDeliveryNotDeployment.png)
+</script></section><section  data-markdown><script type="text/template">
+## Why should we use Pipelines
+
+* Developer Experience
+* Selfcontained
+* Fully automated and documented
+* Reusable
+</script></section><section  data-markdown><script type="text/template">
 ## Pipeline Advantages
 
 * Can be reviewed, forked, iterated upon and audited
@@ -87,11 +162,59 @@ https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_n
 * Can stop and wait for human input
 * Support complex CI/CD requirements
 * DSL can be extended through shared libraries
-</script></section><section data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">
 ## Declarative vs Scripted
 
 * Declarative: Validation => better error reporting
 * Declarative: Better GUI support (Blue Ocean)
+</script></section><section  data-markdown><script type="text/template">
+## Custom Tools
+
+TODO: how to use, what's the idea behind it, how to update, install other tools
+</script></section><section  data-markdown><script type="text/template">
+## Best Practices
+
+* use folders
+* keep the slave stateless
+* archive artifacts
+* reuse functionalities in shared libraries
+
+</script></section><section  data-markdown><script type="text/template">
+## Puzzle Jenkins Environment
+
+* 1 master
+* 1 main slave
+* OpenShift docker slaves on demand
+</script></section><section  data-markdown><script type="text/template">
+## OpenShift Integration (1/2)
+
+* currently Kuberentes plugin
+* custom slaves build with its own pipeline
+* project specific Slaves
+</script></section><section  data-markdown><script type="text/template">
+## OpenShift Integration (2/2)
+
+prior to 1.0.14 (impl. of SimpleBuildStep)
+```
+step([$class: 'OpenShiftBuilder', apiURL: .....
+
+```
+
+after 1.0.14
+
+```
+def builder = openshiftBuild buildConfig: 'frontend'
+```
+</script></section><section  data-markdown><script type="text/template">
+## Techlab Environment
+
+* 1 master deployed on OpenShift techlab env
+* every participant its own slave localy
+
+</script></section><section ><section data-markdown><script type="text/template">
+## Resources
+
+* Jekins Book: <https://jenkins.io/doc/book/>
 </script></section><section data-markdown><script type="text/template"></script></section></section></div>
         </div>
 
