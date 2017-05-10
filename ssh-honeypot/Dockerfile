@@ -5,7 +5,9 @@ RUN yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum repolist && \
     yum -y install --enablerepo=rhel-7-server-optional-rpms gcc git python-devel libffi-devel openssl-devel openssl gmp-devel mpfr-devel libmpc-devel && \
     yum -y clean all && \
-    useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin -c "Default Application User" default
+    useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin -c "Default Application User" default && \
+    curl https://raw.githubusercontent.com/appuio/libmapuid/master/lib/libmapuid.so -o /usr/local/lib/libmapuid.so && \
+    chmod 755 /usr/local/lib/libmapuid.so
 RUN curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python && \
     mkdir -p /home/cowrie && \
     cd /home/cowrie && \
