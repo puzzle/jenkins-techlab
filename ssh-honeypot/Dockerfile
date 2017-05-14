@@ -4,7 +4,7 @@ RUN yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum repolist && \
     yum -y install --enablerepo=rhel-7-server-optional-rpms gcc git python-devel libffi-devel openssl-devel openssl gmp-devel mpfr-devel libmpc-devel && \
     yum -y clean all
-ENV HOME=/home/cowrie PYTHONPATH=/home/cowrie/cowrie REFRESHED_AT=2017051001
+ENV HOME=/home/cowrie PYTHONPATH=/home/cowrie/cowrie REFRESHED_AT=2017051401
 RUN curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python && \
     mkdir -p /home/cowrie && \
     cd /home/cowrie && \
