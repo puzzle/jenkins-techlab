@@ -16,7 +16,7 @@ RUN curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | 
     echo touch /home/richard/welcome.txt | bin/fsctl data/fs.pickle && \
     fix-permissions /home/cowrie
 USER 1001
-COPY data/* /home/cowrie/cowrie/data
+COPY data/* /home/cowrie/cowrie/data/
 COPY cowrie.cfg.skel /home/cowrie/cowrie/
 ENV HOME=${JENKINS_HOME}
 EXPOSE 2222
