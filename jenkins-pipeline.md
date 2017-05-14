@@ -7,70 +7,6 @@
 
 ## Agenda
 
-* Jenkinsfile Intro
-  * General Intro and purpose
-     * Why should we use pipelines (see book) https://jenkins.io/doc/book/blueocean/#why-does-blue-ocean-exist
-  * Glossar https://jenkins.io/doc/book/glossary/
-  * Advantages
-  * Imperative
-  * Declarative <https://jenkins.io/doc/book/pipeline/syntax/>
-  * Tooling Custom Tools
-  * Best Practices
-    * Folders
-    * Slaves stateless
-    * Shared Libraries --> Lab
-  * Techlab
-  * Setup (Lab and our own Jenkins)
-  * OpenShift Integration
-  * Jenkins Book
-  * Examples
-    * <https://jenkins.io/doc/pipeline/examples/>
-    * <https://github.com/openshift/origin/tree/master/examples/jenkins/pipeline>
-
-* global defaults, e.g. logrotate
-https://jenkins.io/blog/2017/02/15/declarative-notifications/
-
-https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_new_way_to_define_jenkins_pipelines_1.pdf
-
-* Setup
-* Hello Pipeline
-* Stages, Locks, Milestones
-* Build properties
-   * log rotate
-   * scm trigger
-   * cron trigger
-* Artefact archiving/stashing
-* Credentials
-  * ssh-agent
-  * with_credentials
-* Umgebungsvariabeln
-* Build Tools
-  * tools()
-  * Automatisierung Puzzle
-* Snippet Generator
-* Error handling
-* Quoting/Escaping
-* Notification
-  * mail
-  * rocketchat
-  * swoa committer only
-* Debugging
-   * replay
-   * https://jenkins.io/doc/book/pipeline/development/
-   * ...?
-* Shared Libraries
-* Multibranch
-* OpenShift 3 Integration
-  * Both plugins
-* OpenShift Image Triggers
-* OpenShift Slaves
-* Image Promotion
-* Blue Ocean
-
----
-
-## Agenda
-
 * Introduction into Jenkins Pipeline and CI/CD, 60'
 * Setup Lab Environment, 30'
 * Hands-on Techlab, Rest of the Day
@@ -179,16 +115,65 @@ Source: http://jnatoli.deviantart.com/
 
 ---
 
-## Declarative vs Scripted
+## Declarative vs Scripted (imperative)
 
 * Declarative: Validation => better error reporting
 * Declarative: Better GUI support (Blue Ocean)
+* Imperative: mostly used until now
 
 ---
 
-## Custom Tools
+## Declarative
 
-TODO: how to use, what's the idea behind it, how to update, install other tools
+```
+pipeline {
+    agent any
+	options { ... }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+	}
+}
+```
+
+---
+
+## Scripted
+
+```
+node {
+    echo 'Scripted pipeline'
+    stage('Build') {
+      echo 'Building...'
+    }
+}
+```
+
+---
+
+## Tools
+
+* Jobs require different build tools
+* to keep slaves stateless, tools are installed dynamically during job execution
+* Jenkins provides Custom Tools concept
+
+---
+
+## Tools @ Puzzle
+
+* Seeder Job that manages custom tools
+* all custom tools script are managed in git
+* custom tools check if they already exist (performance)
+
+---
+
+## Best Practices
+
+keep everything you need to build, deploy, test, & release in version control 
 
 ---
 
@@ -198,7 +183,6 @@ TODO: how to use, what's the idea behind it, how to update, install other tools
 * keep the slave stateless
 * archive artifacts
 * reuse functionalities in shared libraries
-
 
 ---
 
@@ -239,11 +223,26 @@ def builder = openshiftBuild buildConfig: 'frontend'
 * 1 master deployed on OpenShift techlab env
 * every participant its own slave localy
 
+---
+
+## How the Techlab Works
+
+* Guided, hands-on Workshop
+* Docs are on github
+* please help us to improve the techlab
 
 ---
 
 ## Resources
 
 * Jekins Book: <https://jenkins.io/doc/book/>
+* Examples <https://jenkins.io/doc/pipeline/examples/>
+* OpenShift Examples <https://github.com/openshift/origin/tree/master/examples/jenkins/pipeline>
 
-----
+---
+
+## Let's Start 
+
+https://github.com/puzzle/jenkins-techlab
+
+---

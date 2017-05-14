@@ -23,6 +23,7 @@ This techlab is a hands on workshop where you learn on how to use and write jenk
 
 ## Helpful Links and additional Documentation
 
+- [Introducing a New Way to Define Jenkins Pipelines](https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_new_way_to_define_jenkins_pipelines_1.pdf)
 - [Jenkins Book](https://jenkins.io/doc/book/)
 - [Jenkins Pipelines Syntax](https://jenkins.io/doc/book/pipeline/syntax/)
 - [Jenkins Pipelines Examples](https://jenkins.io/doc/pipeline/examples/)

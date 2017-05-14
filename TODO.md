@@ -12,6 +12,7 @@
 
 * Shared libraries
 * Stages, Locks and Milestones
+* global defaults, e.g. logrotate <https://jenkins.io/blog/2017/02/15/declarative-notifications/>
 
 Slide:
 * Scripted Pipeline limitations/known issues <https://jenkins.io/doc/book/pipeline/syntax/#differences-from-plain-groovy>
