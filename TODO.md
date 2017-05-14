@@ -4,22 +4,20 @@
 * (Multiple agents/nodes)
 * (Parallel executions)
 * Scipted Pipeline Scripts in Declarative Pipelines <https://jenkins.io/doc/book/pipeline/syntax/#script>
+* Ruby Example
+* Node Example
 * Create Job from OpenShift BuildConfig
 * Create Credentials from OpenShift Secrets
 * Create custom Dockerized Jenkins Slave from OpenShift ImageStream
 * OpenShift Plugin <https://github.com/openshift/jenkins-plugin>
 * OpenShift Jenkins Pipeline Plugin <https://github.com/openshift/jenkins-client-plugin>
 * Snippet Generator
-* Debugging
+* Debugging (slides?)
    * replay
    * https://jenkins.io/doc/book/pipeline/development/
    * ...?
-* Credentials
-  * ssh-agent
-  * with_credentials
 * Notification
   * mail
-  * rocketchat
   * swoa committer only
 * Shared libraries
 * Stages, Locks and Milestones
