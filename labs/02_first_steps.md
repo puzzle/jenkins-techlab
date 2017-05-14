@@ -6,6 +6,8 @@ In this lab we create our first Jenkins pipelines.
 Lab 2.1: Create folder
 ----------------------
 
+Login to the techlab jenkins master with your techlab account.
+
 Create a folder for your techlab projects by clicking "New Item" -> "Folder". Use your username
 as the folder name. Click "Ok" and then "Save" on the following screen.
 
