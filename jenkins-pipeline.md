@@ -16,7 +16,7 @@
 
 ## Objectives
 
-* Learn about jenkins bestpractices
+* Learn about jenkins best practices
 * Learn how to write Pipelines
 * Learn about the different kinds of implementations
 * Get a basic toolset on how to implement the basic use cases
@@ -28,7 +28,7 @@
 TODO image (master and slaves)
 
 * Consists of Masters
-  * Statefull
+  * Stateful
   * Management of Jobs, Users, Credentials, ...
   * Plugins (always run on master)
 * and Slaves
@@ -99,7 +99,7 @@ Source: http://jnatoli.deviantart.com/
 ## Why should we use Pipelines
 
 * Developer Experience
-* Selfcontained
+* Self contained
 * Fully automated and documented
 * Reusable
 
@@ -196,7 +196,7 @@ keep everything you need to build, deploy, test, & release in version control
 
 ## OpenShift Integration (1/2)
 
-* currently Kuberentes plugin
+* currently Kubernetes plugin
 * custom slaves build with its own pipeline
 * project specific Slaves
 
@@ -221,7 +221,7 @@ def builder = openshiftBuild buildConfig: 'frontend'
 ## Techlab Environment
 
 * 1 master deployed on OpenShift techlab env
-* every participant its own slave localy
+* every participant its own slave locally
 
 ---
 
@@ -243,6 +243,6 @@ def builder = openshiftBuild buildConfig: 'frontend'
 
 ## Let's Start 
 
-https://github.com/puzzle/jenkins-techlab
+<https://github.com/puzzle/jenkins-techlab>
 
 ---
