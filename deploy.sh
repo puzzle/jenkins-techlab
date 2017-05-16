@@ -6,7 +6,7 @@ TARGET_BRANCH="gh-pages"
 
 function doCompile {
   npm run-script static
-  rsync -av theme out images
+  rsync -av images theme out 
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
