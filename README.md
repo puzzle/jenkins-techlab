@@ -6,7 +6,7 @@ This techlab is a hands on workshop where you learn on how to use and write jenk
 ## Content
 
 - [Introduction](labs/00_introduction.md)
-- [Gettingstarted Slides](https://puzzle.github.io/jenkins-techlab)
+- [Getting started Slides](https://puzzle.github.io/jenkins-techlab)
 
 1. [Setup Environment](labs/01_setup.md)
 1. [First Steps](labs/02_first_steps.md)
