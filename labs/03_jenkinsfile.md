@@ -11,7 +11,7 @@ Lab 3.1: First Jenkinsfile
 
 1. Create a new GitHub repository with a suitable name, e.g. ``jenkins-techlab``.
 2. Create a new branch in the repository named ``lab-3.1``
-3. Create a file name ``Jenkinsfile`` with the following content in the root directory of the ``lab-3.1`` branch.
+3. Create a file named ``Jenkinsfile`` with the following content in the root directory of the ``lab-3.1`` branch.
 
     ```groovy
     pipeline {

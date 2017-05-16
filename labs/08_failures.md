@@ -117,3 +117,8 @@ try {
 
 It's again good practice to ensure capture of test results in any case using a ``finally` statement.
 The ``junit`` and ``rocketSend`` steps need a workspace and must be contained in a ``node`` step.
+
+Excercise
+---------
+
+Add mail notification to one of the labs. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.

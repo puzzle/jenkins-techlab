@@ -57,3 +57,12 @@ timestamps() {
     }
 }
 ```
+
+Lab 9.3: Predefined Environment Variables
+-----------------------------------------
+
+Jenkins provides a list of predefined environment variables under the path ``/pipeline-syntax/globals#env``. Visit the corresponding link for the techlab environment and study the list:
+
+<https://jenkins-techlab.ose3-lab.puzzle.ch/pipeline-syntax/globals#env>
+
+Please note that the list may vary depending on Jenkins version and installed plugins.
