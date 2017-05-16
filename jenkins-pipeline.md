@@ -186,6 +186,18 @@ keep everything you need to build, deploy, test, & release in version control
 
 ---
 
+## Best Practices Folders Plugin
+
+How to organize jobs @ puzzle
+
+```
+[Customer]-[project]
+
+hit-hitobito
+pitc-appuio
+```
+---
+
 ## Puzzle Jenkins Environment
 
 * 1 master
