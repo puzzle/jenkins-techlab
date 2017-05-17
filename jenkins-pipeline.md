@@ -215,6 +215,7 @@ How to organize jobs @ puzzle
 hit-hitobito
 pitc-appuio
 ```
+
 ---
 
 ## Debugging a Job
@@ -257,7 +258,8 @@ Use the replay function of a pipeline
 | Stage  | the phases of a pipeline are called stages  |
 | Step  | A single task; fundamentally steps tell Jenkins what to do inside of a Pipeline or Project.  |
 
-   
+
+
 ---
 
 ## Puzzle Jenkins Environment
