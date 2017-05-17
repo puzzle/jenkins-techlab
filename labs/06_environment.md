@@ -1,10 +1,14 @@
 Lab 6: Environment
 ==================
 
-In this lab we see how to work with environment variables in pipelines.
+In this lab we see how to work with environment variables in pipelines. 
+
+Enironment Variable are generally in pipelines available under the ``env`` namespace, like ``env.BUILD_ID`` 
 
 Lab 6.1: Environment (Declarative Syntax)
 -----------------------------------------
+
+Create a new branch named lab-6.1 from branch lab-2.1 and change the contents of the Jenkinsfile to:
 
 ```groovy
 pipeline {
@@ -33,6 +37,8 @@ pipeline {
 
 Lab 6.2: Environment (Scripted Syntax)
 --------------------------------------
+
+Create a new branch named lab-6.2 from branch lab-2.2 and change the contents of the Jenkinsfile to:
 
 ```groovy
 properties([
