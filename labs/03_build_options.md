@@ -37,6 +37,8 @@ This pipeline is configured to:
 * Timeout builds that run longer than **10 minutes**
 * Print timestamps before each build log line
 
+**Note:** Verify on the jenkins master, whether the new options are now visible in the configuration view.
+
 Lab 3.2: Build Properties (Scripted Syntax)
 -------------------------------------------
 
@@ -67,3 +69,5 @@ of a step depends on its implementation. Use the "Snippet Generator" to find
 the correct syntax. Scripted pipelines need to run before Jenkins can pick
 up changes in build properties. Multibranch pipeline support takes care of this
 an runs any new jobs and any jobs with changes in their ``Jenkinsfile``.
+
+**Note:** Verify on the jenkins master, whether the new options are now visible in the configuration view.
