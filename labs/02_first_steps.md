@@ -17,19 +17,18 @@ Lab 2.1: Declarative "Hello, World!"
 2. Create a new branch in the repository named ``lab-2.1``
 3. Create a file named ``Jenkinsfile`` with the following content in the root directory of the ``lab-2.1`` branch.
 
-        ```groovy
-        pipeline {
-            agent any
-
-            stages {
-                stage('Greeting') {
-                    steps {
-                        echo 'Hello, World!'
-                    }
-                }
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Greeting') {
+            steps {
+                echo 'Hello, World!'
             }
         }
-        ```
+    }
+}
+```
 
 4. Create a new multibranch pipeline in your folder named ``techlab``
 5. Add a Git branch source
