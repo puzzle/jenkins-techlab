@@ -149,7 +149,8 @@ Working with pipelines we often want to pass a value of a variable into a ``sh``
 ```groovy
 def company = 'puzzle'
 sh "echo ${company}"
-    ```
+```
+
 Will result in:
 
 ```

@@ -11,7 +11,7 @@ Lab 8.1: Tools (Declarative Syntax)
 
 In declarative pipelines you use the ``tools`` directory to declare which
 tools a job requires.
-Create a new branch named ``lab-8.1`` from branch ``lab-5.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-8.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -48,7 +48,7 @@ Lab 8.2: Tools (Scripted Syntax)
 ================================
 
 In scripted pipelines you use the ``tool`` step to install tools.
-Create a new branch named ``lab-8.2`` from branch ``lab-5.2`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-8.2`` from branch ``lab-2.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
