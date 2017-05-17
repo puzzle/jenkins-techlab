@@ -20,7 +20,7 @@ title: Jenkins Pipelines
 
 ## Objectives
 
-* Learn about jenkins best practices
+* Learn about Jenkins best practices
 * Learn how to write Pipelines
 * Learn about the different kinds of implementations
 * Get a basic toolset on how to implement the basic use cases
@@ -75,11 +75,11 @@ Source: http://jnatoli.deviantart.com/
 
 ## Continuous Integration
 
-* code in scm
-* check-in and push at least daily
-* automated compiling, testing, integrating and building
-* reporting and code analysis
-* deploy to integration environment
+* Code in scm
+* Check-in and push at least daily
+* Automated compiling, testing, integrating and building
+* Reporting and code analysis
+* Deploy to integration environment
 
 ---
 
@@ -141,16 +141,16 @@ Source: http://jnatoli.deviantart.com/
 
 * Declarative: Validation => better error reporting
 * Declarative: Better GUI support (Blue Ocean)
-* Imperative: mostly used until now
+* Scripted: Rapid prototyping
+* Scripted: Nearly full power of Groovy (good and bad)
 
 ---
 
 ## Declarative
 
-```
+```groovy
 pipeline {
     agent any
-	options { ... }
 
     stages {
         stage('Build') {
@@ -166,9 +166,8 @@ pipeline {
 
 ## Scripted
 
-```
+```groovy
 node {
-    echo 'Scripted pipeline'
     stage('Build') {
       echo 'Building...'
     }
@@ -179,9 +178,9 @@ node {
 
 ## Groovy Syntax Limitations
 
-* pipelines must survive restart of the jenkins
-* scripts mus serialize data back to the master
-* not fully supported
+* Pipelines must survive restart of the jenkins
+* Scripts must serialize data back to the master
+* Some Groovy idioms with closures not supported, e.g:
 ```
 collection.each { item -> /* perform operation */ }
 ```
@@ -191,16 +190,17 @@ collection.each { item -> /* perform operation */ }
 ## Tools
 
 * Jobs require different build tools
-* to keep slaves stateless, tools are installed dynamically during job execution
-* Jenkins provides Custom Tools concept
+* To keep slaves stateless, tools are installed dynamically during job execution
+* Jenkins provides auto tool installer concept
 
 ---
 
 ## Tools @ Puzzle
 
-* Seeder Job that manages custom tools
-* all custom tools script are managed in git
-* custom tools check if they already exist (performance)
+* Seeder job that manages custom tools
+* Update jobs that automatically update tools where possible
+* All custom tool scripts are managed in git
+* Custom tools check if they already exist (performance)
 
 ---
 
@@ -217,10 +217,10 @@ collection.each { item -> /* perform operation */ }
 
 ## Best Practices
 
-* use folders
-* keep the slave stateless
-* archive artifacts
-* reuse functionalities in shared libraries
+* Use folders
+* Keep the slave stateless
+* Archive artifacts
+* Reuse functionalities in shared libraries
 
 ---
 
@@ -297,21 +297,21 @@ Use the replay function of a pipeline
 
 ## OpenShift Integration (1/2)
 
-* currently Kubernetes plugin
-* custom slaves build with its own pipeline
-* project specific Slaves
+* Currently Kubernetes plugin
+* Custom slaves build with its own pipeline
+* Project specific Slaves
 
 ---
 
 ## OpenShift Integration (2/2)
 
-prior to 1.0.14 (impl. of SimpleBuildStep)
+Prior to 1.0.14 (impl. of SimpleBuildStep)
 ```
 step([$class: 'OpenShiftBuilder', apiURL: .....
 
 ```
 
-after 1.0.14
+After 1.0.14
 
 ```
 def builder = openshiftBuild buildConfig: 'frontend'
@@ -329,15 +329,15 @@ def builder = openshiftBuild buildConfig: 'frontend'
 ## Techlab Environment
 
 * 1 master deployed on OpenShift techlab env
-* every participant its own slave locally
+* Every participant runs its own slave locally
 
 ---
 
 ## How the Techlab Works
 
 * Guided, hands-on Workshop
-* Docs are on github
-* please help us to improve the techlab
+* Docs are on GitHub
+* Please help us to improve the techlab
 
 ---
 
