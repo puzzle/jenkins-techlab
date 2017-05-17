@@ -79,7 +79,7 @@ pipeline {
     }
     post {
         always {
-            notifyPuzzleChat()
+            notifyPuzzleChat('jenkins-techlab')
         }
     }
 }
