@@ -99,6 +99,8 @@ Use the following example pipeline to play with the string definitions you learn
 
 **Note** since we use the declarative pipeline syntax to execute groovy code we use the ``script{...}`` section
 
+Create a new branch named lab-5.1 from branch lab-2.1 and change the contents of the Jenkinsfile to:
+
 ```groovy
 pipeline {
 	agent any
@@ -123,6 +125,8 @@ Lab 5.2: Using Environment Variables or Parameters within a string in a Pipeline
 -------------------------------------------------------------------
 
 All Environment Variables are available under ``${env.}``
+
+Create a new branch named lab-5.2 from branch lab-2.1 and change the contents of the Jenkinsfile to:
 
 ```groovy
 pipeline {
@@ -182,7 +186,7 @@ def company = 'puzzle'
 ```
 
 A complete Example looks like this:
-
+Create a new branch named lab-5.3 from branch lab-2.1 and change the contents of the Jenkinsfile to:
 
 ```groovy
 pipeline {
@@ -199,4 +203,10 @@ pipeline {
     }
 }
 ```
-	
+
+
+
+Lab 5.4: Additional Lab scripted pipeline
+-----------------------------------------
+
+Convert the labs above manually into a scripted pipeline and try out the similar string interpolation and escaping functionalities.
