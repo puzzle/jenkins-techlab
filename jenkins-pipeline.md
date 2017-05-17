@@ -11,10 +11,10 @@ title: Jenkins Pipelines
 
 ## Agenda
 
-* Introduction into Jenkins Pipeline and CI/CD, 60'
-* Setup Lab Environment, 30'
-* Hands-on Techlab, Rest of the Day
-* Recap and Feedback, 15'
+* Introduction into Jenkins Pipeline and CI/CD, **60'**
+* Setup Lab Environment, **30'**
+* Hands-on Techlab, **Rest of the Day**
+* Recap and Feedback, **15'**
 
 ---
 
@@ -24,6 +24,13 @@ title: Jenkins Pipelines
 * Learn how to write Pipelines
 * Learn about the different kinds of implementations
 * Get a basic toolset on how to implement the basic use cases
+
+---
+
+<!--section -->
+# Jenkins Overview - CI/CD
+
+<!-- .slide: class="master02" -->
 
 ---
 
@@ -101,6 +108,13 @@ Source: http://jnatoli.deviantart.com/
 ## Continuous Delivery != Continuous Deployment
 
 ![Continuous Delivery Not Continuous Deployment](images/ContinuousDeliveryNotDeployment.png)
+
+---
+
+<!--section -->
+# Pipelines
+
+<!-- .slide: class="master02" -->
 
 ---
 
@@ -190,9 +204,14 @@ collection.each { item -> /* perform operation */ }
 
 ---
 
-## Best Practices
+<!--section -->
+# Best Practices
 
-keep everything you need to build, deploy, test, & release in version control 
+<!-- .slide: class="master02" -->
+
+---
+
+## keep everything you need to build, deploy, test, & release in version control 
 
 ---
 
@@ -259,6 +278,12 @@ Use the replay function of a pipeline
 | Step  | A single task; fundamentally steps tell Jenkins what to do inside of a Pipeline or Project.  |
 
 
+---
+
+<!--section -->
+# Jenkins @ Puzzle
+
+<!-- .slide: class="master02" -->
 
 ---
 
@@ -291,6 +316,13 @@ after 1.0.14
 ```
 def builder = openshiftBuild buildConfig: 'frontend'
 ```
+
+---
+
+<!--section -->
+# Techlab
+
+<!-- .slide: class="master02" -->
 
 ---
 
