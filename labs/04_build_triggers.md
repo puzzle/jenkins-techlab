@@ -38,6 +38,8 @@ pipeline {
 are shown under "View Configuration."  
 For more info regarding Jenkins cron expressions see <http://www.scmgalaxy.com/tutorials/setting-up-the-cron-jobs-in-jenkins-using-build-periodically-scheduling-the-jenins-job>.
 
+**Note:** Verify on the jenkins master, whether the new triggers are now visible in the configuration view.
+
 Lab 4.2: Build Trigger (Scripted Syntax)
 ----------------------------------------
 
@@ -65,3 +67,5 @@ timestamps() {
 
 Changes in build triggers in scripted pipelines are only seen by Jenkins
 after the changed pipeline ran.
+
+**Note:** Verify on the jenkins master, whether the new triggers are now visible in the configuration view.
