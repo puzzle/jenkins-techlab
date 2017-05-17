@@ -1,4 +1,4 @@
-Lab 12: Shared Libraries
+Lab 11: Shared Libraries
 ========================
 
 In the last lab we had some duplicated code implementing notification through Rocket.Chat.
@@ -6,7 +6,7 @@ Besides being duplicated the code was also independent of our project, so we wan
 move it out of our project in such a way that it can be reused in multiple
 projects. This is where pipeline shared libraries come in.
 
-Lab 12.1: Create Folder-Level Shared Library
+Lab 11.1: Create Folder-Level Shared Library
 --------------------------------------------
 
 One possibility to implement reusable code is to provide custom steps through a shared library.
@@ -40,11 +40,12 @@ the shared library is has to be registered with Jenkins:
 To make the step useful for multiple projects it allows to provide a different Rocket.Chat channel.
 A single library can provide any number of custom steps.
 
-Lab 12.2: Use Shared Library (Declarative Syntax)
+Lab 11.2: Use Shared Library (Declarative Syntax)
 -------------------------------------------------
 
 Now we can rewrite our pipeline to use the new ``notifyPuzzleChat`` step, eliminating any duplicated code.
-Custom steps are used the same as built-in steps:
+Custom steps are used the same as built-in steps. Create a new branch named ``lab-11.2`` from branch
+``lab-9.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
 @Library('jenkins-techlab-libraries') _
@@ -67,7 +68,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git url: "https://github.com/LableOrg/java-maven-junit-helloworld"
+                checkout scm
                 sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                 archiveArtifacts 'target/*.?ar'
             }
@@ -94,12 +95,12 @@ Since the step deals with different build results we can also replace the
 directive. Note that ``channel`` is still optional and defaults to the
 channel in the Rocket.Chat plugin configuration.
 
-Lab 12.3: Use Shared Library (Scripted Syntax)
+Lab 11.3: Use Shared Library (Scripted Syntax)
 ----------------------------------------------
 
-Simplify our scripted pipeline from the last lab analogously.The step also allows provide a different channel
+Simplify our scripted pipeline from the last lab analogously.
 
-Lab 12.4: Additional Shared Library Capabilities
+Lab 11.4: Additional Shared Library Capabilities
 ------------------------------------------------
 
 In this lab we used folder-level shared libraries to avoid conflicts between

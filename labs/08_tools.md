@@ -1,4 +1,4 @@
-Lab 6: Tools
+Lab 8: Tools
 ============
 
 Jobs usually require specific versions of build tools for build automation, compilation, testing etc.

@@ -1,10 +1,13 @@
 Lab 13: Stages, Locks and Milestones
 ====================================
 
-So far we only uses a single stage.
+So far we only used a single stage.
 
 Lab 13.1: Stages, Locks and Milestones (Declarative Syntax)
 ===========================================================
+
+Create a new branch named ``lab-13.1`` from branch
+``lab-9.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
 @Library('jenkins-techlab-libraries') _
@@ -33,8 +36,6 @@ pipeline {
         stage('Build') {
             steps {                 
                 milestone(10)  // The first milestone step starts tracking concurrent build order
-                deleteDir()
-                git url: "https://github.com/LableOrg/java-maven-junit-helloworld"
                 sh 'mvn -B -V -U -e clean verify -DskipTests'
             }
         }
@@ -82,4 +83,3 @@ Lab 13.2: Stages, Locks and Milestones (Scripted Syntax)
 --------------------------------------------------------
 
 Adapt scripted pipeline from previous lab analogously.
-

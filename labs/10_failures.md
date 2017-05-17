@@ -1,4 +1,4 @@
-Lab 8: Failures and Notifications
+Lab 10: Failures and Notifications
 =================================
 
 In this lab we look into how to deal with failures in Jenkins pipelines. A failure is
@@ -13,8 +13,12 @@ Usually a build is aborted when a failure occurs, with the exception of test fai
 In declarative pipelines error handling is separated from the actual build logic,
 on the other hand failure handling can become quite disruptive in scripted pipelines.
 
-Lab 8.1: Failures (Declarative Syntax)
+Lab 10.1: Failures (Declarative Syntax)
 --------------------------------------
+
+Declarative pipelines provide the ``post`` section and directives like ``success`` and ``failure``
+to deal with failures. Create a new branch named ``lab-10.1`` from branch ``lab-9.1`` (the one
+we merged the source into) and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -35,7 +39,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git url: "https://github.com/LableOrg/java-maven-junit-helloworld"
                 sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                 archiveArtifacts 'target/*.?ar'
             }
@@ -68,7 +71,7 @@ when we'll visit shared libraries.
 The ``rawMesssage`` attribute of ``rocketSend`` tells Rocket.Chat not to add content
 on its own like link previews.
 
-Lab 8.2: Failures (Scripted Syntax)
+Lab 10.2: Failures (Scripted Syntax)
 -----------------------------------
 
 ```groovy
@@ -87,7 +90,7 @@ try {
                 stage('Build') {
                     try {
                         withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                            git url: "https://github.com/LableOrg/java-maven-junit-helloworld"
+                            checkout scm
                             sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                             archiveArtifacts 'target/*.?ar'
                         }
@@ -118,7 +121,7 @@ try {
 It's again good practice to ensure capture of test results in any case using a ``finally` statement.
 The ``junit`` and ``rocketSend`` steps need a workspace and must be contained in a ``node`` step.
 
-Lab 8.3: Mail noticication
+Lab 10.3: Mail noticication
 --------------------------
 
 Add mail notification to one of the labs. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.
