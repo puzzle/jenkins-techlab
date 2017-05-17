@@ -70,3 +70,12 @@ Jenkins provides a list of predefined environment variables under the path ``/pi
 <https://jenkins-techlab.ose3-lab.puzzle.ch/pipeline-syntax/globals#env>
 
 Please note that the list may vary depending on Jenkins version and installed plugins.
+
+**Additional Lab:** Update the pipelines from Lab 6 so that the output looks something like this:
+```
+...
+hello Jenkins Techlab [current build ID]
+...
+```
+use the string interpolation functionality you've learnt in a previous Lab
+
