@@ -207,7 +207,7 @@ keep everything you need to build, deploy, test, & release in version control
 
 ## Best Practices Folders Plugin
 
-How to organize jobs @ puzzle
+How to organize pipelines @ puzzle
 
 ```
 [Customer]-[project]
@@ -218,7 +218,7 @@ pitc-appuio
 
 ---
 
-## Debugging a Job
+## Debugging a Pipeline
 
 Use the replay function of a pipeline
 
@@ -226,7 +226,7 @@ Use the replay function of a pipeline
 
 ---
 
-## Debugging a Job
+## Debugging a Pipeline
 
 Use the replay function of a pipeline
 
