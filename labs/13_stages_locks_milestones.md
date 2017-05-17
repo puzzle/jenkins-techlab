@@ -1,7 +1,12 @@
 Lab 13: Stages, Locks and Milestones
 ====================================
 
-So far we only used a single stage.
+Stages are used to group steps together and to provide boundaries in for pipeline segments which
+are also used when visualizing pipelines, e.g. in the Jenkins or OpenShift web interface.
+In declarative pipelines some directives like ``post`` or ``agent`` can appear on ``stage`` as well as on the
+global level.  
+In this lab we split testing and deploying into their own stages and add ``milestone``, ``lock`` and ``input``
+steps to control the flow of builds through the pipeline.
 
 Lab 13.1: Stages, Locks and Milestones (Declarative Syntax)
 ===========================================================
@@ -75,6 +80,14 @@ pipeline {
     }
 }
 ```
+
+``milestone`` automatically aborts any earlier builds which haven't yet
+reached the milestone. ``lock`` is used to prevent two builds from
+using a non-shareable resource like a Selenium server and is most often seen
+in test stages. While ``input`` pauses a build and waits for user input.
+It accepts the same parameters type as build parameters but can appear
+anywhere in a build and allows the parameters to be computed.  
+See <https://jenkins.io/blog/2016/10/16/stage-lock-milestone/> for more information.
 
 Lab 13.2: Stages, Locks and Milestones (Scripted Syntax)
 --------------------------------------------------------

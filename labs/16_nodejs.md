@@ -37,4 +37,13 @@ pipeline {
 }
 ```
 
+Lab 16.2: Improve Node.js Lab
+-----------------------------
+
 Add additional Node.js lab with tests and artifact archiving.
+
+Lab 16.3: Write Custom Step
+---------------------------
+
+Write a custom step to move the above boilerplate code
+into a shared library.
