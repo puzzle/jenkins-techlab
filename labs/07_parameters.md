@@ -1,7 +1,7 @@
-Lab 10: Build Parameters
+Lab 7: Build Parameters
 ========================
 
-Lab 10.1: Build Parameters (Declarative Syntax)
+Lab 7.1: Build Parameters (Declarative Syntax)
 -----------------------------------------------
 
 (Based on lab 5):
@@ -31,7 +31,7 @@ pipeline {
 }
 ```
 
-Lab 10.2: Build Parameters (Scripted Syntax)
+Lab 7.2: Build Parameters (Scripted Syntax)
 ============================================
 
 ```groovy

@@ -1,7 +1,7 @@
-Lab 13: Ruby
+Lab 15: Ruby
 ============
 
-Lab 13.1: Install Ruby (Declarative Syntax)
+Lab 15.1: Install Ruby (Declarative Syntax)
 -------------------------------------------
 
 ```groovy
@@ -41,12 +41,12 @@ pipeline {
 }
 ```
 
-Lab 14.2: Improve Ruby Lab
+Lab 15.2: Improve Ruby Lab
 --------------------------
 
 Add additional Ruby lab with tests and artifact archiving.
 
-Lab 14.3: Write Custom Step
+Lab 15.3: Write Custom Step
 ---------------------------
 
 Write a custom step to move the above boilerplate code

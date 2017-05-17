@@ -10,15 +10,24 @@ This techlab is a hands on workshop where you learn on how to use and write jenk
 
 1. [Setup Environment](labs/01_setup.md)
 1. [First Steps](labs/02_first_steps.md)
-1. [The Jenkins File](labs/03_jenkinsfile.md)
-1. [Build Options/Properties](labs/04_build_options.md)
-1. [Build Trigger](labs/05_build_triggers.md)
-1. [Build Tools](labs/06_tools.md)
-1. [Artifact Archival](labs/07_artifacts.md)
-1. [Failures and Notifications](labs/08_failures.md)
-1. [Notifications](labs/08_notifications.md)
-1. [Environment](labs/09_environment.md)
-1. [Build Parameters](labs/10_parameters.md)
+1. [Build Options/Properties](labs/03_build_options.md)
+1. [Build Trigger](labs/04_build_triggers.md)
+1. [String Interpolation and Escaping](labs/05_string_interpolation_quoting_escaping.md)
+1. [Environment](labs/06_environment.md)
+1. [Build Parameters](labs/07_parameters.md)
+1. [Tools](labs/08_tools.md)
+1. [Artifact Archival](labs/09_artifacts.md)
+1. [Failures and Notifications](labs/10_failures.md)
+1. [Shared Libraries](labs/11_shared_libs.md)
+1. [Credentials](labs/12_credentials.md)
+1. [Stages, Locks and Milestones](labs/13_stages_locks_milestones.md)
+1. [Scripted Parts in Declarative Pipelines](labs/14_scripted_parts_declarative.md)
+1. [Ruby](labs/15_ruby.md)
+1. [NodeJs](labs/16_nodejs.md)
+1. [OpenShift Pipeline](labs/17_openshift_pipeline.md)
+1. [Write / Migrate your own Projects to Jenkins Pipelines](labs/18_write_migrate_your_own_projects.md)
+
+
 
 
 ## Helpful Links and additional Documentation

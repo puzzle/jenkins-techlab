@@ -6,12 +6,12 @@ As soon as you have more than a handful number of tools and versions it becomes 
 That's why Jenkins provides a mechanism to provide the necessary tools for a build on the slaves it runs on.
 This lab shows how jobs can declare the tools they need.
 
-Lab 6.1: Tools (Declarative Syntax)
+Lab 8.1: Tools (Declarative Syntax)
 ===================================
 
 In declarative pipelines you use the ``tools`` directory to declare which
 tools a job requires.
-Create a new branch named ``lab-6.1`` from branch ``lab-5.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-8.1`` from branch ``lab-5.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -44,11 +44,11 @@ With the declarative syntax environment variables like ``PATH`` and ``JAVA_HOME`
 configured automatically as requested by the tool installer. Note that tool installers
 are run for every build and therefore have to be efficient in case the tools are already installed.
 
-Lab 6.2: Tools (Scripted Syntax)
+Lab 8.2: Tools (Scripted Syntax)
 ================================
 
 In scripted pipelines you use the ``tool`` step to install tools.
-Create a new branch named ``lab-6.2`` from branch ``lab-5.2`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-8.2`` from branch ``lab-5.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([

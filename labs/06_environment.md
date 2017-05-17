@@ -1,9 +1,9 @@
-Lab 5: Environment
+Lab 6: Environment
 ==================
 
 In this lab we see how to work with environment variables in pipelines.
 
-Lab 5.1: Environment (Declarative Syntax)
+Lab 6.1: Environment (Declarative Syntax)
 -----------------------------------------
 
 ```groovy
@@ -31,7 +31,7 @@ pipeline {
 }
 ```
 
-Lab 5.2: Environment (Scripted Syntax)
+Lab 6.2: Environment (Scripted Syntax)
 --------------------------------------
 
 ```groovy
@@ -56,7 +56,7 @@ timestamps() {
 }
 ```
 
-Lab 5.3: Predefined Environment Variables
+Lab 6.3: Predefined Environment Variables
 -----------------------------------------
 
 Jenkins provides a list of predefined environment variables under the path ``/pipeline-syntax/globals#env``. Visit the corresponding link for the techlab environment and study the list:
