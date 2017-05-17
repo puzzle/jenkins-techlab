@@ -33,16 +33,18 @@
 * Learn about the different kinds of implementations
 * Get a basic toolset on how to implement the basic use cases
 </script></section><section  data-markdown><script type="text/template">
-## Jenkins Basic Info
+## Jenkins Basic Overview
 
-TODO image (master and slaves)
+![Jenkins Overview](images/Jenkins_overview.png)
+</script></section><section  data-markdown><script type="text/template">
+## Jenkins Basic Info
 
 * Consists of Masters
   * Stateful
-  * Management of Jobs, Users, Credentials, ...
+  * Management of Jobs, Credentials, ...
   * Plugins (always run on master)
 * and Slaves
-  * Actually run the Jobs
+  * Actually run the jobs
   * Stateless
 </script></section><section  data-markdown><script type="text/template">
 ## Scaling a Build Infrastructure
@@ -137,6 +139,15 @@ node {
 }
 ```
 </script></section><section  data-markdown><script type="text/template">
+## Groovy Syntax Limitations
+
+* pipelines must survive restart of the jenkins
+* scripts mus serialize data back to the master
+* not fully supported
+```
+collection.each { item -> /* perform operation */ }
+```
+</script></section><section  data-markdown><script type="text/template">
 ## Tools
 
 * Jobs require different build tools
@@ -170,6 +181,41 @@ How to organize jobs @ puzzle
 hit-hitobito
 pitc-appuio
 ```
+---
+
+## Debugging a Job
+
+Use the replay function of a pipeline
+
+![Jenkins Overview](images/Jenkins_replay.png)
+</script></section><section  data-markdown><script type="text/template">
+## Debugging a Job
+
+Use the replay function of a pipeline
+
+![Jenkins Overview](images/Jenkins_replay2.png)
+</script></section><section  data-markdown><script type="text/template">
+## Snippet Generator 
+
+![Jenkins Overview](images/Jenkins_snippet_generator.png)
+</script></section><section  data-markdown><script type="text/template">
+## Snippet Generator 
+
+![Jenkins Overview](images/Jenkins_snippet_generator2.png)
+</script></section><section  data-markdown><script type="text/template">
+## Glossary
+
+| Term | Description |
+|---|---|
+| Pipeline  | A user-defined model of a continuous delivery pipeline  |
+| Build  | Result of a single execution of a Project  |
+| Agent  | An agent is typically a machine, or container, which connects to a Jenkins master and executes tasks when directed by the master.  |
+| Node  | A machine which is part of the Jenkins environment and capable of executing Pipelines or Projects.  |
+| Job  | A deprecated term, synonymous with Project.  |
+| Stage  | the phases of a pipeline are called stages  |
+| Step  | A single task; fundamentally steps tell Jenkins what to do inside of a Pipeline or Project.  |
+
+   
 ---
 
 ## Puzzle Jenkins Environment
