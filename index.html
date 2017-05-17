@@ -21,10 +21,10 @@
 </script></section><section  data-markdown><script type="text/template">
 ## Agenda
 
-* Introduction into Jenkins Pipeline and CI/CD, 60'
-* Setup Lab Environment, 30'
-* Hands-on Techlab, Rest of the Day
-* Recap and Feedback, 15'
+* Introduction into Jenkins Pipeline and CI/CD, **60'**
+* Setup Lab Environment, **30'**
+* Hands-on Techlab, **Rest of the Day**
+* Recap and Feedback, **15'**
 </script></section><section  data-markdown><script type="text/template">
 ## Objectives
 
@@ -32,6 +32,11 @@
 * Learn how to write Pipelines
 * Learn about the different kinds of implementations
 * Get a basic toolset on how to implement the basic use cases
+</script></section><section  data-markdown><script type="text/template">
+<!--section -->
+# Jenkins Overview - CI/CD
+
+<!-- .slide: class="master02" -->
 </script></section><section  data-markdown><script type="text/template">
 ## Jenkins Basic Overview
 
@@ -89,6 +94,11 @@ Source: http://jnatoli.deviantart.com/
 ## Continuous Delivery != Continuous Deployment
 
 ![Continuous Delivery Not Continuous Deployment](images/ContinuousDeliveryNotDeployment.png)
+</script></section><section  data-markdown><script type="text/template">
+<!--section -->
+# Pipelines
+
+<!-- .slide: class="master02" -->
 </script></section><section  data-markdown><script type="text/template">
 ## Why should we use Pipelines
 
@@ -160,9 +170,12 @@ collection.each { item -> /* perform operation */ }
 * all custom tools script are managed in git
 * custom tools check if they already exist (performance)
 </script></section><section  data-markdown><script type="text/template">
-## Best Practices
+<!--section -->
+# Best Practices
 
-keep everything you need to build, deploy, test, & release in version control 
+<!-- .slide: class="master02" -->
+</script></section><section  data-markdown><script type="text/template">
+## keep everything you need to build, deploy, test, & release in version control 
 </script></section><section  data-markdown><script type="text/template">
 ## Best Practices
 
@@ -214,7 +227,11 @@ Use the replay function of a pipeline
 | Stage  | the phases of a pipeline are called stages  |
 | Step  | A single task; fundamentally steps tell Jenkins what to do inside of a Pipeline or Project.  |
 
+</script></section><section  data-markdown><script type="text/template">
+<!--section -->
+# Jenkins @ Puzzle
 
+<!-- .slide: class="master02" -->
 </script></section><section  data-markdown><script type="text/template">
 ## Puzzle Jenkins Environment
 
@@ -241,6 +258,11 @@ after 1.0.14
 ```
 def builder = openshiftBuild buildConfig: 'frontend'
 ```
+</script></section><section  data-markdown><script type="text/template">
+<!--section -->
+# Techlab
+
+<!-- .slide: class="master02" -->
 </script></section><section  data-markdown><script type="text/template">
 ## Techlab Environment
 

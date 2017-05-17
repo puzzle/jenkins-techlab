@@ -145,7 +145,7 @@ body {
   width: 90%;
   margin: 2.5rem auto;
   text-align: left;
-  font-size: 0.35em;
+  font-size: 0.5em;
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
@@ -164,7 +164,7 @@ body {
   color: #DCDCDC; }
 
 .reveal table {
-  font-size: 0.35em;
+  font-size: 0.5em;
   margin: auto;
   border-collapse: collapse;
   border-spacing: 0; }
