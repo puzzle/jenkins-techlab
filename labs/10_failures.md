@@ -32,15 +32,13 @@ pipeline {
         pollSCM('H/5 * * * *')
         cron('@midnight')
     }
-    tools {
-        jdk 'jdk8'
-        maven 'maven35'
-    }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                archiveArtifacts 'target/*.?ar'
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                    archiveArtifacts 'target/*.?ar'
+                }
             }
             post {
                 always {
@@ -89,7 +87,7 @@ try {
             node(env.JOB_NAME.split('/')[0]) {
                 stage('Build') {
                     try {
-                        withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                        withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                             checkout scm
                             sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                             archiveArtifacts 'target/*.?ar'

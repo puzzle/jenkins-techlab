@@ -9,8 +9,10 @@ This lab shows how jobs can declare the tools they need.
 Lab 8.1: Tools (Declarative Syntax)
 ===================================
 
-In declarative pipelines you use the ``tools`` directory to declare which
-tools a job requires.
+Declarative pipelines provide a ``tools`` section to declare which
+tools a job requires. However we currently can't use it because
+it doesn't yet support custom tools (Custom Tool Plugin). Instead
+we use the ``withEnv`` and ``tool`` steps.
 Create a new branch named ``lab-8.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
@@ -25,24 +27,23 @@ pipeline {
         pollSCM('H/5 * * * *')
         cron('@midnight')
     }
-    tools {
-        jdk 'jdk8'
-        maven 'maven35'
-    }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn --version'
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                    sh 'mvn --version'
+                }
             }
         }
     }
 }
 ```
 
+The ``tool`` step returns the home directory of the installed tool. The ``PATH+<IDENTIFIER>`` syntax specifies
+that the given value should be prepended to the ``PATH`` environment variable, where ``<IDENTIFIER>`` is an arbitraty
+unique identifier, used to make the left hand side of the assignment unique.
 The configured tools are downloaded when the job runs, directly onto the slaves it runs on.
-With the declarative syntax environment variables like ``PATH`` and ``JAVA_HOME`` are
-configured automatically as requested by the tool installer. Note that tool installers
-are run for every build and therefore have to be efficient in case the tools are already installed.
+Note that tool installers are run for every build and therefore have to be efficient in case the tools are already installed.
 
 Lab 8.2: Tools (Scripted Syntax)
 ================================
@@ -63,7 +64,7 @@ timestamps() {
     timeout(time: 10, unit: 'MINUTES') {
         node(env.JOB_NAME.split('/')[0]) {
             stage('Greeting') {
-                withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                     sh "mvn --version"
                 }
             }
@@ -72,5 +73,6 @@ timestamps() {
 }
 ```
 
-With the scripted syntax you have to use the ``withEnv`` step to configure the necessary environment variables. The ``tool`` step returns the home directory
-of the installed tool.
+The usage of tools is identical to the previous lab since we couldn't use the declarative syntax there.
+
+

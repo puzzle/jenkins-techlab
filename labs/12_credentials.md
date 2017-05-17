@@ -27,11 +27,8 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')
     }
-    tools {
-        jdk 'jdk8'
-        maven 'maven35'
-    }
     environment {
+      M2_SETTINGS = credentials('m2_settings')
       KNOWN_HOSTS = credentials('known_hosts')
       ARTIFACTORY = credentials('jenkins-artifactory')
       ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"
@@ -40,16 +37,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                configFileProvider([configFile(fileId: 'm2_settings', variable: 'M2_SETTINGS')]) {  // Config File Provider Plugin
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {                
                   sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                   sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
                 }
-                
+
                 sshagent(['testserver']) {  // SSH Agent Plugin
                   sh "ls -l target"
                   sh "ssh -o UserKnownHostsFile='${KNOWN_HOSTS}' -p 2222 richard@testserver.vcap.me 'curl -O -u \'${ARTIFACTORY}\' ${REPO_URL}/com/puzzleitc/jenkins-techlab/${ARTIFACT}/1.0/${ARTIFACT}-1.0.jar && ls -l'"
                 }
-                
+
                 archiveArtifacts 'target/*.?ar'
             }
             post {
@@ -101,13 +98,11 @@ try {
             node(env.JOB_NAME.split('/')[0]) {
                 stage('Build') {
                     try {
-                        withCredentials([usernameColonPassword(credentialsId: 'jenkins-artifactory', variable: 'ARTIFACTORY'), file(credentialsId: 'known_hosts', variable: 'KNOWN_HOSTS')]) {  // Credentials Binding Plugin
+                        withCredentials([file(credentialsId: 'm2_settings', variable: 'M2_SETTINGS'), usernameColonPassword(credentialsId: 'jenkins-artifactory', variable: 'ARTIFACTORY'), file(credentialsId: 'known_hosts', variable: 'KNOWN_HOSTS')]) {  // Credentials Binding Plugin
                             withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                                configFileProvider([configFile(fileId: 'm2_settings', variable: 'M2_SETTINGS')]) {  // Config File Provider Plugin
-                                    checkout scm
-                                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                                    sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"                              
-                                }
+                                checkout scm
+                                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                                sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"                              
                             }
 
                         sshagent(['testserver']) {  // SSH Agent Plugin

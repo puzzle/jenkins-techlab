@@ -22,11 +22,8 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')
     }
-    tools {
-        jdk 'jdk8'
-        maven 'maven35'
-    }
-    environment {      
+    environment {
+      M2_SETTINGS = credentials('m2_settings')
       KNOWN_HOSTS = credentials('known_hosts')
       ARTIFACTORY = credentials('jenkins-artifactory')
       ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"
@@ -43,7 +40,7 @@ pipeline {
             steps {
                 // Only one build is allowed to use test resources, newest builds run first
                 lock(resource: 'myResource', inversePrecedence: true) {  // Lockable Resources Plugin
-                    configFileProvider([configFile(fileId: 'm2_settings', variable: 'M2_SETTINGS')]) {  // Config File Provider Plugin
+                    withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                         sh 'mvn -B -V -U -e verify -Dsurefire.useFile=false'
                     }
                     milestone(20)  // Abort all older builds that didn't get here
@@ -60,7 +57,7 @@ pipeline {
             steps {
                 input "Deploy?"
                 milestone(30)  // Abort all older builds that didn't get here
-                configFileProvider([configFile(fileId: 'm2_settings', variable: 'M2_SETTINGS')]) {  // Config File Provider Plugin
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                     sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
                 }
 
