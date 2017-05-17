@@ -1,4 +1,4 @@
-Lab 99: String Interpolation and Escaping 
+Lab 5: String Interpolation and Escaping 
 =========================================
 
 Using the Jenkins Pipelines we quite often need to somehow insert values from variables, parameters, 
@@ -92,7 +92,7 @@ def doubleQuoted = "this is a double quote: \" "
 | \'  | single quote (for single quoted and triple single quoted strings) |
 | \"  | double quote (for double quoted and triple double quoted strings) |
 
-Lab 99.1: Get used to the string interpolation and escaping
+Lab 5.1: Get used to the string interpolation and escaping
 -----------------------------------------------------------
 
 Use the following example pipeline to play with the string definitions you learned so far
@@ -119,7 +119,7 @@ pipeline {
 ```
 
 
-Lab 99.2: Using Environment Variables or Parameters within a string in a Pipeline
+Lab 5.2: Using Environment Variables or Parameters within a string in a Pipeline
 -------------------------------------------------------------------
 
 All Environment Variables are available under ``${env.}``
@@ -141,7 +141,7 @@ pipeline {
 ```
 
 
-Lab 99.3: Using values as params in a sh command
+Lab 5.3: Using values as params in a sh command
 ------------------------------------------------
 
 Working with pipelines we often want to pass a value of a variable into a ``sh`` - command for example
