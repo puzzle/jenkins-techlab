@@ -10,6 +10,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
+        ansicolor('xterm')  // AnsiColor Plugin
     }
     triggers {
         pollSCM('H/5 * * * *')
@@ -20,13 +21,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                ansiColor('xterm') {  // AnsiColor Plugin
-                    sh """#!/bin/bash +x
-                        source \${HOME}/.nvm/nvm.sh
-                        nvm install 4
-                        node --version
-                    """
-                }
+                sh """#!/bin/bash +x
+                    source \${HOME}/.nvm/nvm.sh
+                    nvm install 4
+                    node --version
+                """
             }
         }
     }
@@ -38,4 +37,4 @@ pipeline {
 }
 ```
 
-Add additional Ruby lab with tests and artifact archiving.
+Add additional Node.js lab with tests and artifact archiving.
