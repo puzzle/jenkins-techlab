@@ -1,4 +1,3 @@
-* String interpolation, quotes and escapes
 * Getting results from shell steps <https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script>
 * Conditional stages <https://jenkins.io/doc/book/pipeline/syntax/#when>
 * (Multiple agents/nodes, stash/unstash)
