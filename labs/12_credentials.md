@@ -17,6 +17,8 @@ variables. Create a new branch named ``lab-12.1`` from branch
 ``lab-9.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
+@Library('jenkins-techlab-libraries') _
+
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
     options {
@@ -83,6 +85,8 @@ Create a new branch named ``lab-12.2`` from branch
 ``lab-9.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
+@Library('jenkins-techlab-libraries') _
+
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
