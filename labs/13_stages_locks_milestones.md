@@ -32,7 +32,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {                 
-                milestone(1)  // The first milestone step starts tracking concurrent build order
+                milestone(10)  // The first milestone step starts tracking concurrent build order
                 deleteDir()
                 git url: "https://github.com/LableOrg/java-maven-junit-helloworld"
                 sh 'mvn -B -V -U -e clean verify -DskipTests'
@@ -45,7 +45,7 @@ pipeline {
                     configFileProvider([configFile(fileId: 'm2_settings', variable: 'M2_SETTINGS')]) {  // Config File Provider Plugin
                         sh 'mvn -B -V -U -e verify -Dsurefire.useFile=false'
                     }
-                    milestone(11)  // Abort all older builds that didn't get here
+                    milestone(20)  // Abort all older builds that didn't get here
                 }
             }
             post {
@@ -58,7 +58,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 input "Deploy?"
-                milestone(21)  // Abort all older builds that didn't get here
+                milestone(30)  // Abort all older builds that didn't get here
                 configFileProvider([configFile(fileId: 'm2_settings', variable: 'M2_SETTINGS')]) {  // Config File Provider Plugin
                     sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
                 }

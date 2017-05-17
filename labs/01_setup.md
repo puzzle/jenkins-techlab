@@ -5,16 +5,16 @@ The techlab setup involves starting a Jenkins Slave on your notebook and connect
 to a Jenkins master running on an OpenShift 3 environment. An OpenShift client is needed
 to establish the connection.
 
-Environment
------------
+Lab 1.1: Environment
+--------------------
 
 Set environment variables with your techlab username and password:
 
     export TLUSER=<myusername>
     export TLPASS=<mypassword>
 
-OpenShift Client
-----------------
+Lab 1.2: OpenShift Client
+-------------------------
 
 1. Follow the instructions here to install the OpenShift 3 client:
 <https://docs.openshift.org/latest/cli_reference/get_started_cli.html#installing-the-cli>
@@ -31,8 +31,8 @@ OpenShift Client
 The ``while`` loop  is required because currently port-forward connections time out after one hour.
 Press ``CTRL-C`` ``CTRL-C`` to stop.
 
-Jenkins Slave
--------------
+Lab 1.3: Jenkins Slave
+----------------------
 
 **With Docker**
 
@@ -54,3 +54,14 @@ Jenkins Slave
 
 **Warning:** Running the Jenkins slave directly on your machine with your default user
 will give techlab participants access to all your files.
+
+Lab 1.4: Jenkins Folder
+-----------------------
+
+1. Login to the techlab jenkins master with your techlab account.
+2. Create a folder for your techlab projects by clicking "New Item" -> "Folder". Use your username
+as the folder name. Click **Ok** and then **Save** on the following screen.
+
+A folder provides a namespace for jobs, credentials and shared libraries. It's recommended
+to use a separate folder per project to avoid name collisions and to group related jobs.
+In this techlab this is required because each participant creates the same jobs, credentials and shared libraries.

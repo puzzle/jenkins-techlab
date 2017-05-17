@@ -1,4 +1,4 @@
-Lab 4: Build Options/Properties
+Lab 3: Build Options/Properties
 ===============================
 
 When using multibranch pipelines you can no longer configure build options (declarative syntax)
@@ -7,12 +7,12 @@ pipelines configuring build options/properties in the ``Jenkinsfile`` is recomme
 order to obtain a single source of truth <https://en.wikipedia.org/wiki/Single_source_of_truth>.
 This lab shows how this is done.
 
-Lab 4.1: Build Options
+Lab 3.1: Build Options
 ----------------------
 
 In declarative pipelines build options/properties are configured through the ``options`` directive.
 Only a single ``options`` directive is allowed and must be contained in the ``pipeline`` block.
-Create a new branch named ``lab-4.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-3.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -20,22 +20,12 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
+        timestamps()  // Timestamper Plugin
     }
     stages {
-        stage('Build') {
+        stage('Greeting') {
             steps {
-                echo 'Building...'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
+                echo 'Hello, World!'
             }
         }
     }
@@ -47,13 +37,13 @@ This pipeline is configured to:
 * Timeout builds that run longer than **10 minutes**
 * Print timestamps before each build log line
 
-Lab 4.2: Build Properties (Scripted Syntax)
+Lab 3.2: Build Properties (Scripted Syntax)
 -------------------------------------------
 
 In scripted pipelines build options/properties are configured through the ``properties`` step.
 The ``properties`` step replaces any existing build properties with the list given,
 therefore only a single instance should be used per pipeline.
-Create a new branch named ``lab-4.2`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-3.2`` from branch ``lab-2.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
@@ -63,22 +53,15 @@ properties([
 timestamps() {
     timeout(time: 10, unit: 'MINUTES') {
         node {
-            echo 'Scripted pipeline'
-            stage('Build') {
-            echo 'Building...'
-            }
-            stage('Test') {
-                echo 'Testing...'
-            }
-            stage('Deploy') {
-                echo 'Deploying...'
+            stage('Greeting') {
+                echo 'Hello, World!'
             }
         }
     }
 }
 ```
 
-This configures the same job properties as the declarative pipeline in lab 4.1. 
+This configures the same job properties as the declarative pipeline in lab 3.1. 
 In scripted pipelines job properties are configured through steps and the usage
 of a step depends on its implementation. Use the "Snippet Generator" to find
 the correct syntax. Scripted pipelines need to run before Jenkins can pick

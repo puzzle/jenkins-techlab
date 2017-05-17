@@ -1,15 +1,15 @@
-Lab 5: Build Trigger
+Lab 4: Build Trigger
 ====================
 
 Like build options/properties triggers need to be configured in the ``Jenkinsfile`` for
 multibranch jobs. In this lab we add a SCM polling trigger and a cron trigger to our job.
 
-Lab 5.1: Build Trigger (Declarative Syntax)
+Lab 4.1: Build Trigger (Declarative Syntax)
 -------------------------------------------
 
 In declarative pipelines build triggers are configured through the ``options`` directive.
 Only a single ``options`` directive is allowed and must be contained in the ``pipeline`` block.
-Create a new branch named ``lab-5.1`` from branch ``lab-4.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-4.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -38,8 +38,10 @@ pipeline {
 are shown under "View Configuration."  
 For more info regarding Jenkins cron expressions see <http://www.scmgalaxy.com/tutorials/setting-up-the-cron-jobs-in-jenkins-using-build-periodically-scheduling-the-jenins-job>.
 
-Lab 5.2: Build Trigger (Scripted Syntax)
+Lab 4.2: Build Trigger (Scripted Syntax)
 ----------------------------------------
+
+Create a new branch named ``lab-4.2`` from branch ``lab-2.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
