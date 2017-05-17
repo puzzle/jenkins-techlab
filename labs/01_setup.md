@@ -58,7 +58,7 @@ will give techlab participants access to all your files.
 Lab 1.4: Jenkins Folder
 -----------------------
 
-1. Login to the techlab jenkins master with your techlab account.
+1. Login to the techlab [jenkins master](https://jenkins-techlab.ose3-lab.puzzle.ch/) with your techlab account.
 2. Create a folder for your techlab projects by clicking "New Item" -> "Folder". Use your username
 as the folder name. Click **Ok** and then **Save** on the following screen.
 
