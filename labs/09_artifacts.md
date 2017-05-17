@@ -17,6 +17,8 @@ code into it:
 ```bash
 git pull -s recursive -X ours --allow-unrelated-histories https://github.com/LableOrg/java-maven-junit-helloworld
 ```
+**Note:** the option ``allow-unrelated-histories`` is necessary since git version ``2.9``
+
 
 Then change the contents of the ``Jenkinsfile`` to:
 
