@@ -38,7 +38,9 @@ pipeline {
         stage('Build') {
             steps {                 
                 milestone(10)  // The first milestone step starts tracking concurrent build order
-                sh 'mvn -B -V -U -e clean verify -DskipTests'
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                    sh 'mvn -B -V -U -e clean verify -DskipTests'
+                }
             }
         }
         stage('Test') {
