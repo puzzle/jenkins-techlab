@@ -27,16 +27,20 @@ title: Jenkins Pipelines
 
 ---
 
-## Jenkins Basic Info
+## Jenkins Basic Overview
 
-TODO image (master and slaves)
+![Jenkins Overview](images/Jenkins_overview.png)
+
+---
+
+## Jenkins Basic Info
 
 * Consists of Masters
   * Stateful
-  * Management of Jobs, Users, Credentials, ...
+  * Management of Jobs, Credentials, ...
   * Plugins (always run on master)
 * and Slaves
-  * Actually run the Jobs
+  * Actually run the jobs
   * Stateless
 
 ---
@@ -159,6 +163,17 @@ node {
 
 ---
 
+## Groovy Syntax Limitations
+
+* pipelines must survive restart of the jenkins
+* scripts mus serialize data back to the master
+* not fully supported
+```
+collection.each { item -> /* perform operation */ }
+```
+
+---
+
 ## Tools
 
 * Jobs require different build tools
@@ -200,6 +215,49 @@ How to organize jobs @ puzzle
 hit-hitobito
 pitc-appuio
 ```
+---
+
+## Debugging a Job
+
+Use the replay function of a pipeline
+
+![Jenkins Overview](images/Jenkins_replay.png)
+
+---
+
+## Debugging a Job
+
+Use the replay function of a pipeline
+
+![Jenkins Overview](images/Jenkins_replay2.png)
+
+---
+
+## Snippet Generator 
+
+![Jenkins Overview](images/Jenkins_snippet_generator.png)
+
+---
+
+## Snippet Generator 
+
+![Jenkins Overview](images/Jenkins_snippet_generator2.png)
+
+---
+
+## Glossary
+
+| Term | Description |
+|---|---|
+| Pipeline  | A user-defined model of a continuous delivery pipeline  |
+| Build  | Result of a single execution of a Project  |
+| Agent  | An agent is typically a machine, or container, which connects to a Jenkins master and executes tasks when directed by the master.  |
+| Node  | A machine which is part of the Jenkins environment and capable of executing Pipelines or Projects.  |
+| Job  | A deprecated term, synonymous with Project.  |
+| Stage  | the phases of a pipeline are called stages  |
+| Step  | A single task; fundamentally steps tell Jenkins what to do inside of a Pipeline or Project.  |
+
+   
 ---
 
 ## Puzzle Jenkins Environment

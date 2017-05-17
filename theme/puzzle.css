@@ -16,7 +16,7 @@ body {
 
 .reveal {
   font-family: "Roboto", sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 300;
   color: #444; }
 
@@ -76,8 +76,8 @@ body {
 .reveal img,
 .reveal video,
 .reveal iframe {
-  max-width: 95%;
-  max-height: 95%; }
+  max-width: 90%;
+  max-height: 90%; }
 
 .reveal strong,
 .reveal b {
