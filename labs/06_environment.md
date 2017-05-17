@@ -28,7 +28,7 @@ pipeline {
     stages {
         stage('Greeting') {
             steps {
-                echo 'Hello, ' + env.GREETINGS_TO + '!'
+                echo "Hello, ${env.GREETINGS_TO} !"
             }
         }
     }
@@ -54,7 +54,7 @@ timestamps() {
         node {
             stage('Greeting') {
                 withEnv(['GREETINGS_TO=Jenkins Techlab']) {
-                    echo 'Hello, ' + env.GREETINGS_TO + '!'
+                    echo "Hello, ${env.GREETINGS_TO}!"
                 }
             }
         }
