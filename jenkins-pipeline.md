@@ -1,3 +1,7 @@
+---
+title: Jenkins Pipelines
+---
+
 <!--section -->
 # Jenkins Pipeline - Pipeline as Code
 
