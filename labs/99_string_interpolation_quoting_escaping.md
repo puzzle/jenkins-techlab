@@ -19,67 +19,67 @@ How to declare a String
 
 In groovy there are basically four ways on how to declare strings
 
-    ```groovy
-    def singleQuoted = 'Jenkins'
-    def doubleQuoted = "Pipeline"
-	def trippleSingleQuoted = '''Techlab'''
-	def trippleDoubleQuoted = """Techlab"""
-    ```
+```groovy
+def singleQuoted = 'Jenkins'
+def doubleQuoted = "Pipeline"
+def trippleSingleQuoted = '''Techlab'''
+def trippleDoubleQuoted = """Techlab"""
+```
 	
 Only the double quoted strings support string interpolation
 
-    ```groovy
-    def company = 'puzzle'
-	echo 'join the ${company}'
-    echo "join the ${company}"
-	echo '''join the ${company}'''
-	echo """join the ${company}"""
-    ```
+```groovy
+def company = 'puzzle'
+echo 'join the ${company}'
+echo "join the ${company}"
+echo '''join the ${company}'''
+echo """join the ${company}"""
+```
 
 Will result in:
 
-    ```
-    join the ${company}
-    join the puzzle
-	join the ${company}
-	join the puzzle
-    ```
+```
+join the ${company}
+join the puzzle
+join the ${company}
+join the puzzle
+```
 
 The tripple quoted (both single and double) string can be multiline
 
-    ```groovy
-    def trippleQuoted = '''Jenkins
-	Pipeline
-	Techlab'''
-	echo trippleQuoted
-    ```
+```groovy
+def trippleQuoted = '''Jenkins
+Pipeline
+Techlab'''
+echo trippleQuoted
+```
 	
 or
 
-    ```groovy
-    def trippleQuoted = """Jenkins
-	Pipeline
-	Techlab"""
-	echo trippleQuoted
-    ```
+```groovy
+def trippleQuoted = """Jenkins
+Pipeline
+Techlab"""
+echo trippleQuoted
+```
 	
 Will result in:
 
-    ```
-    Jenkins
-    Pipeline
-	Techlab
-    ```
+```
+Jenkins
+Pipeline
+Techlab
+```
 	
 Escaping
 --------
 
 Escaping a quote in a string
 
-    ```groovy
-    def singleQuoted = 'this is a single quote: \' '
-	def doubleQuoted = "this is a double quote: \" "
-    ```
+```groovy
+def singleQuoted = 'this is a single quote: \' '
+def doubleQuoted = "this is a double quote: \" "
+```
 
 | Escape sequence | Character |
 |---|---|
@@ -99,24 +99,24 @@ Use the following example pipeline to play with the string definitions you learn
 
 **Note** since we use the declarative pipeline syntax to execute groovy code we use the ``script{...}`` section
 
-    ```groovy
-    pipeline {
-        agent any
-        stages {
-            stage('Build') {
-                steps {
-					script {
-						def company = 'puzzle'
-						echo 'join the ${company}'
-						echo "join the ${company}"
-						echo '''join the ${company}'''
-						echo """join the ${company}"""
-					}
-                }
-            }
-        }
-    }
-    ```
+```groovy
+pipeline {
+	agent any
+	stages {
+		stage('Build') {
+			steps {
+				script {
+					def company = 'puzzle'
+					echo 'join the ${company}'
+					echo "join the ${company}"
+					echo '''join the ${company}'''
+					echo """join the ${company}"""
+				}
+			}
+		}
+	}
+}
+```
 
 
 Lab 99.2: Using Environment Variables or Parameters within a string in a Pipeline
@@ -124,21 +124,21 @@ Lab 99.2: Using Environment Variables or Parameters within a string in a Pipelin
 
 All Environment Variables are available under ``${env.}``
 
-    ```groovy
-    pipeline {
-        agent any
-		parameters {
-			string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
-		}
-        stages {
-            stage('Build') {
-                steps {
-                    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} in company ${params.company_parameter}"
-                }
+```groovy
+pipeline {
+    agent any
+	parameters {
+		string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
+	}
+    stages {
+        stage('Build') {
+            steps {
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} in company ${params.company_parameter}"
             }
         }
     }
-    ```
+}
+```
 
 
 Lab 99.3: Using values as params in a sh command
@@ -146,56 +146,56 @@ Lab 99.3: Using values as params in a sh command
 
 Working with pipelines we often want to pass a value of a variable into a ``sh`` - command for example
 
-    ```groovy
-    def company = 'puzzle'
-	sh "echo ${company}"
+```groovy
+def company = 'puzzle'
+sh "echo ${company}"
     ```
 Will result in:
 
-    ```
-    puzzle
-    ```
+```
+puzzle
+```
 	
 Passing only the variable is pretty straight forward. Since we learned the string intrepolation only works
 for **double quoted** strings, the following
 
-    ```groovy
-    def company = 'puzzle'
-	sh 'echo ${company}'
-    ```
+```groovy
+def company = 'puzzle'
+sh 'echo ${company}'
+```
 
 Will result in:
 
-    ```
-    ${company}
-    ```
+```
+${company}
+```
 
 which is in this case not wat we wanted
 
 It gets more complicated once you want to pass for example a double quote ``"`` to the shell command, then the 
 inner quoets must be escaped
 
-    ```groovy
-    def company = 'puzzle'
+```groovy
+def company = 'puzzle'
 	sh "echo \"join the puzzle ${company}\""
-    ```
+```
 
 A complete Example looks like this:
 
 
-	```groovy
-    pipeline {
-        agent any
-		parameters {
-			string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
-		}
-        stages {
-            stage('Build') {
-                steps {
-                    sh "echo \"Running ${env.BUILD_ID} on ${env.JENKINS_URL}\" in company ${params.company_parameter}"
-                }
+```groovy
+pipeline {
+    agent any
+	parameters {
+		string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
+	}
+    stages {
+        stage('Build') {
+            steps {
+                sh "echo \"Running ${env.BUILD_ID} on ${env.JENKINS_URL}\" in company ${params.company_parameter}"
             }
         }
     }
-    ```
+}
+```
 	
