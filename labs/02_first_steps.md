@@ -31,7 +31,7 @@ pipeline {
 ```
 
 4. Create a new multibranch pipeline in your folder named ``techlab``
-5. Add a Git branch source
+5. Add a Git branch source (not Github, because then you need credentials)
 6. Set "Project Repository" to the URL of your new GitHub repository (use the https URL for anonymous access)
 7. Set the trigger "Periodically if not otherwise run" to "2 minutes"
 8. Click **Save**
