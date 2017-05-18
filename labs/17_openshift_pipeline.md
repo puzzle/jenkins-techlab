@@ -1,15 +1,15 @@
-Lab 8: OpenShift Integration
+Lab 17: OpenShift Integration
 ============================
 
 OpenShift integrates quite nicely with the Jenkins pipelines.
 
-Lab 8.1: calling OpenShift within the pipelines
+Lab 17.1: calling OpenShift within the pipelines
 -----------------------------------------------
 
 The following plugin adds steps that directly interact with a given OpenShift Platform  https://github.com/openshift/jenkins-plugin
 
 
-Lab 8.2: Jenkins Pipeline in OpenShift
+Lab 17.2: Jenkins Pipeline in OpenShift
 --------------------------------------
 
 OpenShift 3.4 supports Jenkins pipelines as build strategy. OpenShift then spins up a Jenkins master as a Pod and runs the pipeline on it.
