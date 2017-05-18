@@ -37,7 +37,7 @@ This pipeline is configured to:
 * Timeout builds that run longer than **10 minutes**
 * Print timestamps before each build log line
 
-**Note:** Verify on the jenkins master, whether the new options are now visible in the configuration view.
+**Note:** The timeout option isn't shown in the configuration on the Jenkins master
 
 Lab 3.2: Build Properties (Scripted Syntax)
 -------------------------------------------
@@ -63,11 +63,9 @@ timestamps() {
 }
 ```
 
-This configures the same job properties as the declarative pipeline in lab 3.1. 
+This configures the same job properties as the declarative pipeline in lab 3.1.
 In scripted pipelines job properties are configured through steps and the usage
 of a step depends on its implementation. Use the "Snippet Generator" to find
 the correct syntax. Scripted pipelines need to run before Jenkins can pick
 up changes in build properties. Multibranch pipeline support takes care of this
 an runs any new jobs and any jobs with changes in their ``Jenkinsfile``.
-
-**Note:** Verify on the jenkins master, whether the new options are now visible in the configuration view.
