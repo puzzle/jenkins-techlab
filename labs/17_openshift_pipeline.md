@@ -27,8 +27,8 @@ In this techlab the Jenkins master is already running.
           source:
             type: Git
             git:
-              uri: https://github.com:<myusername>/jenkins-techlab-openshift
-              ref: master    
+              uri: https://github.com:<myusername>/jenkins-techlab
+              ref: lab-13.1
           strategy:
             type: JenkinsPipeline
             jenkinsPipelineStrategy:
