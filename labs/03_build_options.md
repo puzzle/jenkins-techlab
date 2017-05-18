@@ -65,7 +65,7 @@ timestamps() {
 
 This configures the same job properties as the declarative pipeline in lab 3.1.
 In scripted pipelines job properties are configured through steps and the usage
-of a step depends on its implementation. Use the "Snippet Generator" to find
+of a step depends on its implementation. Use the "Snippet Generator" ("Pipeline Syntax" in the sidebar) to find
 the correct syntax. Scripted pipelines need to run before Jenkins can pick
 up changes in build properties. Multibranch pipeline support takes care of this
 an runs any new jobs and any jobs with changes in their ``Jenkinsfile``.
