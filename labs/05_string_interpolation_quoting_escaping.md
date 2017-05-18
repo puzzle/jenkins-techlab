@@ -161,7 +161,7 @@ Will result in:
 puzzle
 ```
 	
-Passing only the variable is pretty straight forward. Since we learned the string intrepolation only works
+Passing only the variable is pretty straight forward. Since we learned the string interpolation only works
 for **double quoted** strings, the following
 
 ```groovy
