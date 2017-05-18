@@ -17,23 +17,24 @@ In this techlab the Jenkins master is already running.
 
 1. Create a file named ``pipeline.yml`` with the following content, replacing ``<myusername>`` with your user name.
 
-        ```yaml
-        apiVersion: v1
-        kind: BuildConfig
-        metadata:
-          name: <myusername>-pipeline
-        spec:
-          runPolicy: Serial
-          source:
-            type: Git
-            git:
-              uri: https://github.com:<myusername>/jenkins-techlab
-              ref: lab-13.1
-          strategy:
-            type: JenkinsPipeline
-            jenkinsPipelineStrategy:
-              jenkinsfilePath: Jenkinsfile
-        ```
+    ```yaml
+    apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: <myusername>-pipeline
+    spec:
+      runPolicy: Serial
+      source:
+        type: Git
+        git:
+          uri: https://github.com:<myusername>/jenkins-techlab
+          ref: lab-13.1
+      strategy:
+        type: JenkinsPipeline
+        jenkinsPipelineStrategy:
+          jenkinsfilePath: Jenkinsfile
+    ```
+
 2. Import it into OpenShift with: ``oc create -f pipeline.yml``
 
 You can now see the pipeline in Jenkins as well as in OpenShift, including a visualization of the various stages.
