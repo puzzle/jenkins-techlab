@@ -33,12 +33,13 @@ Press ``CTRL-C`` ``CTRL-C`` to stop.
 
 Lab 1.3: Jenkins Slave
 ----------------------
+There are two ways to deploy the Jenkins Slave:
 
-**With Docker**
+**with Docker**
 
     docker run --net=host csanchez/jenkins-swarm-slave -master https://jenkins-techlab.ose3-lab.puzzle.ch/ -disableSslVerification -tunnel localhost:50000 -executors 2 -name ${TLUSER} -labels ${TLUSER} -username ${TLUSER} -password "${TLPASS}"
 
-**Directly on your machine or in a VM**
+**or directly on your machine or in a VM**
 
 1. Create a dedicated, unprivileged user:
 
