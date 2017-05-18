@@ -48,8 +48,8 @@ Lab 2.2: Scripted "Hello, World!"
 ---------------------------------
 
 ``Jenkinsfile`` supports declarative and scripted syntax. Create a
-new branch ``lab-2.2`` based on the ``lab-2.`` branch in your repository. When Jenkins scans the repository the next time it will create a corresponding job.
-Now update the ``Jenkinsfile`` with a scripted version of the pipeline:
+new branch ``lab-2.2`` based on the ``lab-2.1`` branch in your repository. When Jenkins scans the repository the next time it will create a corresponding job.
+Now replace the ``Jenkinsfile`` with a scripted version of the pipeline:
 
 ```groovy
 node {
