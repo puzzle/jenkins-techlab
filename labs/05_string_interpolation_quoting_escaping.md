@@ -175,10 +175,10 @@ Will result in:
 ${company}
 ```
 
-which is in this case not wat we wanted
+which is in this case not what we wanted
 
 It gets more complicated once you want to pass for example a double quote ``"`` to the shell command, then the 
-inner quoets must be escaped
+inner quotes must be escaped
 
 ```groovy
 def company = 'puzzle'
