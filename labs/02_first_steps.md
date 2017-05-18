@@ -30,8 +30,9 @@ pipeline {
 }
 ```
 
+
 4. On Jenkins, create a new "Multibranch Pipeline" item named ``techlab`` in your previously created folder
-5. Add a Git branch source
+5. Add a Git branch source (not Github, because then you need credentials)
 6. Set "Project Repository" to the URL of your new GitHub repository (use the https URL for anonymous access)
 7. Set the trigger "Periodically if not otherwise run" to "2 minutes"
 8. Click **Save**
