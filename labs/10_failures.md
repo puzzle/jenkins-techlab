@@ -3,6 +3,7 @@ Lab 10: Failures and Notifications
 
 In this lab we look into how to deal with failures in Jenkins pipelines. A failure is
 any kind of error condition that results in an unsuccessful build, e.g.:
+
 * Syntax error in source code
 * Error in build script or configuration
 * Error in pipeline
@@ -119,7 +120,7 @@ try {
 It's again good practice to ensure capture of test results in any case using a ``finally` statement.
 The ``junit`` and ``rocketSend`` steps need a workspace and must be contained in a ``node`` step.
 
-Lab 10.3: Mail noticication
---------------------------
+Lab 10.3: Mail notification
+---------------------------
 
 Add mail notification to one of the labs. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.
