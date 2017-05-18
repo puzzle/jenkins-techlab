@@ -343,7 +343,7 @@ def builder = openshiftBuild buildConfig: 'frontend'
 
 ## Resources
 
-* Jekins Book: <https://jenkins.io/doc/book/>
+* Jenkins Book: <https://jenkins.io/doc/book/>
 * Examples <https://jenkins.io/doc/pipeline/examples/>
 * OpenShift Examples: <https://github.com/openshift/origin/tree/master/examples/jenkins/pipeline>
 * Jenkins Techlab: <https://github.com/puzzle/jenkins-techlab>
