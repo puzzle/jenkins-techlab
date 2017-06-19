@@ -31,7 +31,6 @@ pipeline {
     }
     triggers {
         pollSCM('H/5 * * * *')
-        cron('@midnight')
     }
     stages {
         stage('Build') {
@@ -77,8 +76,7 @@ Lab 10.2: Failures (Scripted Syntax)
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
-        pollSCM('H/5 * * * *'),
-        cron('@midnight')
+        pollSCM('H/5 * * * *')
     ])
 ])
 

@@ -21,7 +21,6 @@ pipeline {
     }
     triggers {
         pollSCM('H/5 * * * *')
-        cron('@midnight')
     }
     parameters {
         string(name: 'Greetings_to', defaultValue: 'Jenkins Techlab', description: 'Who to greet?')
@@ -50,8 +49,7 @@ Create a new branch named ``lab-7.2`` from branch ``lab-2.1`` and change the con
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
-        pollSCM('H/5 * * * *'),
-        cron('@midnight')
+        pollSCM('H/5 * * * *')
     ]),
     parameters([string(defaultValue: 'Jenkins Techlab', description: 'Who to greet?', name: 'Greetings_to')])
 ])

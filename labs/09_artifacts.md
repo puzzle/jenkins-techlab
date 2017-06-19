@@ -32,7 +32,6 @@ pipeline {
     }
     triggers {
         pollSCM('H/5 * * * *')
-        cron('@midnight')
     }
     stages {
         stage('Build') {
@@ -66,8 +65,7 @@ we merged the source into) and change the contents of the ``Jenkinsfile`` to:
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
-        pollSCM('H/5 * * * *'),
-        cron('@midnight')
+        pollSCM('H/5 * * * *')
     ])
 ])
 

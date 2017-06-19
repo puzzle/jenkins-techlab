@@ -25,7 +25,6 @@ pipeline {
     }
     triggers {
         pollSCM('H/5 * * * *')
-        cron('@midnight')
     }
     stages {
         stage('Build') {
@@ -55,8 +54,7 @@ Create a new branch named ``lab-8.2`` from branch ``lab-2.2`` and change the con
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
-        pollSCM('H/5 * * * *'),
-        cron('@midnight')
+        pollSCM('H/5 * * * *')
     ])
 ])
 
