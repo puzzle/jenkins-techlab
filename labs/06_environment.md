@@ -20,7 +20,6 @@ pipeline {
     }
     triggers {
         pollSCM('H/5 * * * *')
-        cron('@midnight')
     }
     environment {
         GREETINGS_TO = 'Jenkins Techlab'
@@ -47,8 +46,7 @@ Create a new branch named lab-6.2 from branch lab-2.2 and change the contents of
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
-        pollSCM('H/5 * * * *'),
-        cron('@midnight')
+        pollSCM('H/5 * * * *')
     ])
 ])
 
