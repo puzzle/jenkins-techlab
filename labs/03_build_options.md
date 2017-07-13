@@ -21,6 +21,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
+        disableConcurrentBuilds()
     }
     stages {
         stage('Greeting') {
@@ -36,6 +37,7 @@ This pipeline is configured to:
 * Keep a maximum of **5** builds
 * Timeout builds that run longer than **10 minutes**
 * Print timestamps before each build log line
+* Disallow concurrent executions of the Pipeline. Can be useful for preventing multiple simultaneously Builds for one feature branch.
 
 **Note:** The timeout option isn't shown in the configuration on the Jenkins master
 
