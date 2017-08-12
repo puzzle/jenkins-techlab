@@ -37,7 +37,7 @@ This pipeline is configured to:
 * Keep a maximum of **5** builds
 * Timeout builds that run longer than **10 minutes**
 * Print timestamps before each build log line
-* Disallow concurrent executions of the Pipeline. Can be useful for preventing multiple simultaneously Builds for one feature branch.
+* Disallow concurrent executions of the Pipeline. Can be useful for preventing multiple simultaneously builds for one feature branch. However locks and milestones are the preferred solution for this because newer builds are allowed to supersede older ones. This is especially important for longer builds and builds requesting user input. Also see [Lab 13](13_stages_locks_milestones.md).
 
 **Note:** The timeout option isn't shown in the configuration on the Jenkins master
 
