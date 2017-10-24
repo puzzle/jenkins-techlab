@@ -5,6 +5,8 @@ The techlab setup involves starting a Jenkins Slave on your notebook and connect
 to a Jenkins master running on an OpenShift 3 environment. An OpenShift client is needed
 to establish the connection.
 
+**Note** Lab 1.2 and 1.3 are used for [Lab 8](08_tools.md) and following.
+
 Lab 1.1: Environment
 --------------------
 
