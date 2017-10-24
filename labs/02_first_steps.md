@@ -8,7 +8,7 @@ Jenkins has the ability to automatically create Jobs based on Git repositories c
 * Organization Folder: Jenkins automatically manages jobs for Jenkinsfiles in a set of Git repositories. (Currently GitHub and Bitbucket), including pull requests and forks.
 
 In these labs we use the former method so that each participant can configure its labs independently.
-A ``Jenkinsfile`` provides a single source of truth for a build job, 
+A ``Jenkinsfile`` provides a single source of truth for a build job <https://en.wikipedia.org/wiki/Single_source_of_truth>.
 
 Lab 2.1: Declarative "Hello, World!"
 ------------------------------------
