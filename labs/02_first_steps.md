@@ -66,3 +66,11 @@ You can only view but not edit the configuration of a job generated from a ``Jen
 Note:
 * Stages are optional but recommended in scripted pipelines
 * ``node`` is technically optional in declarative pipelines but required by any steps which depend on a workspace, e.g. ``checkout`` or ``sh``. So any non-trivial pipeline will require it.
+
+---
+
+**End of Lab 2**
+
+<p width="100px" align="right"><a href="03_build_options.md">Build Options/Properties →</a></p>
+
+[← back to overview](../README.md)

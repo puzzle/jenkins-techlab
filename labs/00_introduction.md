@@ -7,3 +7,9 @@ If you did not already see the slides please have a look at them under: [Slides]
 We mainly focus on multi-branch pipelines, which are a basic concept behind a continuous integration and delivery workflow.
 
 If you find errors, bugs or missing information please help us to improve our techlab and [contribute](../CONTRIBUTING.md) pull-requests and issues.
+
+---
+
+<p width="100px" align="right"><a href="01_setup.md">Setup →</a></p>
+
+[← back to overview](../README.md)

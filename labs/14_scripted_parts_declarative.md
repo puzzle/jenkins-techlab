@@ -30,3 +30,11 @@ pipeline {
 	}
 }
 ```
+
+---
+
+**End of Lab 14**
+
+<p width="100px" align="right"><a href="15_ruby.md">Ruby →</a></p>
+
+[← back to overview](../README.md)

@@ -40,3 +40,11 @@ In this techlab the Jenkins master is already running.
 You can now see the pipeline in Jenkins as well as in OpenShift, including a visualization of the various stages.
 
 Check out https://blog.openshift.com/openshift-3-3-pipelines-deep-dive/ for further infos.
+
+---
+
+**End of Lab 17**
+
+<p width="100px" align="right"><a href="18_write_migrate_your_own_projects.md">Write / Migrate your own Projects →</a></p>
+
+[← back to overview](../README.md)

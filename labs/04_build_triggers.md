@@ -73,3 +73,11 @@ Changes in build triggers in scripted pipelines are only seen by Jenkins
 after the changed pipeline ran.
 
 **Note:** Verify on the Jenkins master, whether the new triggers are now visible in the configuration view.
+
+---
+
+**End of Lab 4**
+
+<p width="100px" align="right"><a href="05_string_interpolation_quoting_escaping.md">String Interpolation and Escaping →</a></p>
+
+[← back to overview](../README.md)

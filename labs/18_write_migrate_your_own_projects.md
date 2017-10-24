@@ -13,3 +13,9 @@ Keep the following principles in mind, while doing that:
 * keep the jenkins slaves stateless
 * use tools to build your software
 * have fun!
+
+---
+
+**End of Lab 18**
+
+[← back to overview](../README.md)

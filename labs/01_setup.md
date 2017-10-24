@@ -66,3 +66,11 @@ as the folder name. Click **Ok** and then **Save** on the following screen.
 A folder provides a namespace for jobs, credentials and shared libraries. It's recommended
 to use a separate folder per project to avoid name collisions and to group related jobs.
 In this techlab this is required because each participant creates the same jobs, credentials and shared libraries.
+
+---
+
+**End of Lab 1**
+
+<p width="100px" align="right"><a href="02_first_steps.md">First Steps →</a></p>
+
+[← back to overview](../README.md)

@@ -92,3 +92,11 @@ for JUnit test reports. Is is also useful outside of JUnit as there are other to
 which generate JUnit test reports, e.g. Selenium or SoapUI.
 These examples use the recommended options for Maven in pipeline jobs.
 See <https://jenkins.io/doc/pipeline/examples/#maven-and-jdk-specific-version> for details.
+
+---
+
+**End of Lab 9**
+
+<p width="100px" align="right"><a href="10_failures.md">Failures and Notifications →</a></p>
+
+[← back to overview](../README.md)

@@ -71,3 +71,11 @@ of a step depends on its implementation. Use the "Snippet Generator" ("Pipeline 
 the correct syntax. Scripted pipelines need to run before Jenkins can pick
 up changes in build properties. Multibranch pipeline support takes care of this
 an runs any new jobs and any jobs with changes in their ``Jenkinsfile``.
+
+---
+
+**End of Lab 3**
+
+<p width="100px" align="right"><a href="04_build_triggers.md">Build Trigger configuration →</a></p>
+
+[← back to overview](../README.md)
