@@ -1,9 +1,9 @@
 Lab 6: Environment
 ==================
 
-In this lab we see how to work with environment variables in pipelines. 
+In this lab we see how to work with environment variables in pipelines.
 
-Enironment Variable are generally in pipelines available under the ``env`` namespace, like ``env.BUILD_ID`` 
+Enironment Variable are generally in pipelines available under the ``env`` namespace, like ``env.BUILD_ID``
 
 Lab 6.1: Environment (Declarative Syntax)
 -----------------------------------------
@@ -78,10 +78,12 @@ Please note that the list may vary depending on Jenkins version and installed pl
 **Additional Lab:** Update the pipelines from Lab 6 so that the output looks something like this:
 ```
 ...
-hello Jenkins Techlab [current build ID]
+Hello Jenkins Techlab [current build ID]
 ...
 ```
-use the string interpolation functionality you've learnt in a previous Lab
+Use the string interpolation functionality you've learnt in a previous Lab.
+
+Verify your scripts with the [solution](solutions/06_3_environment_solution.md).
 
 ---
 
