@@ -1,7 +1,7 @@
 Lab 9: Artifact Archival
 ========================
 
-Jenkins slaves are to be considered stateless and depending on the setup they really are, e.g. when using containerized slaves.
+Jenkins slaves are to be considered stateless, and depending on the setup, they really are. E.g. when using containerized slaves.
 This means that any results of a build that need to be preserved have to be saved before the build ends.
 In Jenkins this process is called "artifact archival".
 In this lab we archive some build artifacts and test results.
@@ -18,7 +18,6 @@ code into it:
 git pull -s recursive -X ours --allow-unrelated-histories https://github.com/LableOrg/java-maven-junit-helloworld
 ```
 **Note:** the option ``allow-unrelated-histories`` is necessary since git version ``2.9``
-
 
 Then change the contents of the ``Jenkinsfile`` to:
 
@@ -46,18 +45,20 @@ pipeline {
     }
 }
 ```
-
 Declarative jobs automatically check out the repository containing the jobs ``Jenkinsfile``.
-If needed this can be prevented with the ``skipDefaultCheckout()`` build option.  
+If needed this can be prevented with the ``skipDefaultCheckout()`` build option.
 ``archiveArtifacts`` copies the given artifacts onto the master and associates them with
 the current build. When a build is deleted all associated artifacts are deleted too.
-``archiveArtifacts`` was introduced with Jenkins 2, is more flexible than the ``archive`` step and provides additional options like ``exclude``.  
+
+``archiveArtifacts`` was introduced with Jenkins 2. It is more flexible than the ``archive`` step and provides additional options like ``exclude``.  
+
+**Note:** Check the build log output on the Jenkins master. Search for ``Archiving artifacts`` and ``Recording test results``.
+Notify also the new items on the pipeline screen: "Last Successful Artifacts" and "Latest Test Result".
 
 Lab 9.2: Artifact Archival (Scripted Syntax)
 --------------------------------------------
 
-In scripted pipelines you too use the ``archive`` or ``archiveArtifact`` step
-for artifact archival.
+In scripted pipelines you too use the ``archive`` or ``archiveArtifact`` step for artifact archival.
 Create a new branch named ``lab-9.2`` from branch ``lab-9.1`` (the one
 we merged the source into) and change the contents of the ``Jenkinsfile`` to:
 
@@ -92,6 +93,8 @@ for JUnit test reports. Is is also useful outside of JUnit as there are other to
 which generate JUnit test reports, e.g. Selenium or SoapUI.
 These examples use the recommended options for Maven in pipeline jobs.
 See <https://jenkins.io/doc/pipeline/examples/#maven-and-jdk-specific-version> for details.
+
+**Note:** Check the pipeline screen and build log output on the Jenkins master. The build has also an additional "Test Result" link.
 
 ---
 
