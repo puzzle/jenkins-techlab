@@ -10,7 +10,7 @@ Lab 8.1: Tools (Declarative Syntax)
 ===================================
 
 Declarative pipelines provide a ``tools`` section to declare which tools a job requires.
-In this example we use a "normal" tool (jdk8) and a custom tool (maven35).
+In this example we use the custom tools jdk8_oracle and maven35.
 
 Create a new branch named ``lab-8.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
@@ -26,7 +26,7 @@ pipeline {
         pollSCM('H/5 * * * *')
     }
     tools {
-        jdk "jdk8"
+        'com.cloudbees.jenkins.plugins.customtools.CustomTool' "jdk8_oracle"
         'com.cloudbees.jenkins.plugins.customtools.CustomTool' "maven35"
     }
     stages {
@@ -40,12 +40,21 @@ pipeline {
     }
 }
 ```
-
 The ``tools`` step defines which tools are needed in which version.
 The installed tools will be available because their bin directories are added to the ``PATH`` environment variable
 
 The configured tools are downloaded when the job runs, directly onto the slaves it runs on.
 Note that tool installers are run for every build and therefore have to be efficient in case the tools are already installed.
+
+Default tool installation example
+---------------------------------
+
+This example shows the configuration of a "normal" tool (jdk):
+```groovy
+tools {
+    jdk "jdk8"
+}
+```
 
 Lab 8.2: Tools (Scripted Syntax)
 ================================
