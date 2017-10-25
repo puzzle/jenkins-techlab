@@ -95,3 +95,11 @@ Lab 13.2: Stages, Locks and Milestones (Scripted Syntax)
 --------------------------------------------------------
 
 Adapt scripted pipeline from previous lab analogously.
+
+---
+
+**End of Lab 13**
+
+<p width="100px" align="right"><a href="14_scripted_parts_declarative.md">Scripted Parts in Declarative Pipelines →</a></p>
+
+[← back to overview](../README.md)

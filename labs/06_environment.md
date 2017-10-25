@@ -83,3 +83,10 @@ hello Jenkins Techlab [current build ID]
 ```
 use the string interpolation functionality you've learnt in a previous Lab
 
+---
+
+**End of Lab 6**
+
+<p width="100px" align="right"><a href="07_parameters.md">Build Parameters →</a></p>
+
+[← back to overview](../README.md)

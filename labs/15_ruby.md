@@ -51,3 +51,11 @@ Lab 15.3: Write Custom Step
 
 Write a custom step to move the above boilerplate code
 into a shared library.
+
+---
+
+**End of Lab 15**
+
+<p width="100px" align="right"><a href="16_nodejs.md">Node.js →</a></p>
+
+[← back to overview](../README.md)

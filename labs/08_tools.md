@@ -73,4 +73,10 @@ timestamps() {
 
 The usage of tools is identical to the previous lab since we couldn't use the declarative syntax there.
 
+---
 
+**End of Lab 8**
+
+<p width="100px" align="right"><a href="09_artifacts.md">Artifact Archival →</a></p>
+
+[← back to overview](../README.md)

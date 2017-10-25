@@ -68,3 +68,11 @@ timestamps() {
 Parameter types are declared through the same helper methods as in declarative pipelines.
 Use the snippet generator for the ``properties`` step, option "This build is parametrized" to see
 all available types.
+
+---
+
+**End of Lab 7**
+
+<p width="100px" align="right"><a href="08_tools.md">Tools →</a></p>
+
+[← back to overview](../README.md)

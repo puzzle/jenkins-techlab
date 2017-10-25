@@ -107,3 +107,11 @@ Furthermore providing custom steps is just one of several capabilities of shared
 Study the section covering shared libraries in the Jenkins book to learn more
 about the different types and capabilities of shared libraries:
 <https://jenkins.io/doc/book/pipeline/shared-libraries/>.
+
+---
+
+**End of Lab 11**
+
+<p width="100px" align="right"><a href="12_credentials.md">Credentials →</a></p>
+
+[← back to overview](../README.md)

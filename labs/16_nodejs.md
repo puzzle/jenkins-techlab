@@ -47,3 +47,11 @@ Lab 16.3: Write Custom Step
 
 Write a custom step to move the above boilerplate code
 into a shared library.
+
+---
+
+**End of Lab 16**
+
+<p width="100px" align="right"><a href="17_openshift_pipeline.md">OpenShift Integration →</a></p>
+
+[← back to overview](../README.md)

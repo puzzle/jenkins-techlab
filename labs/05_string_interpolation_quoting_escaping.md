@@ -210,3 +210,11 @@ Lab 5.4: Additional Lab scripted pipeline
 -----------------------------------------
 
 Convert the labs above manually into a scripted pipeline and try out the similar string interpolation and escaping functionalities.
+
+---
+
+**End of Lab 5**
+
+<p width="100px" align="right"><a href="06_environment.md">Environment →</a></p>
+
+[← back to overview](../README.md)

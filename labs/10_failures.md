@@ -122,3 +122,11 @@ Lab 10.3: Mail notification
 ---------------------------
 
 Add mail notification to one of the labs. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.
+
+---
+
+**End of Lab 10**
+
+<p width="100px" align="right"><a href="11_shared_libs.md">Shared Libraries →</a></p>
+
+[← back to overview](../README.md)

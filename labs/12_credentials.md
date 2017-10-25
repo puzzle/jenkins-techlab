@@ -133,3 +133,11 @@ you are accessing. See <https://jenkins.io/doc/pipeline/steps/credentials-bindin
 for more information. The available credential types depend on the plugins installed. Visit the ``/pipeline-syntax/`` path
 on your server to see only what's actually available, e.g. <https://jenkins-techlab.ose3-lab.puzzle.ch/pipeline-syntax/>
 for this techlab.
+
+---
+
+**End of Lab 12**
+
+<p width="100px" align="right"><a href="13_stages_locks_milestones.md">Stages, Locks and Milestones →</a></p>
+
+[← back to overview](../README.md)
