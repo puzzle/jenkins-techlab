@@ -4,7 +4,7 @@ Solution Lab 6.3: Environment
 Solutions for [Lab 6.3: Predefined Environment Variables](../06_environment.md#lab-63-predefined-environment-variables)
 
 Extended version of Lab 6.1: Environment (Declarative Syntax)
-------------------------------------------------------------------------------
+-------------------------------------------------------------
 
 Create a new branch named lab-6.3 from branch lab-6.1 and change the contents of the Jenkinsfile to:
 
