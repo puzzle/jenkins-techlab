@@ -1,5 +1,5 @@
 Lab 7: Build Parameters
-========================
+=======================
 
 Jobs can be parametrized with user provided input, e.g. to select a deployment target.
 When such a job gets started through the web interface a form is presented to the user
@@ -37,7 +37,10 @@ pipeline {
 
 Helper methods like ``string`` or ``booleanParam`` are used to declare the parameter types.
 The corresponding documentation should soon be available here: <https://jenkins.io/doc/book/pipeline/syntax/#parameters>.
+There is an open issue for the parameter documentation: [INFRA-1053](https://issues.jenkins-ci.org/browse/INFRA-1053).
 In the meantime use the snippet generator like described in the next lab to see all available types.
+
+**Note:** Use the "Build with Parameters" action on Jenkins master and change the greetings value. The build log output will show the changed greeting.
 
 Lab 7.2: Build Parameters (Scripted Syntax)
 ===========================================
@@ -68,6 +71,8 @@ timestamps() {
 Parameter types are declared through the same helper methods as in declarative pipelines.
 Use the snippet generator for the ``properties`` step, option "This build is parametrized" to see
 all available types.
+
+**Note:** Use the "Build with Parameters" action on Jenkins master and change the greetings value. The build log output will show the changed greeting.
 
 ---
 
