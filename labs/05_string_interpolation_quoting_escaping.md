@@ -81,6 +81,8 @@ def singleQuoted = 'this is a single quote: \' '
 def doubleQuoted = "this is a double quote: \" "
 ```
 
+?Do i need to escape a single quote inside a double quote?
+
 | Escape sequence | Character |
 |---|---|
 | \t   | tabulation  |
@@ -98,6 +100,8 @@ Lab 5.1: Get used to the string interpolation and escaping
 Use the following example pipeline to play with the string definitions you learned so far
 
 **Note** since we use the declarative pipeline syntax to execute groovy code we use the ``script{...}`` section
+
+?What does the script section to? Is it a step? Where does it run/when is it evaluated?
 
 Create a new branch named lab-5.1 from branch lab-2.1 and change the contents of the Jenkinsfile to:
 
@@ -133,7 +137,9 @@ pipeline {
 Lab 5.2: Using Environment Variables or Parameters within a string in a Pipeline
 --------------------------------------------------------------------------------
 
-All Environment Variables are available under ``${env.}``
+All Environment Variables are available under ``${env.}`` String parameters can also be added inside the ``parameters`` block and are available under ``${params.}``.
+
+?When to use params and when to use env? Where do i find all the predefined evns?
 
 Create a new branch named lab-5.2 from branch lab-2.1 and change the contents of the Jenkinsfile to:
 
@@ -158,6 +164,8 @@ Lab 5.3: Using values as params in a sh command
 -----------------------------------------------
 
 Working with pipelines we often want to pass a value of a variable into a ``sh`` - command.
+
+?What is the best practice for passing arguments to a shell scrip?
 
 For example:
 ```groovy
