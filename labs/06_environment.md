@@ -8,7 +8,7 @@ Enironment Variable are generally in pipelines available under the ``env`` names
 Lab 6.1: Environment (Declarative Syntax)
 -----------------------------------------
 
-Create a new branch named lab-6.1 from branch lab-2.1 and change the contents of the Jenkinsfile to:
+Create a new branch named lab-6.1 from branch lab-4.1 and change the contents of the Jenkinsfile to:
 
 ```groovy
 pipeline {
@@ -36,11 +36,12 @@ pipeline {
     }
 }
 ```
+?Again from the previous lab whent to use parameter and when to use env? Inside the shell script the stign interpplation of the language apply?
 
 Lab 6.2: Environment (Scripted Syntax)
 --------------------------------------
 
-Create a new branch named lab-6.2 from branch lab-2.2 and change the contents of the Jenkinsfile to:
+Create a new branch named lab-6.2 from branch lab-4.2 and change the contents of the Jenkinsfile to:
 
 ```groovy
 properties([
@@ -72,6 +73,7 @@ Lab 6.3: Predefined Environment Variables
 Jenkins provides a list of predefined environment variables under the path ``/pipeline-syntax/globals#env``. Visit the corresponding link for the techlab environment and study the list:
 
 <https://jenkins-techlab.ose3-lab.puzzle.ch/pipeline-syntax/globals#env>
+?Change to localhost? difference between root syntax and job syntax?
 
 Please note that the list may vary depending on Jenkins version and installed plugins.
 
