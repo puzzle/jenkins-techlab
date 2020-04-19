@@ -5,6 +5,8 @@ Jobs can be parametrized with user provided input, e.g. to select a deployment t
 When such a job gets started through the web interface a form is presented to the user
 where he can provide the necessary arguments.
 
+?Remove or add a not to lab 5.3 about the parameters, otherwise it is confusing?
+
 Lab 7.1: Build Parameters (Declarative Syntax)
 -----------------------------------------------
 
@@ -67,6 +69,8 @@ timestamps() {
     }
 }
 ```
+
+?Why are we introducing this '+' string concatenation syntax now? Move it to lab 5?
 
 Parameter types are declared through the same helper methods as in declarative pipelines.
 Use the snippet generator for the ``properties`` step, option "This build is parametrized" to see
