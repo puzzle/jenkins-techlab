@@ -4,11 +4,13 @@ Lab 4: Build Trigger
 Like build options/properties triggers need to be configured in the ``Jenkinsfile`` for
 multibranch jobs. In this lab we add a SCM polling trigger and a cron trigger to our job.
 
+?How do these triggers differ from the project level "Scan Multibranch Pipeline Triggers"?
+
 Lab 4.1: Build Trigger (Declarative Syntax)
 -------------------------------------------
 
-In declarative pipelines build triggers are configured through the ``options`` directive.
-Only a single ``options`` directive is allowed and must be contained in the ``pipeline`` block.
+In declarative pipelines build triggers are configured through the ``triggers`` directive.
+Only a single ``triggers`` directive is allowed and must be contained in the ``pipeline`` block.
 Create a new branch named ``lab-4.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
@@ -18,6 +20,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
+        disableConcurrentBuilds()
     }
     triggers {
         pollSCM('H/5 * * * *')
@@ -53,6 +56,7 @@ Create a new branch named ``lab-4.2`` from branch ``lab-2.2`` and change the con
 ```groovy
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
+    disableConcurrentBuilds(),
     pipelineTriggers([
         pollSCM('H/5 * * * *')
     ])
@@ -71,6 +75,7 @@ timestamps() {
 
 Changes in build triggers in scripted pipelines are only seen by Jenkins
 after the changed pipeline ran.
+?I dont see what is different here from the declarative pipeline. It also has to pull the new Jenkinsfile?
 
 **Note:** Verify on the Jenkins master, whether the new triggers are now visible in the configuration view.
 
