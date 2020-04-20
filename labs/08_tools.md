@@ -6,6 +6,10 @@ As soon as you have more than a handful number of tools and versions it becomes 
 That's why Jenkins provides a mechanism to provide the necessary tools for a build on the slaves it runs on.
 This lab shows how jobs can declare the tools they need.
 
+?What are default tools? Why do we need custom tools?
+?How are they installed and set up?
+?What happens when we use a docker image?
+
 Lab 8.1: Tools (Declarative Syntax)
 ===================================
 
@@ -44,6 +48,8 @@ pipeline {
 }
 ```
 
+?Where is the return value of tools step documented? What happens when we do ${xxx}?
+
 The ``tool`` step returns the home directory of the installed tool. The ``PATH+<IDENTIFIER>`` syntax specifies
 that the given value should be prepended to the ``PATH`` environment variable, where ``<IDENTIFIER>`` is an arbitrary
 unique identifier, used to make the left hand side of the assignment unique.
@@ -53,6 +59,9 @@ Note that tool installers are run for every build and therefore have to be effic
 
 Tools step example (not yet working)
 ------------------------------------
+
+?CustomTools currently has no maintainer. So this is not expected to work anytime soon?
+
 As soon as the problem with the Custom Tool installation is fixed, this code will work.
 ```groovy
 pipeline {
