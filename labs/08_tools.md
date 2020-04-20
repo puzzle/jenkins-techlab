@@ -9,6 +9,7 @@ This lab shows how jobs can declare the tools they need.
 ?What are default tools? Why do we need custom tools?
 ?How are they installed and set up?
 ?What happens when we use a docker image?
+?Maybe talk about docker agents as an alternative for custom tools?
 
 Lab 8.1: Tools (Declarative Syntax)
 ===================================
@@ -22,6 +23,9 @@ Until the problem is resolved, we must use the ``withEnv`` and ``tool`` steps.
 In this example we use the custom tools jdk8_oracle and maven35.
 
 Create a new branch named ``lab-8.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
+
+?we can reference envs without $?.split() string method outiside script block?
+?in a local setup change agent to any?
 
 ```groovy
 pipeline {

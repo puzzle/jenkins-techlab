@@ -1,6 +1,7 @@
 Lab 9: Artifact Archival
 ========================
 
+?jenkins now used agent instead of slave... mybe change it?
 Jenkins slaves are to be considered stateless, and depending on the setup, they really are. E.g. when using containerized slaves.
 This means that any results of a build that need to be preserved have to be saved before the build ends.
 In Jenkins this process is called "artifact archival".
@@ -47,6 +48,9 @@ pipeline {
 ```
 Declarative jobs automatically check out the repository containing the jobs ``Jenkinsfile``.
 If needed this can be prevented with the ``skipDefaultCheckout()`` build option.
+
+?Maibe mention this in the options lab?
+
 ``archiveArtifacts`` copies the given artifacts onto the master and associates them with
 the current build. When a build is deleted all associated artifacts are deleted too.
 
@@ -87,16 +91,25 @@ timestamps() {
 ```
 
 In scripted pipelines you have to check out the repository containing the jobs ``Jenkinsfile``
-with ``checkout scm``. ``scm`` is a variable referencing the repository containing the ``Jenkinsfile``.  
+with ``checkout scm``. ``scm`` is a variable referencing the repository containing the ``Jenkinsfile``. 
+
+?i think this should be mentioned in a earlyer lab as this ws not obvious?
+ 
 ``junit`` is a special artifact archival step which provides special support
 for JUnit test reports. Is is also useful outside of JUnit as there are other tools
 which generate JUnit test reports, e.g. Selenium or SoapUI.
 These examples use the recommended options for Maven in pipeline jobs.
 See <https://jenkins.io/doc/pipeline/examples/#maven-and-jdk-specific-version> for details.
 
+?maybe move the jnunit and maven part up top?
+
 **Note:** Check the pipeline screen and build log output on the Jenkins master. The build has also an additional "Test Result" link.
 
 ---
+
+### Requirements other than suggested plugins
+* maven 3.5.0
+* java 8
 
 **End of Lab 9**
 
