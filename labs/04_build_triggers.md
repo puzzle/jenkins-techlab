@@ -52,11 +52,9 @@ properties([
     ])
 ])
 
-timestamps() {
-    node {
-        stage('Greeting') {
-            echo 'Hello, World!'
-        }
+node {
+    stage('Greeting') {
+        echo 'Hello, World!'
     }
 }
 ```
