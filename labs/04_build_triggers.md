@@ -7,8 +7,8 @@ multibranch jobs. In this lab we add a SCM polling trigger and a cron trigger to
 Lab 4.1: Build Trigger (Declarative Syntax)
 -------------------------------------------
 
-In declarative pipelines build triggers are configured through the ``options`` directive.
-Only a single ``options`` directive is allowed and must be contained in the ``pipeline`` block.
+In declarative pipelines build triggers are configured through the ``triggers`` directive.
+Only a single ``triggers`` directive is allowed and must be contained in the ``pipeline`` block.
 Create a new branch named ``lab-4.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
