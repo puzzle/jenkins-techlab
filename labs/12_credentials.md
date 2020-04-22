@@ -66,6 +66,9 @@ pipeline {
 }
 ```
 
+?where is documentation for credentails? what is credentaials a step?
+?why do we use this sshagent here and where is the testserver defined?
+
 ``credentials`` automatically deals with different credentials types. For username/password credentials
 it makes three environment variables available:
 * MYVARNAME = <username>:<password>

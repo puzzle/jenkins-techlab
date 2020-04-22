@@ -83,6 +83,8 @@ pipeline {
 }
 ```
 
+?explain milestone numbers and global lock config?
+
 ``milestone`` automatically aborts any earlier builds which haven't yet
 reached the milestone. ``lock`` is used to prevent two builds from
 using a non-shareable resource like a Selenium server and is most often seen

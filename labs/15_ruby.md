@@ -41,6 +41,8 @@ pipeline {
 }
 ```
 
+?different type of step syntax tool 'rvm' tool('rvm') tools{}
+
 Lab 15.2: Improve Ruby Lab
 --------------------------
 
@@ -51,6 +53,11 @@ Lab 15.3: Write Custom Step
 
 Write a custom step to move the above boilerplate code
 into a shared library.
+
+?in what cases would you move it to a shared library and when to a shell script in source control?
+
+### Requires
+* rvm
 
 ---
 

@@ -50,6 +50,10 @@ into a shared library.
 
 ---
 
+### Requires
+* nvm
+* AnsiColor Plugin ?why?
+
 **End of Lab 16**
 
 <p width="100px" align="right"><a href="17_openshift_pipeline.md">OpenShift Integration →</a></p>

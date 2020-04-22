@@ -14,6 +14,9 @@ Usually a build is aborted when a failure occurs, with the exception of test fai
 In declarative pipelines error handling is separated from the actual build logic,
 on the other hand failure handling can become quite disruptive in scripted pipelines.
 
+?rocketchat not configured in local yust use mail or echo?
+?failed post actions do not set color but cause failure?
+
 Lab 10.1: Failures (Declarative Syntax)
 --------------------------------------
 

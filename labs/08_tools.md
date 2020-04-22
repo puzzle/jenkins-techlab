@@ -53,6 +53,7 @@ pipeline {
 ```
 
 ?Where is the return value of tools step documented? What happens when we do ${xxx}?
+?wouldnt it make sense to replace the withEnv with and environment block?
 
 The ``tool`` step returns the home directory of the installed tool. The ``PATH+<IDENTIFIER>`` syntax specifies
 that the given value should be prepended to the ``PATH`` environment variable, where ``<IDENTIFIER>`` is an arbitrary

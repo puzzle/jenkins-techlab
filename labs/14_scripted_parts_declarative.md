@@ -1,6 +1,9 @@
 Lab 14: Scripted Parts in Declarative Pipelines
 ===============================================
 
+?maybe mention this at the beginning in an erarlyer lab?
+?maybe only show scripted versions when they differ a lot?
+
 In some rare cases the declarative pipelines and shared libraries might not be enough to implement a certain functionality.
 There is an actual possibility to integrate scripted elements into declarative pipelines.
 
