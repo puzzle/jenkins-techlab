@@ -9,14 +9,6 @@ Lab 15.1: Install Ruby (Declarative Syntax)
 
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Timestamper Plugin
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
     environment {
         RVM_HOME = tool('rvm')
     }
@@ -31,11 +23,6 @@ pipeline {
                     bundle --version
                 """
             }
-        }
-    }
-    post {
-        always {
-            notifyPuzzleChat()
         }
     }
 }

@@ -13,14 +13,6 @@ Create a new branch named lab-6.1 from branch lab-2.1 and change the contents of
 ```groovy
 pipeline {
     agent any
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
     environment {
         GREETINGS_TO = 'Jenkins Techlab'
     }
@@ -43,24 +35,13 @@ Lab 6.2: Environment (Scripted Syntax)
 Create a new branch named lab-6.2 from branch lab-2.2 and change the contents of the Jenkinsfile to:
 
 ```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
-])
+node {
+    stage('Greeting') {
+        withEnv(['GREETINGS_TO=Jenkins Techlab']) {
+            echo "Hello, ${env.GREETINGS_TO} !"
 
-timestamps() {
-    timeout(time: 10, unit: 'MINUTES') {
-        node {
-            stage('Greeting') {
-                withEnv(['GREETINGS_TO=Jenkins Techlab']) {
-                    echo "Hello, ${env.GREETINGS_TO} !"
-
-                    // also available as env variable to a process:
-                    sh 'echo "Hello, $GREETINGS_TO !"'
-                }
-            }
+            // also available as env variable to a process:
+            sh 'echo "Hello, $GREETINGS_TO !"'
         }
     }
 }

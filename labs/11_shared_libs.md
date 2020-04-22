@@ -16,18 +16,18 @@ the shared library is has to be registered with Jenkins:
 1. Create a new GitHub repository with a suitable name, e.g. ``jenkins-techlab-libraries``.
 2. Create a file named ``vars/notifyPuzzleChat.groovy`` with the following content in the ``master`` branch.
 
-    ```groovy
-    def call(String channel) {
-        String result = currentBuild.result?.toLowerCase() ?: 'success'
-        node {
-            rocketSend(
-                channel: channel,
-                avatar: "https://chat.puzzle.ch/emoji-custom/${result}.png",
-                message: "Build ${result} - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)",
-                rawMessage: true)
-        }
+```groovy
+def call(String channel) {
+    String result = currentBuild.result?.toLowerCase() ?: 'success'
+    node {
+        rocketSend(
+            channel: channel,
+            avatar: "https://chat.puzzle.ch/emoji-custom/${result}.png",
+            message: "Build ${result} - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)",
+            rawMessage: true)
     }
-    ```
+}
+```
 
 3. Select your folder in the Jenkins web interface and press **configure**.
 4. **Add** a new pipeline library
@@ -45,29 +45,23 @@ Lab 11.2: Use Shared Library (Declarative Syntax)
 
 Now we can rewrite our pipeline to use the new ``notifyPuzzleChat`` step, eliminating any duplicated code.
 Custom steps are used the same as built-in steps. Create a new branch named ``lab-11.2`` from branch
-``lab-9.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
+``lab-10.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
 @Library('jenkins-techlab-libraries') _
 
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
+    environment{
+        JAVA_HOME=tool('jdk8_oracle')
+        PATH="${tool('maven35')}/bin:${env.PATH}"
+        PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     }
     stages {
         stage('Build') {
             steps {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    checkout scm
-                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                    archiveArtifacts 'target/*.?ar'
-                }
+                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                archiveArtifacts 'target/*.?ar'
             }
             post {
                 always {

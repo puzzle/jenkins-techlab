@@ -22,22 +22,17 @@ Create a new branch named ``lab-8.1`` from branch ``lab-2.1`` and change the con
 ```groovy
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
+    environment{
+        JAVA_HOME=tool('jdk8_oracle')
+        PATH="${tool('maven35')}/bin:${env.PATH}"
+        PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     }
     stages {
         stage('Build') {
             steps {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh 'java -version'
+                sh 'java -version'
 
-                    sh 'mvn --version'
-                }
+                sh 'mvn --version'
             }
         }
     }
@@ -57,14 +52,6 @@ As soon as the problem with the Custom Tool installation is fixed, this code wil
 ```groovy
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
     tools {
         'com.cloudbees.jenkins.plugins.customtools.CustomTool' "jdk8_oracle"
         'com.cloudbees.jenkins.plugins.customtools.CustomTool' "maven35"
@@ -101,23 +88,12 @@ In scripted pipelines you use the ``tool`` step to install tools.
 Create a new branch named ``lab-8.2`` from branch ``lab-2.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
-])
+node(env.JOB_NAME.split('/')[0]) {
+    withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+    	stage('Build') {
+            sh "java -version"
 
-timestamps() {
-    timeout(time: 10, unit: 'MINUTES') {
-        node(env.JOB_NAME.split('/')[0]) {
-            stage('Greeting') {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh "java -version"
-
-                    sh "mvn --version"
-                }
-            }
+            sh "mvn --version"
         }
     }
 }

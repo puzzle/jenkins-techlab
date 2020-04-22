@@ -14,11 +14,6 @@ Create a new branch named ``lab-4.1`` from branch ``lab-2.1`` and change the con
 ```groovy
 pipeline {
     agent any
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
     triggers {
         pollSCM('H/5 * * * *')
     }
@@ -52,18 +47,15 @@ Create a new branch named ``lab-4.2`` from branch ``lab-2.2`` and change the con
 
 ```groovy
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
         pollSCM('H/5 * * * *')
     ])
 ])
 
 timestamps() {
-    timeout(time: 10, unit: 'MINUTES') {
-        node {
-            stage('Greeting') {
-                echo 'Hello, World!'
-            }
+    node {
+        stage('Greeting') {
+            echo 'Hello, World!'
         }
     }
 }

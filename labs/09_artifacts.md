@@ -11,7 +11,7 @@ Lab 9.1: Artifact Archival (Declarative Syntax)
 
 In declarative pipelines you use the ``archive`` or ``archiveArtifact`` step
 for artifact archival.
-Create a new branch named ``lab-9.1`` from branch ``lab-2.1`` and add some source
+Create a new branch named ``lab-9.1`` from branch ``lab-8.1`` and add some source
 code into it:
 
 ```bash
@@ -24,22 +24,17 @@ Then change the contents of the ``Jenkinsfile`` to:
 ```groovy
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
+    environment{
+        JAVA_HOME=tool('jdk8_oracle')
+        PATH="${tool('maven35')}/bin:${env.PATH}"
+        PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     }
     stages {
         stage('Build') {
             steps {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                    archiveArtifacts 'target/*.?ar'
-                    junit 'target/**/*.xml'  // Requires JUnit plugin
-                }
+                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                archiveArtifacts 'target/*.?ar'
+                junit 'target/**/*.xml'  // Requires JUnit plugin
             }
         }
     }
@@ -63,24 +58,13 @@ Create a new branch named ``lab-9.2`` from branch ``lab-9.1`` (the one
 we merged the source into) and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
-])
-
-timestamps() {
-    timeout(time: 10, unit: 'MINUTES') {
-        node(env.JOB_NAME.split('/')[0]) {
-            stage('Build') {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    checkout scm
-                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                    archiveArtifacts 'target/*.?ar'
-                    junit 'target/**/*.xml'  // Requires JUnit plugin
-                }
-            }
+node(env.JOB_NAME.split('/')[0]) {
+    withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+        stage('Build') {
+            checkout scm
+            sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+            archiveArtifacts 'target/*.?ar'
+            junit 'target/**/*.xml'  // Requires JUnit plugin
         }
     }
 }

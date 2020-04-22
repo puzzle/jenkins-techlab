@@ -24,21 +24,16 @@ we merged the source into) and change the content of the ``Jenkinsfile`` to:
 ```groovy
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
+    environment{
+        JAVA_HOME=tool('jdk8_oracle')
+        PATH="${tool('maven35')}/bin:${env.PATH}"
+        PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     }
     stages {
         stage('Build') {
             steps {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                    archiveArtifacts 'target/*.?ar'
-                }
+                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                archiveArtifacts 'target/*.?ar'
             }
             post {
                 always {
@@ -49,17 +44,21 @@ pipeline {
     }
     post {
         success {
-            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/success.png', channel: 'jenkins-techlab', message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/success.png', channel: 'jenkins-techlab', message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER
+} (<${env.BUILD_URL}|Open>)", rawMessage: true
         }
         unstable {
-            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png', channel: 'jenkins-techlab', message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png', channel: 'jenkins-techlab', message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMB
+ER} (<${env.BUILD_URL}|Open>)", rawMessage: true
         }
         failure {
-            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/failure.png', channel: 'jenkins-techlab', message: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/failure.png', channel: 'jenkins-techlab', message: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER
+} (<${env.BUILD_URL}|Open>)", rawMessage: true
         }
     }
 }
 ```
+
 It's good practice to use the ``always`` directive to ensure the capture test results even when uncatched exceptions
 are thrown during test runs. There's also a ``changed`` directive whose steps are executed whenever the build status changes,
 e.g. from **unstable** to **success**.
@@ -70,49 +69,42 @@ The ``rawMesssage`` attribute of ``rocketSend`` tells Rocket.Chat not to add con
 
 Lab 10.2: Failures (Scripted Syntax)
 -----------------------------------
-Create a new branch named ``lab-10.2`` from branch ``lab-9.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
-```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
-])
+Create a new branch named ``lab-10.2`` from branch ``lab-9.2`` and change the content of the ``Jenkinsfile`` to:
 
+```groovy
 try {
-    timestamps() {
-        timeout(time: 10, unit: 'MINUTES') {
-            node(env.JOB_NAME.split('/')[0]) {
-                stage('Build') {
-                    try {
-                        withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                            checkout scm
-                            sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                            archiveArtifacts 'target/*.?ar'
-                        }
-                    } finally {
-                        junit 'target/**/*.xml'  // Requires JUnit plugin
-                    }
+    node(env.JOB_NAME.split('/')[0]) {
+        withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+            stage('Build') {
+                try {                        
+                    checkout scm
+                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                    archiveArtifacts 'target/*.?ar'
+                } finally {
+                    junit 'target/**/*.xml'  // Requires JUnit plugin
                 }
             }
-
         }
     }
 } catch (e) {
     node {
-        rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/failure.png', channel: 'jenkins-techlab', message: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+        rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/failure.png', channel: 'jenkins-techlab', message: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<
+${env.BUILD_URL}|Open>)", rawMessage: true
     }
     throw e
 } finally {
     node {
         if (currentBuild.result == 'UNSTABLE') {
-             rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png', channel: 'jenkins-techlab', message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+             rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png', channel: 'jenkins-techlab', message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUM
+BER} (<${env.BUILD_URL}|Open>)", rawMessage: true
         } else if (currentBuild.result == null) { // null means success
-            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/success.png', channel: 'jenkins-techlab', message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/success.png', channel: 'jenkins-techlab', message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER
+} (<${env.BUILD_URL}|Open>)", rawMessage: true
         }
     }
 }
 ```
+
 It's again good practice to ensure capture of test results in any case using a ``finally`` statement.
 
 The ``junit`` and ``rocketSend`` steps need a workspace and must be contained in a ``node`` step.
