@@ -9,11 +9,16 @@ Lab 4.1: Build Trigger (Declarative Syntax)
 
 In declarative pipelines build triggers are configured through the ``triggers`` directive.
 Only a single ``triggers`` directive is allowed and must be contained in the ``pipeline`` block.
-Create a new branch named ``lab-4.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-4.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
     agent any
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timeout(time: 10, unit: 'MINUTES')
+        timestamps()  // Requires the "Timestamper Plugin"
+    }
     triggers {
         pollSCM('H/5 * * * *')
     }
@@ -43,18 +48,23 @@ For more info regarding Jenkins cron expressions see <http://www.scmgalaxy.com/t
 Lab 4.2: Build Trigger (Scripted Syntax)
 ----------------------------------------
 
-Create a new branch named ``lab-4.2`` from branch ``lab-2.2`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-4.2`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
+    buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
         pollSCM('H/5 * * * *')
     ])
 ])
 
-node {
-    stage('Greeting') {
-        echo 'Hello, World!'
+timestamps() {
+    timeout(time: 10, unit: 'MINUTES') {
+        node {
+            stage('Greeting') {
+                echo 'Hello, World!'
+            }
+        }
     }
 }
 ```

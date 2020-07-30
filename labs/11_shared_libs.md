@@ -52,6 +52,11 @@ Custom steps are used the same as built-in steps. Create a new branch named ``la
 
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timeout(time: 10, unit: 'MINUTES')
+        timestamps()  // Requires the "Timestamper Plugin"
+    }
     environment{
         JAVA_HOME=tool('jdk8_oracle')
         PATH="${tool('maven35')}/bin:${env.PATH}"

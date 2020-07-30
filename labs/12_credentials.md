@@ -19,6 +19,11 @@ variables. Create a new branch named ``lab-12.1`` from branch ``lab-9.1``
 ```groovy
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timeout(time: 10, unit: 'MINUTES')
+        timestamps()  // Requires the "Timestamper Plugin"
+    }
     environment{
         JAVA_HOME=tool('jdk8_oracle')
         PATH="${tool('maven35')}/bin:${env.PATH}"
@@ -33,12 +38,10 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -Dartif
-actId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
+                sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
                 sshagent(['testserver']) {  // SSH Agent Plugin
                     sh "ls -l target"
-                    sh "ssh -o UserKnownHostsFile='${KNOWN_HOSTS}' -p 2222 richard@testserver.vcap.me 'curl -O -u \'${ARTIFACTORY}\' ${REPO_URL}/com/puzzleitc/jenkins-techl
-ab/${ARTIFACT}/1.0/${ARTIFACT}-1.0.jar && ls -l'"
+                    sh "ssh -o UserKnownHostsFile='${KNOWN_HOSTS}' -p 2222 richard@testserver.vcap.me 'curl -O -u \'${ARTIFACTORY}\' ${REPO_URL}/com/puzzleitc/jenkins-techlab/${ARTIFACT}/1.0/${ARTIFACT}-1.0.jar && ls -l'"
                 }
                 archiveArtifacts 'target/*.?ar'
                 junit 'target/**/*.xml'  // Requires JUnit plugin
@@ -67,21 +70,29 @@ Create a new branch named ``lab-12.2`` from branch
 ``lab-9.2`` and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
-env.ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"
-env.REPO_URL = 'https://artifactory.puzzle.ch/artifactory/ext-release-local'
-node(env.JOB_NAME.split('/')[0]) {
-    withCredentials([file(credentialsId: 'm2_settings', variable: 'M2_SETTINGS'), usernameColonPassword(credentialsId: 'jenkins-artifactory', variable: 'ARTIFACTORY'), file(credentialsId: 'known_hosts', variable: 'KNOWN_HOSTS')]) {  // Credentials Binding Plugin
-        withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-            stage('Build') {
-                checkout scm
-                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
-                sshagent(['testserver']) {  // SSH Agent Plugin
-                    sh "ls -l target"
-                    sh "ssh -o UserKnownHostsFile='${KNOWN_HOSTS}' -p 2222 richard@testserver.vcap.me 'curl -O -u \'${ARTIFACTORY}\' ${REPO_URL}/com/puzzleitc/jenkins-techlab/${ARTIFACT}/1.0/${ARTIFACT}-1.0.jar && ls -l'"
+properties([
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+])
+
+timestamps() {
+    timeout(time: 10, unit: 'MINUTES') {
+        env.ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"
+        env.REPO_URL = 'https://artifactory.puzzle.ch/artifactory/ext-release-local'
+        node(env.JOB_NAME.split('/')[0]) {
+            withCredentials([file(credentialsId: 'm2_settings', variable: 'M2_SETTINGS'), usernameColonPassword(credentialsId: 'jenkins-artifactory', variable: 'ARTIFACTORY'), file(credentialsId: 'known_hosts', variable: 'KNOWN_HOSTS')]) {  // Credentials Binding Plugin
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                    stage('Build') {
+                        checkout scm
+                        sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                        sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
+                        sshagent(['testserver']) {  // SSH Agent Plugin
+                            sh "ls -l target"
+                            sh "ssh -o UserKnownHostsFile='${KNOWN_HOSTS}' -p 2222 richard@testserver.vcap.me 'curl -O -u \'${ARTIFACTORY}\' ${REPO_URL}/com/puzzleitc/jenkins-techlab/${ARTIFACT}/1.0/${ARTIFACT}-1.0.jar && ls -l'"
+                        }
+                        archiveArtifacts 'target/*.?ar'
+                        junit 'target/**/*.xml'  // Requires JUnit plugin
+                    }
                 }
-                archiveArtifacts 'target/*.?ar'
-                junit 'target/**/*.xml'  // Requires JUnit plugin
             }
         }
     }

@@ -24,6 +24,11 @@ Then change the contents of the ``Jenkinsfile`` to:
 ```groovy
 pipeline {
     agent { label env.JOB_NAME.split('/')[0] }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timeout(time: 10, unit: 'MINUTES')
+        timestamps()  // Requires the "Timestamper Plugin"
+    }
     environment{
         JAVA_HOME=tool('jdk8_oracle')
         PATH="${tool('maven35')}/bin:${env.PATH}"
@@ -58,13 +63,21 @@ Create a new branch named ``lab-9.2`` from branch ``lab-9.1`` (the one
 we merged the source into) and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
-node(env.JOB_NAME.split('/')[0]) {
-    withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-        stage('Build') {
-            checkout scm
-            sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-            archiveArtifacts 'target/*.?ar'
-            junit 'target/**/*.xml'  // Requires JUnit plugin
+properties([
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+])
+
+timestamps() {
+    timeout(time: 10, unit: 'MINUTES') {
+        node(env.JOB_NAME.split('/')[0]) {
+            stage('Build') {
+                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                    checkout scm
+                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                    archiveArtifacts 'target/*.?ar'
+                    junit 'target/**/*.xml'  // Requires JUnit plugin
+                }
+            }
         }
     }
 }
