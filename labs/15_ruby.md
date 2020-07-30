@@ -14,9 +14,6 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
     }
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
     environment {
         RVM_HOME = tool('rvm')
     }
@@ -31,11 +28,6 @@ pipeline {
                     bundle --version
                 """
             }
-        }
-    }
-    post {
-        always {
-            notifyPuzzleChat()
         }
     }
 }

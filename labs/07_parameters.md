@@ -9,7 +9,7 @@ Lab 7.1: Build Parameters (Declarative Syntax)
 -----------------------------------------------
 
 In declarative pipelines parameters are declared with the ``parameters`` section.
-Create a new branch named ``lab-7.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-7.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -18,9 +18,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
     }
     parameters {
         string(name: 'Greetings_to', defaultValue: 'Jenkins Techlab', description: 'Who to greet?')
@@ -46,14 +43,11 @@ Lab 7.2: Build Parameters (Scripted Syntax)
 ===========================================
 
 In scripted pipelines build parameters are configured as part of the ``properties`` step.
-Create a new branch named ``lab-7.2`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-7.2`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ]),
     parameters([string(defaultValue: 'Jenkins Techlab', description: 'Who to greet?', name: 'Greetings_to')])
 ])
 

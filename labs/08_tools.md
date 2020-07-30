@@ -17,7 +17,7 @@ Until the problem is resolved, we must use the ``withEnv`` and ``tool`` steps.
 
 In this example we use the custom tools jdk8_oracle and maven35.
 
-Create a new branch named ``lab-8.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-8.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -27,17 +27,17 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
     }
-    triggers {
-        pollSCM('H/5 * * * *')
+    environment{
+        JAVA_HOME=tool('jdk8_oracle')
+        MAVEN_HOME=tool('maven35')
+        PATH="${env.JAVA_HOME}/bin:${env.MAVEN_HOME}/bin:${env.PATH}"
     }
     stages {
         stage('Build') {
             steps {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh 'java -version'
+                sh 'java -version'
 
-                    sh 'mvn --version'
-                }
+                sh 'mvn --version'
             }
         }
     }
@@ -61,9 +61,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
     }
     tools {
         'com.cloudbees.jenkins.plugins.customtools.CustomTool' "jdk8_oracle"
@@ -98,14 +95,11 @@ Lab 8.2: Tools (Scripted Syntax)
 ================================
 
 In scripted pipelines you use the ``tool`` step to install tools.
-Create a new branch named ``lab-8.2`` from branch ``lab-2.2`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-8.2`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
+    buildDiscarder(logRotator(numToKeepStr: '5'))
 ])
 
 timestamps() {
@@ -114,7 +108,6 @@ timestamps() {
             stage('Greeting') {
                 withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                     sh "java -version"
-
                     sh "mvn --version"
                 }
             }

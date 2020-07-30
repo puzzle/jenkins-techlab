@@ -17,17 +17,17 @@ as the following example shows
 
 ```groovy
 pipeline {
-	agent any
-	stages {
-		stage('script') {
-			steps {
-				script {
-					def pipelineType = 'declarative'
-					echo "yeah we executed a script within the ${pipelineType} pipeline"
-				}
-			}
-		}
-	}
+    agent any
+        stages {
+            stage('script') {
+                steps {
+                    script {
+                        def pipelineType = 'declarative'
+                        echo "yeah we executed a script within the ${pipelineType} pipeline"
+                    }
+            }
+        }
+    }
 }
 ```
 

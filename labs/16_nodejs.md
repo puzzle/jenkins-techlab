@@ -12,9 +12,6 @@ pipeline {
         timestamps()  // Timestamper Plugin
         ansiColor('xterm')  // AnsiColor Plugin
     }
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
     environment {
         NVM_HOME = tool('nvm')
     }
@@ -27,11 +24,6 @@ pipeline {
                     node --version
                 """
             }
-        }
-    }
-    post {
-        always {
-            notifyPuzzleChat()
         }
     }
 }

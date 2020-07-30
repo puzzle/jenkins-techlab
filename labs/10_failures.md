@@ -29,16 +29,16 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
     }
-    triggers {
-        pollSCM('H/5 * * * *')
+    environment{
+        JAVA_HOME=tool('jdk8_oracle')
+        MAVEN_HOME=tool('maven35')
+        PATH="${env.JAVA_HOME}/bin:${env.MAVEN_HOME}/bin:${env.PATH}"
     }
     stages {
         stage('Build') {
             steps {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                    archiveArtifacts 'target/*.?ar'
-                }
+                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                archiveArtifacts 'target/*.?ar'
             }
             post {
                 always {
@@ -60,6 +60,7 @@ pipeline {
     }
 }
 ```
+
 It's good practice to use the ``always`` directive to ensure the capture test results even when uncatched exceptions
 are thrown during test runs. There's also a ``changed`` directive whose steps are executed whenever the build status changes,
 e.g. from **unstable** to **success**.
@@ -70,13 +71,11 @@ The ``rawMesssage`` attribute of ``rocketSend`` tells Rocket.Chat not to add con
 
 Lab 10.2: Failures (Scripted Syntax)
 -----------------------------------
-Create a new branch named ``lab-10.2`` from branch ``lab-9.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-10.2`` from branch ``lab-9.2`` and change the content of the ``Jenkinsfile`` to:
+
 ```groovy
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
+    buildDiscarder(logRotator(numToKeepStr: '5'))
 ])
 
 try {
@@ -95,7 +94,6 @@ try {
                     }
                 }
             }
-
         }
     }
 } catch (e) {
@@ -113,6 +111,7 @@ try {
     }
 }
 ```
+
 It's again good practice to ensure capture of test results in any case using a ``finally`` statement.
 
 The ``junit`` and ``rocketSend`` steps need a workspace and must be contained in a ``node`` step.

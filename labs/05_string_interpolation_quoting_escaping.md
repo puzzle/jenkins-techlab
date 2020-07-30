@@ -103,29 +103,29 @@ Create a new branch named lab-5.1 from branch lab-2.1 and change the contents of
 
 ```groovy
 pipeline {
-	agent any
-	stages {
-		stage('Build') {
-			steps {
-				script {
-					def company = 'puzzle'
-					echo 'join the ${company}'
-					echo "join the ${company}"
-					echo '''join the ${company}'''
-					echo """join the ${company}"""
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    def company = 'puzzle'
+                    echo 'join the ${company}'
+                    echo "join the ${company}"
+                    echo '''join the ${company}'''
+                    echo """join the ${company}"""
 
-					echo "tabulation>\t<"
-					echo "backspace>\b<"
-					echo "newline>\n<"
-					echo "carriage return>\r<"
-					echo "form feed>\f<"
-					echo "backslash>\\<"
-					echo "single quote>\'<"
-					echo "double quote>\"<"
-				}
-			}
-		}
-	}
+                    echo "tabulation>\t<"
+                    echo "backspace>\b<"
+                    echo "newline>\n<"
+                    echo "carriage return>\r<"
+                    echo "form feed>\f<"
+                    echo "backslash>\\<"
+                    echo "single quote>\'<"
+                    echo "double quote>\"<"
+                }
+            }
+        }
+    }
 }
 ```
 **Note:** Check the build log output on the Jenkins master.
@@ -201,9 +201,9 @@ Create a new branch named lab-5.3 from branch lab-2.1 and change the contents of
 ```groovy
 pipeline {
     agent any
-	parameters {
-		string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
-	}
+    parameters {
+        string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
+    }
     stages {
         stage('Build') {
             steps {

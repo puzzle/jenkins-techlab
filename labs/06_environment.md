@@ -8,7 +8,7 @@ Enironment Variable are generally in pipelines available under the ``env`` names
 Lab 6.1: Environment (Declarative Syntax)
 -----------------------------------------
 
-Create a new branch named lab-6.1 from branch lab-2.1 and change the contents of the Jenkinsfile to:
+Create a new branch named lab-6.1 from branch lab-3.1 and change the contents of the Jenkinsfile to:
 
 ```groovy
 pipeline {
@@ -17,9 +17,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
     }
     environment {
         GREETINGS_TO = 'Jenkins Techlab'
@@ -40,14 +37,11 @@ pipeline {
 Lab 6.2: Environment (Scripted Syntax)
 --------------------------------------
 
-Create a new branch named lab-6.2 from branch lab-2.2 and change the contents of the Jenkinsfile to:
+Create a new branch named lab-6.2 from branch lab-3.2 and change the contents of the Jenkinsfile to:
 
 ```groovy
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
+    buildDiscarder(logRotator(numToKeepStr: '5'))
 ])
 
 timestamps() {
@@ -56,7 +50,6 @@ timestamps() {
             stage('Greeting') {
                 withEnv(['GREETINGS_TO=Jenkins Techlab']) {
                     echo "Hello, ${env.GREETINGS_TO} !"
-
                     // also available as env variable to a process:
                     sh 'echo "Hello, $GREETINGS_TO !"'
                 }

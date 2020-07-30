@@ -11,7 +11,7 @@ Lab 9.1: Artifact Archival (Declarative Syntax)
 
 In declarative pipelines you use the ``archive`` or ``archiveArtifact`` step
 for artifact archival.
-Create a new branch named ``lab-9.1`` from branch ``lab-2.1`` and add some source
+Create a new branch named ``lab-9.1`` from branch ``lab-8.1`` and add some source
 code into it:
 
 ```bash
@@ -29,17 +29,17 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
     }
-    triggers {
-        pollSCM('H/5 * * * *')
+    environment{
+        JAVA_HOME=tool('jdk8_oracle')
+        MAVEN_HOME=tool('maven35')
+        PATH="${env.JAVA_HOME}/bin:${env.MAVEN_HOME}/bin:${env.PATH}"
     }
     stages {
         stage('Build') {
             steps {
-                withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                    archiveArtifacts 'target/*.?ar'
-                    junit 'target/**/*.xml'  // Requires JUnit plugin
-                }
+                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                archiveArtifacts 'target/*.?ar'
+                junit 'target/**/*.xml'  // Requires JUnit plugin
             }
         }
     }
@@ -64,10 +64,7 @@ we merged the source into) and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
+    buildDiscarder(logRotator(numToKeepStr: '5'))
 ])
 
 timestamps() {
