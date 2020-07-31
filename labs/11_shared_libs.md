@@ -51,7 +51,7 @@ Custom steps are used the same as built-in steps. Create a new branch named ``la
 @Library('jenkins-techlab-libraries') _
 
 pipeline {
-    agent { label env.JOB_NAME.split('/')[0] }
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
