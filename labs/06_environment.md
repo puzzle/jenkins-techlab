@@ -34,6 +34,16 @@ pipeline {
 }
 ```
 
+To add values to the path there is a special syntax
+
+        environment {
+            PATH+MAVEN = '/path/to/maven'
+        }
+
+
+The ``PATH+<IDENTIFIER>`` syntax specifies
+that the given value should be prepended to the ``PATH`` environment variable, where ``<IDENTIFIER>`` is an arbitrary unique identifier, used to make the left hand side of the assignment unique.
+
 Lab 6.2: Environment (Scripted Syntax)
 --------------------------------------
 

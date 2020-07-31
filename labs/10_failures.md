@@ -29,10 +29,9 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
     }
-    environment{
-        JAVA_HOME=tool('jdk8_oracle')
-        MAVEN_HOME=tool('maven35')
-        PATH="${env.JAVA_HOME}/bin:${env.MAVEN_HOME}/bin:${env.PATH}"
+    tools {
+        jdk 'jdk8'
+        maven 'maven35'
     }
     stages {
         stage('Build') {
@@ -84,7 +83,7 @@ try {
             node(env.JOB_NAME.split('/')[0]) {
                 stage('Build') {
                     try {
-                        withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                        withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                             checkout scm
                             sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                             archiveArtifacts 'target/*.?ar'

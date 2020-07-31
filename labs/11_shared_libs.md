@@ -57,10 +57,9 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Requires the "Timestamper Plugin"
     }
-    environment{
-        JAVA_HOME=tool('jdk8_oracle')
-        MAVEN_HOME=tool('maven35')
-        PATH="${env.JAVA_HOME}/bin:${env.MAVEN_HOME}/bin:${env.PATH}"
+    tools {
+        jdk 'jdk8'
+        maven 'maven35'
     }
     stages {
         stage('Build') {
