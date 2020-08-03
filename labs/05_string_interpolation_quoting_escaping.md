@@ -215,13 +215,6 @@ pipeline {
 ```
 **Note:** Check the build log output on the Jenkins master.
 
-Lab 5.4: Additional Lab scripted pipeline
------------------------------------------
-
-Convert the labs above into a scripted pipeline and try out the similar string interpolation and escaping functionalities.
-
-Verify your scripts with the [solution](solutions/05_4_scripted_string_interpolation_solution.md).
-
 ---
 
 **End of Lab 5**
