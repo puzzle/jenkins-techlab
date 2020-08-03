@@ -63,7 +63,7 @@ node {
 }
 ```
 
-If you are interested in the scripted syntax (or maybe have to maintain older projects) you can find scripted versions of most labs under [/labs/scripted](/labs/scripted).
+In the following labs we will use the declarative syntax. If you are interested in the scripted syntax (or maybe have to maintain older projects) you can find scripted versions of most labs under [/labs/scripted](/labs/scripted).
 
 Note:
 * Stages are optional but recommended in scripted pipelines
