@@ -23,7 +23,7 @@ Then change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
-    agent { label env.JOB_NAME.split('/')[0] }
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
@@ -69,7 +69,7 @@ properties([
 
 timestamps() {
     timeout(time: 10, unit: 'MINUTES') {
-        node(env.JOB_NAME.split('/')[0]) {
+        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
             stage('Build') {
                 withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                     checkout scm

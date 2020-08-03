@@ -1,6 +1,28 @@
 Lab 1: Setup
 ============
 
+The techlab can be done with a local docker setup or if you are attending a instructor lead lab you will use the hosted lab environment.
+
+Local Docker Setup
+==================
+
+1. Follow the instructions here to install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/).
+2. Start with docker-compose. Depending on your docker installation you may need to run this wit `sudo`:
+
+        docker-compose -f local_env/docker-compose.yml up -d --build
+
+3. Login to jenkins at localhost:8080 with:
+
+        user: default
+        password: default
+
+**Optional** Some optional labs require a docker capable agent. Do enable this start the environment with:
+
+        docker-compose -f local_env/docker-compose.yml -f local_env/dind.yaml up -d --build
+
+Hosted Lab Setup
+================
+
 The techlab setup involves starting a Jenkins Slave on your notebook and connecting it
 to a Jenkins master running on an OpenShift 3 environment. An OpenShift client is needed
 to establish the connection.

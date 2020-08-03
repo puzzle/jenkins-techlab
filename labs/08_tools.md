@@ -21,7 +21,7 @@ Create a new branch named ``lab-8.1`` from branch ``lab-3.1`` and change the con
 
 ```groovy
 pipeline {
-    agent { label env.JOB_NAME.split('/')[0] }
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
@@ -56,7 +56,7 @@ Tools step example (not yet working)
 As soon as the problem with the Custom Tool installation is fixed, this code will work.
 ```groovy
 pipeline {
-    agent { label env.JOB_NAME.split('/')[0] }
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
@@ -104,7 +104,7 @@ properties([
 
 timestamps() {
     timeout(time: 10, unit: 'MINUTES') {
-        node(env.JOB_NAME.split('/')[0]) {
+        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
             stage('Greeting') {
                 withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                     sh "java -version"
