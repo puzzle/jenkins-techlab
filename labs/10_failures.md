@@ -14,8 +14,8 @@ Usually a build is aborted when a failure occurs, with the exception of test fai
 In declarative pipelines error handling is separated from the actual build logic,
 on the other hand failure handling can become quite disruptive in scripted pipelines.
 
-Lab 10.1: Failures (Declarative Syntax)
---------------------------------------
+Lab 10.1: Failures
+------------------
 
 Declarative pipelines provide the ``post`` section and directives like ``success`` and ``failure``
 to deal with failures. Create a new branch named ``lab-10.1`` from branch ``lab-9.1`` (the one

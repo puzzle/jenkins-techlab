@@ -4,8 +4,8 @@ Lab 4: Build Trigger
 Like build options/properties triggers need to be configured in the ``Jenkinsfile`` for
 multibranch jobs. In this lab we add a SCM polling trigger and a cron trigger to our job.
 
-Lab 4.1: Build Trigger (Declarative Syntax)
--------------------------------------------
+Lab 4.1: Build Trigger
+----------------------
 
 In declarative pipelines build triggers are configured through the ``triggers`` directive.
 Only a single ``triggers`` directive is allowed and must be contained in the ``pipeline`` block.

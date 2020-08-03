@@ -1,8 +1,8 @@
 Lab 15: Ruby
 ============
 
-Lab 15.1: Install Ruby (Declarative Syntax)
--------------------------------------------
+Lab 15.1: Install Ruby
+----------------------
 
 ```groovy
 pipeline {

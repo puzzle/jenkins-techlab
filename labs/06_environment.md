@@ -5,8 +5,8 @@ In this lab we see how to work with environment variables in pipelines.
 
 Enironment Variable are generally in pipelines available under the ``env`` namespace, like ``env.BUILD_ID``
 
-Lab 6.1: Environment (Declarative Syntax)
------------------------------------------
+Lab 6.1: Environment
+--------------------
 
 Create a new branch named lab-6.1 from branch lab-3.1 and change the contents of the Jenkinsfile to:
 

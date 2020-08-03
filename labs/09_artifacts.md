@@ -6,8 +6,8 @@ This means that any results of a build that need to be preserved have to be save
 In Jenkins this process is called "artifact archival".
 In this lab we archive some build artifacts and test results.
 
-Lab 9.1: Artifact Archival (Declarative Syntax)
------------------------------------------------
+Lab 9.1: Artifact Archival
+--------------------------
 
 In declarative pipelines you use the ``archive`` or ``archiveArtifact`` step
 for artifact archival.

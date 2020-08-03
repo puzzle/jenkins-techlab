@@ -8,8 +8,8 @@ So Jenkins provides a mechanism to manage credentials and make them available to
 who require them, much like it does with build tools. This mechanism is extensible
 and supports various types of credentials like username/password, token, ssh key, secret file etc.
 
-Lab 12.1: Credentials (Declarative Syntax)
-------------------------------------------
+Lab 12.1: Credentials
+---------------------
 
 Declarative pipelines provide the ``credentials`` method which can be used in the ``environment``
 section to declare which credentials the job needs and make them available through environment

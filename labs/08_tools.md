@@ -6,8 +6,8 @@ As soon as you have more than a handful number of tools and versions it becomes 
 That's why Jenkins provides a mechanism to provide the necessary tools for a build on the slaves it runs on.
 This lab shows how jobs can declare the tools they need.
 
-Lab 8.1: Default Tools (Declarative Syntax)
-===================================
+Lab 8.1: Default Tools
+----------------------
 
 Declarative pipelines provide a ``tools`` section to declare which
 tools a job requires. Jenkins per default supports the installation of the following tools:
@@ -80,7 +80,7 @@ Note that tool installers are run for every build and therefore have to be effic
 However we often need to use other tools not supported by default Jenkins (like rvm or nvm). In this case we have two options; the custom tool plugin and docker agents.
 
 Lab 8.2: Custom Tools (Plugin)
-===================================
+------------------------------
 
 The custom tools plugin enables the installation of any tool to the agent node. We will use it to configure the `nvm` tools we will use in `lab-16`.
 
@@ -100,7 +100,7 @@ The custom tool plugin does not support the `tool{}` directive but we can use th
 A full example can be found in `lab-16`.
 
 Custom Tools (Docker Agent)
-===================================
+---------------------------
 
 Jenkis can also use a container image as a build environment. In this case all the required tools are present in the image and the source files are mounted in the image.
 

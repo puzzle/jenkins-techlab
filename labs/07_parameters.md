@@ -5,8 +5,8 @@ Jobs can be parametrized with user provided input, e.g. to select a deployment t
 When such a job gets started through the web interface a form is presented to the user
 where he can provide the necessary arguments.
 
-Lab 7.1: Build Parameters (Declarative Syntax)
------------------------------------------------
+Lab 7.1: Build Parameters
+-------------------------
 
 In declarative pipelines parameters are declared with the ``parameters`` section.
 Create a new branch named ``lab-7.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
