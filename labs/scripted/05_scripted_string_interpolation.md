@@ -1,8 +1,3 @@
-Solution Lab 5.4: String Interpolation and Escaping
-===================================================
-
-Solutions for [Lab 5.4: Additional Lab scripted pipeline](../05_string_interpolation_quoting_escaping.md#lab-54-additional-lab-scripted-pipeline)
-
 Scripted version of Lab 5.1: Get used to the string interpolation and escaping
 ------------------------------------------------------------------------------
 
