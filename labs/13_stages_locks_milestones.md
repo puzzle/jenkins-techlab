@@ -86,11 +86,6 @@ It accepts the same parameters type as build parameters but can appear
 anywhere in a build and allows the parameters to be computed.  
 See <https://jenkins.io/blog/2016/10/16/stage-lock-milestone/> for more information.
 
-Lab 13.2: Stages, Locks and Milestones (Scripted Syntax)
---------------------------------------------------------
-
-Adapt scripted pipeline from previous lab analogously.
-
 ---
 
 **End of Lab 13**

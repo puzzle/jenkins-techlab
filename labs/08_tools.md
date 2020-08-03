@@ -79,7 +79,7 @@ Note that tool installers are run for every build and therefore have to be effic
 
 However we often need to use other tools not supported by default Jenkins (like rvm or nvm). In this case we have two options; the custom tool plugin and docker agents.
 
-Lab 8.1.1: Custom Tools (Plugin)
+Lab 8.2: Custom Tools (Plugin)
 ===================================
 
 The custom tools plugin enables the installation of any tool to the agent node. We will use it to configure the `nvm` tools we will use in `lab-16`.
@@ -99,7 +99,7 @@ The custom tool plugin does not support the `tool{}` directive but we can use th
 
 A full example can be found in `lab-16`.
 
-Lab 8.1.2: Custom Tools (Docker Agent)
+Custom Tools (Docker Agent)
 ===================================
 
 Jenkis can also use a container image as a build environment. In this case all the required tools are present in the image and the source files are mounted in the image.
@@ -111,34 +111,6 @@ Jenkis can also use a container image as a build environment. In this case all t
     }
 
 We will use this method in `lab-15`
-
-
-Lab 8.2: Tools (Scripted Syntax)
-================================
-
-In scripted pipelines you use the ``tool`` step to install tools.
-Create a new branch named ``lab-8.2`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
-
-```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-])
-
-timestamps() {
-    timeout(time: 10, unit: 'MINUTES') {
-        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
-            stage('Greeting') {
-                withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh "java -version"
-                    sh "mvn --version"
-                }
-            }
-        }
-    }
-}
-```
-
-The usage of tools is identical to the previous lab since we couldn't use the declarative syntax there.
 
 ---
 

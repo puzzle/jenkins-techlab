@@ -68,67 +68,17 @@ The ``rawMesssage`` attribute of ``rocketSend`` tells Rocket.Chat not to add con
 
 **Note:** Check the message of your build in the Rocket.Chat channel.
 
-Lab 10.2: Failures (Scripted Syntax)
------------------------------------
-Create a new branch named ``lab-10.2`` from branch ``lab-9.2`` and change the content of the ``Jenkinsfile`` to:
-
-```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-])
-
-try {
-    timestamps() {
-        timeout(time: 10, unit: 'MINUTES') {
-            node { // with hosted env use node(env.JOB_NAME.split('/')[0])
-                stage('Build') {
-                    try {
-                        withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                            checkout scm
-                            sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
-                            archiveArtifacts 'target/*.?ar'
-                        }
-                    } finally {
-                        junit 'target/**/*.xml'  // Requires JUnit plugin
-                    }
-                }
-            }
-        }
-    }
-} catch (e) {
-    node {
-        rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/failure.png', channel: 'jenkins-techlab', message: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
-    }
-    throw e
-} finally {
-    node {
-        if (currentBuild.result == 'UNSTABLE') {
-             rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png', channel: 'jenkins-techlab', message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
-        } else if (currentBuild.result == null) { // null means success
-            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/success.png', channel: 'jenkins-techlab', message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
-        }
-    }
-}
-```
-
-It's again good practice to ensure capture of test results in any case using a ``finally`` statement.
-
-The ``junit`` and ``rocketSend`` steps need a workspace and must be contained in a ``node`` step.
-
-**Note:** Check the message of your build in the Rocket.Chat channel.
-
-
-Lab 10.3: Mail notification
+Lab 10.2: Mail notification
 ---------------------------
 
-Add mail notification to one of the labs. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.
+Add mail notification to the previous lab. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.
 
 Verify your scripts with the [solution](solutions/10_3_failures_solution.md).
 
-Lab 10.4: Break the build
+Lab 10.3: Break the build
 ---------------------------
 
-Do a change in branch ``lab-10.1`` or ``lab-10.2`` such that the message in the chat will be: "Build unstable".
+Do a change in branch ``lab-10.1`` such that the message in the chat will be: "Build unstable".
 
 **Note:** To change the build result in Jenkins from failed (red) to unstable (yellow), you have to extend the maven command by: ``-Dmaven.test.failure.ignore=true``.
 ```groovy

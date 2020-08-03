@@ -90,12 +90,7 @@ Since the step deals with different build results we can also replace the
 directive. Note that ``channel`` is still optional and defaults to the
 channel in the Rocket.Chat plugin configuration.
 
-Lab 11.3: Use Shared Library (Scripted Syntax)
-----------------------------------------------
-
-Simplify our scripted pipeline from the last lab analogously.
-
-Lab 11.4: Additional Shared Library Capabilities
+Lab 11.3: Additional Shared Library Capabilities
 ------------------------------------------------
 
 In this lab we used folder-level shared libraries to avoid conflicts between
