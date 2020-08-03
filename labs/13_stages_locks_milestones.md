@@ -25,15 +25,15 @@ pipeline {
         timestamps()  // Timestamper Plugin
     }
     environment{
-        JAVA_HOME=tool('jdk8_oracle')
-        MAVEN_HOME=tool('maven35')
-        PATH="${env.JAVA_HOME}/bin:${env.MAVEN_HOME}/bin:${env.PATH}"
         M2_SETTINGS = credentials('m2_settings')
         KNOWN_HOSTS = credentials('known_hosts')
         ARTIFACTORY = credentials('jenkins-artifactory')
         ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"
         REPO_URL = 'https://artifactory.puzzle.ch/artifactory/ext-release-local'
-
+    }
+    tools {
+        jdk 'jdk8'
+        maven 'maven35'
     }
     stages {
         stage('Build') {
