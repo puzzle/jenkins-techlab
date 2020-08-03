@@ -8,8 +8,8 @@ global level.
 In this lab we split testing and deploying into their own stages and add ``milestone``, ``lock`` and ``input``
 steps to control the flow of builds through the pipeline.
 
-Lab 13.1: Stages, Locks and Milestones (Declarative Syntax)
-===========================================================
+Lab 13.1: Stages, Locks and Milestones
+--------------------------------------
 
 Create a new branch named ``lab-13.1`` from branch
 ``lab-12.1`` and change the content of the ``Jenkinsfile`` to:
@@ -85,11 +85,6 @@ in test stages. While ``input`` pauses a build and waits for user input.
 It accepts the same parameters type as build parameters but can appear
 anywhere in a build and allows the parameters to be computed.  
 See <https://jenkins.io/blog/2016/10/16/stage-lock-milestone/> for more information.
-
-Lab 13.2: Stages, Locks and Milestones (Scripted Syntax)
---------------------------------------------------------
-
-Adapt scripted pipeline from previous lab analogously.
 
 ---
 

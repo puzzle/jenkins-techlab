@@ -5,8 +5,8 @@ Jobs can be parametrized with user provided input, e.g. to select a deployment t
 When such a job gets started through the web interface a form is presented to the user
 where he can provide the necessary arguments.
 
-Lab 7.1: Build Parameters (Declarative Syntax)
------------------------------------------------
+Lab 7.1: Build Parameters
+-------------------------
 
 In declarative pipelines parameters are declared with the ``parameters`` section.
 Create a new branch named ``lab-7.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
@@ -36,35 +36,6 @@ Helper methods like ``string`` or ``booleanParam`` are used to declare the param
 The corresponding documentation should soon be available here: <https://jenkins.io/doc/book/pipeline/syntax/#parameters>.
 There is an open issue for the parameter documentation: [INFRA-1053](https://issues.jenkins-ci.org/browse/INFRA-1053).
 In the meantime use the snippet generator like described in the next lab to see all available types.
-
-**Note:** Use the "Build with Parameters" action on Jenkins master and change the greetings value. The build log output will show the changed greeting.
-
-Lab 7.2: Build Parameters (Scripted Syntax)
-===========================================
-
-In scripted pipelines build parameters are configured as part of the ``properties`` step.
-Create a new branch named ``lab-7.2`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
-
-```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    parameters([string(defaultValue: 'Jenkins Techlab', description: 'Who to greet?', name: 'Greetings_to')])
-])
-
-timestamps() {
-    timeout(time: 10, unit: 'MINUTES') {
-        node {
-            stage('Greeting') {
-                echo 'Hello, ' + params.Greetings_to + '!'
-            }
-        }
-    }
-}
-```
-
-Parameter types are declared through the same helper methods as in declarative pipelines.
-Use the snippet generator for the ``properties`` step, option "This build is parametrized" to see
-all available types.
 
 **Note:** Use the "Build with Parameters" action on Jenkins master and change the greetings value. The build log output will show the changed greeting.
 

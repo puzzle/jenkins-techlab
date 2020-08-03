@@ -39,6 +39,10 @@ pipeline {
 
 If everything is configured correctly this will immediately scan your repository, create a job named "lab-2.1" below the multibranch pipeline and start a build of the "lab-2.1" job.
 
+The multibranch pipeline scan trigger will also trigger builds of any jobs whose ``Jenkinsfile`` changes.
+
+You can only view but not edit the configuration of a job generated from a ``Jenkinsfile``. The ``Jenkinsfile`` is the single source of truth <https://en.wikipedia.org/wiki/Single_source_of_truth> for these jobs, the only thing that is configured directly in Jenkins is how to access the repositories. The next lab shows how to configure job properties like log rotation and build triggers in a ``Jenkinsfile``.
+
 Note:
 * Declarative pipelines require Jenkins Pipeline 2.5 or later
 * ``agent any`` indicates that any of the available executors can be used and allocates a workspace. ``agent`` is the equivalent of ``node`` in scripted pipelines.
@@ -47,9 +51,9 @@ Note:
 Lab 2.2: Scripted "Hello, World!"
 ---------------------------------
 
-``Jenkinsfile`` supports declarative and scripted syntax. Create a
-new branch ``lab-2.2`` based on the ``lab-2.1`` branch in your repository. When Jenkins scans the repository the next time it will create a corresponding job.
-Now replace the ``Jenkinsfile`` with a scripted version of the pipeline:
+``Jenkinsfile`` also supports a scripted syntax. This can be considered a legacy feature and it is recommended to use the declarative syntax.
+
+With the scripted syntax the above example would look like this:
 
 ```groovy
 node {
@@ -59,9 +63,7 @@ node {
 }
 ```
 
-The multibranch pipeline scan trigger will also trigger builds of any jobs whose ``Jenkinsfile`` changes.
-
-You can only view but not edit the configuration of a job generated from a ``Jenkinsfile``. The ``Jenkinsfile`` is the single source of truth <https://en.wikipedia.org/wiki/Single_source_of_truth> for these jobs, the only thing that is configured directly in Jenkins is how to access the repositories. The next lab shows how to configure job properties like log rotation and build triggers in a ``Jenkinsfile``.
+In the following labs we will use the declarative syntax. If you are interested in the scripted syntax (or maybe have to maintain older projects) you can find scripted versions of most labs under [/labs/scripted](/labs/scripted).
 
 Note:
 * Stages are optional but recommended in scripted pipelines

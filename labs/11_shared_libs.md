@@ -40,8 +40,8 @@ def call(String channel) {
 To make the step useful for multiple projects it allows to provide a different Rocket.Chat channel.
 A single library can provide any number of custom steps.
 
-Lab 11.2: Use Shared Library (Declarative Syntax)
--------------------------------------------------
+Lab 11.2: Use Shared Library
+----------------------------
 
 Now we can rewrite our pipeline to use the new ``notifyPuzzleChat`` step, eliminating any duplicated code.
 Custom steps are used the same as built-in steps. Create a new branch named ``lab-11.2`` from branch
@@ -90,12 +90,7 @@ Since the step deals with different build results we can also replace the
 directive. Note that ``channel`` is still optional and defaults to the
 channel in the Rocket.Chat plugin configuration.
 
-Lab 11.3: Use Shared Library (Scripted Syntax)
-----------------------------------------------
-
-Simplify our scripted pipeline from the last lab analogously.
-
-Lab 11.4: Additional Shared Library Capabilities
+Lab 11.3: Additional Shared Library Capabilities
 ------------------------------------------------
 
 In this lab we used folder-level shared libraries to avoid conflicts between
