@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // Only one build is allowed to use test resources, newest builds run first
                 lock(resource: 'myResource', inversePrecedence: true) {  // Lockable Resources Plugin
-                    sh 'mvn -B -V -U -e verify -Dsurefire.useFile=false'
+                    sh 'mvn -B -V -U -e verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
                     milestone(20)  // Abort all older builds that didn't get here
                 }
             }

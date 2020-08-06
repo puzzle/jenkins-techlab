@@ -15,7 +15,7 @@ try {
                     try {
                         withEnv(["JAVA_HOME=${tool 'jdk11'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                             checkout scm
-                            sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                            sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
                             archiveArtifacts 'target/*.?ar'
                         }
                     } finally {
