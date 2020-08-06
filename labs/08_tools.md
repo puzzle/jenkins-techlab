@@ -25,11 +25,11 @@ Add a JDK:
 
 1. Go to Manage Jenkins > Global Tool Configuration
 2. Under JDK click `Add JDK`
-3. Under name enter `jdk8`
+3. Under name enter `jdk11`
 4. Check `Install automatically`
 5. Under `Add Installer` select `Extract *.zip/*.tar.gz`
-  * Under `Download URL for binary archive` enter: "https://download.java.net/openjdk/jdk8u41/ri/openjdk-8u41-b04-linux-x64-14_jan_2020.tar.gz"
-  * Under `Subdirectory of extracted archive` enter: "java-se-8u41-ri"
+  * Under `Download URL for binary archive` enter: "https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz"
+  * Under `Subdirectory of extracted archive` enter: "jdk-11"
 6. At the bottom of the page click `Apply`
 
 Add Maven:

@@ -30,13 +30,13 @@ pipeline {
         timestamps()  // Requires the "Timestamper Plugin"
     }
     tools {
-        jdk 'jdk8'
+        jdk 'jdk11'
         maven 'maven35'
     }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
+                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
                 archiveArtifacts 'target/*.?ar'
                 junit 'target/**/*.xml'  // Requires JUnit plugin
             }
