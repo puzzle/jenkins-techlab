@@ -35,7 +35,7 @@ Lab 12.1: Local SSH Server setup
     export PUB_KEY=ecdsa-sha2-nistp521 AAAAE2VjZH.......
     ```
 
-3. Open the Jenkins web gui, press `Manage Jenkins` → `Manage Credentials` and select the Global credentials from the list. Then click on `Add Credentials` in the left menu. 
+3. Open the Jenkins web gui, press `Manage Jenkins` → `Manage Credentials` and select the Global credentials from the list. ([Direct Link](http://localhost:8080/credentials/store/system/domain/_/)) Then click on `Add Credentials` in the left menu. 
 
     ```
     Kind: SSH Username with private key
