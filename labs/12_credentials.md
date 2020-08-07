@@ -11,18 +11,31 @@ and supports various types of credentials like username/password, token, ssh key
 Lab 12.1: Local SSH Server setup
 ---------------------
 
-1. Generate SSH Keypair. Run following command to create the Keypair
+
+1. Generate SSH Keypair. Run following command to create the Keypair (Select the default key type *ecdsa*)
     ```
     docker run --rm -it --entrypoint /keygen.sh linuxserver/openssh-server
     ```
-
+    You should see following ouput (example is truncated):
+    ```
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAArAAAABNlY2RzYS
+    1zaGEyLW5pc3RwNTIxAAAACG5pc3RwNTIxAAAAhQQBvn9dc6qeTqaz/X5iFafmOo8f18++
+    .....
+    ....
+    ...
+    Kh5vtHhHEzKQm4vf9moTQCcyw6JbcB3JezTrlOQAIRNudnxbqNhNNMaLGjsv2VP1AAAAEX
+    Jvb3RAMzQzYzBhMTcwNzZlAQI=
+    -----END OPENSSH PRIVATE KEY-----
+    ecdsa-sha2-nistp521 AAAAE2Vj.....C4+Q== root@343c0a17076e
+    ```
 
 2. Set the public key as environment variable in order to substitute the placeholder inside the ssh-server-compose file
     ```
     export PUB_KEY=ecdsa-sha2-nistp521 AAAAE2VjZH.......
     ```
 
-3. Open the Jenkins web gui, press `Manage Jenkins` → `Manage Credentials`
+3. Open the Jenkins web gui, press `Manage Jenkins` → `Manage Credentials` and select the Global credentials from the list. Then click on `Add Credentials` in the left menu. 
 
     ```
     Kind: SSH Username with private key
