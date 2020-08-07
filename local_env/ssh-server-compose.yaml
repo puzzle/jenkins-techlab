@@ -10,13 +10,10 @@ services:
       - PGID=1000
       - TZ=Europe/Zurich
       - PUBLIC_KEY=${PUB_KEY} #replaced by env variable
-      - PUBLIC_KEY_FILE=/path/to/file 
       - SUDO_ACCESS=false 
       - PASSWORD_ACCESS=false
       - USER_NAME=puzzler
       - DOCKER_MODS=linuxserver/mods:openssh-server-openssh-client
-    #volumes:
-    #  - /path/to/appdata/config:/config
     ports:
       - 2222:2222
     restart: unless-stopped
