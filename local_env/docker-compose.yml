@@ -17,7 +17,7 @@ services:
     image: jenkins_agent_docker
     init: true
     environment:
-      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0xJ5n9MY0PFBR/aCHSb8JBQgbIUo0C/bPlaxM9v0uCT2CQJvNyrHUfJKaM9wJsdT7wdKBUIvhODdfoE7kc59j0WpO5TQ5Q2MeG7fpQAalM0ATwv/o7hCTvWev5gpJPSsIg9N/+VusO2R4V1H7LpZm65hHL/0lt9SmvtZzQBR+lt5IhrliEMZpo1UdNql/ueR6Em3mFW/tJvprBD445xTa0kxACGXdMI3nF2+SF49oXhTPjNFKSJilWDsoWzf9swyIf1vbH6zr3slMm7jUvOSCC3gGcqNrSG9Y3wkBzqUDe20CjbeAHMq490xlkGQeg9BAByTvn9uOU7ym3mMUnkKR
+      - JENKINS_AGENT_SSH_PUBKEY=${TECHLAB_PUBLIC_KEY}
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_HOST=tcp://docker:2376
       - DOCKER_TLS_VERIFY=1

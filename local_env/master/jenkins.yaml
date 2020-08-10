@@ -43,33 +43,6 @@ credentials:
           id: "bf5bb957-18bc-45ca-baa8-e7e3cb652405"
           privateKeySource:
             directEntry:
-              privateKey: |
-                -----BEGIN RSA PRIVATE KEY-----
-                MIIEowIBAAKCAQEAtMSeZ/TGNDxQUf2gh0m/CQUIGyFKNAv2z5WsTPb9Lgk9gkCb
-                zcqx1HySmjPcCbHU+8HSgVCL4Tg3X6BO5HOfY9FqTuU0OUNjHhu36UAGpTNAE8L/
-                6O4Qk71nr+YKST0rCIPTf/lbrDtkeFdR+y6WZuuYRy/9JbfUpr7Wc0AUfpbeSIa5
-                YhDGaaNVHTapf7nkehJt5hVv7Sb6awQ+OOcU2tJMQAhl3TCN5xdvkhePaF4Uz4zR
-                SkiYpVg7KFs3/bMMiH9b2x+s697JTJu41Lzkggt4BnKja0hvWN8JAc6lA3ttAo23
-                gBzKuPdMZZBkHoPQQAck75/bjlO8pt5jFJ5CkQIDAQABAoIBAAVl3akTCRwkNO3N
-                2g5QKHE3gj91JgcZ2Fvoh0WhFnxacEjEbyKdC+Rhd+s84zQy6D5AUm3kHtkx2Y10
-                dwahYUAUz8zdUUrodTw/7aT8cXZbam1spEGrYjlXLZJ2FxaKyg8uCJHIu3EQMPba
-                /Kq4gGtAW8K8bx3COIpmJnc4kaQaBkrNleOkVeHmJqPH/s4ADxnOUwoL5uBfxCwq
-                cy/RdAjwVgn/s1ieKd/VYuGyTCJsDB5glHrjdp9osFlBkSr932j7Z8DTsybPr4aI
-                MBFdWaq0Efn/UiTqTkyg08R3pr33B2fgnviAy7+epsz5/VMbmljXOdMNSQXaxdR5
-                OzKM10ECgYEA79DMqPKC8c9/bS/mI/IHC4EomKkD8/FK9lTUHYL7S4I7OXRCqdiP
-                9kxf66rI9aqcIc9/uv+4n8zJXt1zCZl3rEVU0T6Ue0d0sAk7205ZZpopotjbT4b0
-                Q2cLpXfevJaMQv5tcp/muignM6BiCwksw5ZQ9LL20dhW6zIjTOThHmkCgYEAwPet
-                ametBqwwIcFHScXVwuH3MjKcas+xCbhx4VzBB7E7gfFZgeVL5GRDyJG7dWl9mCkq
-                aGFUxydlr7FYGelkyoBHnc+AVttggVyHKVLstcF1K1/qPong5dZ4KShtVGVgh7Cq
-                CNERRgN7qu+4+ET3GruO25Cgp/nGcQPU5lZ0TekCgYAs287cr3hlCR5Z60LOaIB+
-                22sfm0X9BJ60E0wWNSESj8rKRYAOy06qkMDEkY7DvWU1Qd4vuZPseF8Wmq/hFM74
-                74MdHOqjYMtn/mIu9Knuclnld1EWwDTCwuy/x/tnJXYZNgR9E4ISQl6K3q5YSCAS
-                efSswSlAOYqQtjE6OfoOOQKBgQCJy5PDSvuMq0LHp+xPKv3FZ3UNHIUD5QHoDhUM
-                OB8DbjUvSnh/QI0cL9kTjbWOV2E/Wg4VcYOHn4OGnZ5rCnZWAJqjf3yHCar1VWyT
-                PssX02jnK1vrgqvdlHRD98Fypd3zp10UZK7wDyatXvf4Gc9XAJ43/iQrLzrckz7h
-                qNTumQKBgFAJjwfKrxVKD6cyhfs8JUdQbY4nHIHlKyaSzzT5aRLfl8GzHOsljgHY
-                Gd6BQJq3xOkVlKulOJbjmkCX5xOI/7uJ79Kw8jl7eQwQw882/QmzfEc6wjtMXz0J
-                8uc6RNKuEmnbv6dx+8HykHNNXFZr2IY9iVxURPaNE+jMlgPR2BEi
-                -----END RSA PRIVATE KEY-----
+              privateKey: ${TECHLAB_PRIVATE_KEY}
           scope: GLOBAL
           username: "jenkins"

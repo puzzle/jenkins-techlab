@@ -7,11 +7,15 @@ Local Docker Setup
 ==================
 
 1. Follow the instructions here to install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/).
-2. Start with docker-compose. Depending on your docker installation you may need to run this wit `sudo`:
+1. Create ssh keys for master and slave:
+
+        source create-ssh-keys.sh
+
+1. Start with docker-compose. Depending on your docker installation you may need to run this with `sudo`:
 
         docker-compose -f local_env/docker-compose.yml up -d --build
 
-3. Login to jenkins at localhost:8080 with:
+1. Login to jenkins at localhost:8080 with:
 
         user: default
         password: default
