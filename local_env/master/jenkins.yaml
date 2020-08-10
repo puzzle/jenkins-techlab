@@ -26,9 +26,7 @@ jenkins:
           host: "jenkins_slave_docker"
           port: 22
           javaPath: "^${JAVA_HOME}/bin/java"
-          sshHostKeyVerificationStrategy:
-            manuallyTrustedKeyVerificationStrategy:
-              requireInitialManualTrust: false
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
 unclassified:
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
@@ -43,6 +41,6 @@ credentials:
           id: "bf5bb957-18bc-45ca-baa8-e7e3cb652405"
           privateKeySource:
             directEntry:
-              privateKey: ${TECHLAB_PRIVATE_KEY}
-          scope: GLOBAL
+              privateKey: ${agent_connection_key}
+          scope: SYSTEM
           username: "jenkins"

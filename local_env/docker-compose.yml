@@ -7,6 +7,7 @@ services:
     image: jenkins_casc
     environment:
       - CASC_JENKINS_CONFIG=/var/jenkins_casc/jenkins.yaml
+      - SECRETS=/var/jenkins_casc/secrets 
     ports:
       - "8080:8080"
     volumes:
@@ -17,10 +18,11 @@ services:
     image: jenkins_agent_docker
     init: true
     environment:
-      - JENKINS_AGENT_SSH_PUBKEY=${TECHLAB_PUBLIC_KEY}
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_HOST=tcp://docker:2376
       - DOCKER_TLS_VERIFY=1
+    env_file:
+      - agent/env_file
     restart: on-failure
     depends_on:
       - jenkins

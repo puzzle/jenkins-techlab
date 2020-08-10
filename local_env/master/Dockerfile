@@ -7,5 +7,11 @@ ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false -Dpermissive-script-securi
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
+USER root
+
 # copy CasC configuration
 COPY jenkins.yaml /var/jenkins_casc/jenkins.yaml
+COPY agent_connection_key /var/jenkins_casc/secrets/agent_connection_key
+RUN chown -R jenkins /var/jenkins_casc
+
+USER jenkins
