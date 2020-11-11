@@ -8,7 +8,7 @@ Lab 15.1: Install Ruby (Declarative Syntax)
 @Library('jenkins-techlab-libraries') _
 
 pipeline {
-    agent { label env.JOB_NAME.split('/')[0] }
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')

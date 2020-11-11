@@ -1,0 +1,38 @@
+version: '2.3'
+
+services:
+  jenkins:
+    container_name: jenkins
+    build: ./master
+    image: jenkins_casc
+    environment:
+      - CASC_JENKINS_CONFIG=/var/jenkins_casc/jenkins.yaml
+      - SECRETS=/var/jenkins_casc/secrets 
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_master_home:/var/jenkins_home
+  jenkins_slave_docker:
+    container_name: jenkins_agent_docker
+    build: ./agent
+    image: jenkins_agent_docker
+    init: true
+    environment:
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_TLS_VERIFY=1
+    env_file:
+      - agent/env_file
+    restart: on-failure
+    depends_on:
+      - jenkins
+    volumes:
+      - jenkins-docker-certs:/certs/client:ro
+      - jenkins_slave_docker_workdir:/home/jenkins:z
+      - jenkins_slave_docker:/home/jenkins/.jenkins
+volumes:
+  jenkins_master_home:
+  jenkins_slave_docker:
+  jenkins-docker-certs:
+  jenkins_slave_docker_workdir:
+

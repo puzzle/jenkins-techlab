@@ -1,0 +1,46 @@
+jenkins:
+  numExecutors: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "default"
+        name: "default"
+        password: "default"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  remotingSecurity:
+    enabled: true
+  nodes:
+  - permanent:
+      name: "ssh-agent-docker"
+      numExecutors: 1
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+      labelString: "docker"
+      launcher:
+        ssh:
+          credentialsId: "bf5bb957-18bc-45ca-baa8-e7e3cb652405"
+          host: "jenkins_slave_docker"
+          port: 22
+          javaPath: "^${JAVA_HOME}/bin/java"
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+unclassified:
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://localhost:8080/"
+  pipeline-model-docker:
+    dockerLabel: "docker"
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+          id: "bf5bb957-18bc-45ca-baa8-e7e3cb652405"
+          privateKeySource:
+            directEntry:
+              privateKey: ${agent_connection_key}
+          scope: SYSTEM
+          username: "jenkins"

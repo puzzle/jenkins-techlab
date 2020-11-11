@@ -18,7 +18,7 @@ variables. Create a new branch named ``lab-12.1`` from branch ``lab-9.1``
 
 ```groovy
 pipeline {
-    agent { label env.JOB_NAME.split('/')[0] }
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
@@ -78,7 +78,7 @@ timestamps() {
     timeout(time: 10, unit: 'MINUTES') {
         env.ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"
         env.REPO_URL = 'https://artifactory.puzzle.ch/artifactory/ext-release-local'
-        node(env.JOB_NAME.split('/')[0]) {
+        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
             withCredentials([file(credentialsId: 'm2_settings', variable: 'M2_SETTINGS'), usernameColonPassword(credentialsId: 'jenkins-artifactory', variable: 'ARTIFACTORY'), file(credentialsId: 'known_hosts', variable: 'KNOWN_HOSTS')]) {  // Credentials Binding Plugin
                 withEnv(["JAVA_HOME=${tool 'jdk8_oracle'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
                     stage('Build') {
