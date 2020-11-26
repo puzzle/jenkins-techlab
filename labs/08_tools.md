@@ -25,11 +25,11 @@ Add a JDK:
 
 1. Go to Manage Jenkins > Global Tool Configuration
 2. Under JDK click `Add JDK`
-3. Under name enter `jdk8`
+3. Under name enter `jdk11`
 4. Check `Install automatically`
 5. Under `Add Installer` select `Extract *.zip/*.tar.gz`
-  * Under `Download URL for binary archive` enter: "https://download.java.net/openjdk/jdk8u41/ri/openjdk-8u41-b04-linux-x64-14_jan_2020.tar.gz"
-  * Under `Subdirectory of extracted archive` enter: "java-se-8u41-ri"
+  * Under `Download URL for binary archive` enter: "https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz"
+  * Under `Subdirectory of extracted archive` enter: "jdk-11"
 6. At the bottom of the page click `Apply`
 
 Add Maven:
@@ -54,7 +54,7 @@ pipeline {
         timestamps()  // Requires the "Timestamper Plugin"
     }
     tools {
-        jdk 'jdk8'
+        jdk 'jdk11'
         maven 'maven35'
     }
     stages {
@@ -111,34 +111,6 @@ Jenkis can also use a container image as a build environment. In this case all t
     }
 
 We will use this method in `lab-15`
-
-
-Lab 8.2: Tools (Scripted Syntax)
-================================
-
-In scripted pipelines you use the ``tool`` step to install tools.
-Create a new branch named ``lab-8.2`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
-
-```groovy
-properties([
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-])
-
-timestamps() {
-    timeout(time: 10, unit: 'MINUTES') {
-        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
-            stage('Greeting') {
-                withEnv(["JAVA_HOME=${tool 'jdk8'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh "java -version"
-                    sh "mvn --version"
-                }
-            }
-        }
-    }
-}
-```
-
-The usage of tools is identical to the previous lab since we couldn't use the declarative syntax there.
 
 ---
 

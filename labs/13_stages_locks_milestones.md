@@ -32,7 +32,7 @@ pipeline {
         REPO_URL = 'https://artifactory.puzzle.ch/artifactory/ext-release-local'
     }
     tools {
-        jdk 'jdk8'
+        jdk 'jdk11'
         maven 'maven35'
     }
     stages {
@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // Only one build is allowed to use test resources, newest builds run first
                 lock(resource: 'myResource', inversePrecedence: true) {  // Lockable Resources Plugin
-                    sh 'mvn -B -V -U -e verify -Dsurefire.useFile=false'
+                    sh 'mvn -B -V -U -e verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
                     milestone(20)  // Abort all older builds that didn't get here
                 }
             }
@@ -85,11 +85,6 @@ in test stages. While ``input`` pauses a build and waits for user input.
 It accepts the same parameters type as build parameters but can appear
 anywhere in a build and allows the parameters to be computed.  
 See <https://jenkins.io/blog/2016/10/16/stage-lock-milestone/> for more information.
-
-Lab 13.2: Stages, Locks and Milestones (Scripted Syntax)
---------------------------------------------------------
-
-Adapt scripted pipeline from previous lab analogously.
 
 ---
 
