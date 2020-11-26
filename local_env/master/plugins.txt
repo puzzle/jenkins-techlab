@@ -74,4 +74,5 @@ credentials-binding
 git
 antisamy-markup-formatter
 subversion
+ssh-agent
 rocketchatnotifier
