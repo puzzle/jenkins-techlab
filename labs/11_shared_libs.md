@@ -58,7 +58,7 @@ pipeline {
         timestamps()  // Requires the "Timestamper Plugin"
     }
     tools {
-        jdk 'jdk8'
+        jdk 'jdk11'
         maven 'maven35'
     }
     stages {
