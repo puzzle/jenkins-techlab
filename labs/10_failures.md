@@ -15,15 +15,15 @@ In declarative pipelines error handling is separated from the actual build logic
 on the other hand failure handling can become quite disruptive in scripted pipelines.
 
 
-Lab 10.1: Local Rocketchat Setup
+Lab 10.1: Local Rocket.Chat Setup
 ------------------
 
-If you use the Local Docker Setup for the Techlab, you need to start a local RocketChat instance and configure the Rocket Chat Notification plugin.
+If you use the Local Docker Setup for the Techlab, you need to start a local Rocket.Chat instance and configure the Rocket.Chat Notification plugin.
 
-1. Start the local RocketChat with docker-compose. Depending on your docker installation you need to run whis command with `sudo`:
+1. Start the local Rocket.Chat with docker-compose. Depending on your docker installation you need to run whis command with `sudo`:
 `docker-compose -f local_env/rocketchat-compose.yml up -d`
 
-2. Login to RocketChat at http://localhost:3000 with:
+2. Login to Rocket.Chat at http://localhost:3000 with:
     ```
     user: admin
     password: admin
@@ -97,7 +97,9 @@ The ``rawMesssage`` attribute of ``rocketSend`` tells Rocket.Chat not to add con
 Lab 10.3: Mail notification
 ---------------------------
 
-Add mail notification to one of the labs. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.
+If you use the local Jenkins environment, you can skip this step and go ahead to Lab 10.4!
+
+Add mail notification to the previous lab. See <https://jenkins.io/doc/pipeline/steps/> for a list of available steps or use the snippet generator.
 
 Verify your scripts with the [solution](solutions/10_3_failures_solution.md).
 
