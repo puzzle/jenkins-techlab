@@ -8,8 +8,39 @@ So Jenkins provides a mechanism to manage credentials and make them available to
 who require them, much like it does with build tools. This mechanism is extensible
 and supports various types of credentials like username/password, token, ssh key, secret file etc.
 
-Lab 12.1: Credentials (Declarative Syntax)
-------------------------------------------
+Lab 12.1: Local SSH Server setup
+---------------------
+
+1. Generate SSH Keypair. Run following command to create the Keypair
+    ```
+    docker run --rm -it --entrypoint /keygen.sh linuxserver/openssh-server
+    ```
+
+
+2. Set the public key as environment variable in order to substitute the placeholder inside the ssh-server-compose file
+    ```
+    export PUB_KEY=ecdsa-sha2-nistp521 AAAAE2VjZH.......
+    ```
+
+3. Open the Jenkins web gui, press `Manage Jenkins` → `Manage Credentials`
+
+    ```
+    Kind: SSH Username with private key
+    ID: artifact-ssh
+    Username: puzzler
+    Private Key: [x] Enter directly
+    ```
+    Click on Add key and paste the private key generated in the previous step.
+
+
+4. Start a local SSH Server instance with docker. Depending on your Docker installation you may need to run this command with `sudo`:
+
+    ```
+    docker-compose -f local_env/ssh-server-compose.yaml up -d
+    ```
+
+Lab 12.2: Credentials
+---------------------
 
 Declarative pipelines provide the ``credentials`` method which can be used in the ``environment``
 section to declare which credentials the job needs and make them available through environment
@@ -25,11 +56,7 @@ pipeline {
         timestamps()  // Requires the "Timestamper Plugin"
     }
     environment{
-        M2_SETTINGS = credentials('m2_settings')
-        KNOWN_HOSTS = credentials('known_hosts')
-        ARTIFACTORY = credentials('jenkins-artifactory')
         ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"
-        REPO_URL = 'https://artifactory.puzzle.ch/artifactory/ext-release-local'
     }
     tools {
         jdk 'jdk11'
@@ -38,11 +65,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
-                sh "mvn -s '${M2_SETTINGS}' -B deploy:deploy-file -DrepositoryId='puzzle-releases' -Durl='${REPO_URL}' -DgroupId='com.puzzleitc.jenkins-techlab' -DartifactId='${ARTIFACT}' -Dversion='1.0' -Dpackaging='jar' -Dfile=`echo target/*.jar`"
-                sshagent(['testserver']) {  // SSH Agent Plugin
-                    sh "ls -l target"
-                    sh "ssh -o UserKnownHostsFile='${KNOWN_HOSTS}' -p 2222 richard@testserver.vcap.me 'curl -O -u \'${ARTIFACTORY}\' ${REPO_URL}/com/puzzleitc/jenkins-techlab/${ARTIFACT}/1.0/${ARTIFACT}-1.0.jar && ls -l'"
+                sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false  -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
+                sshagent(['artifact-ssh']) {  // SSH Agent Plugin, artifact-ssh references the SSH credentials 
+                    sh 'ssh-keyscan -p 2222 openssh-server > ~/.ssh/known_hosts'
+                    sh 'ssh -p 2222 puzzler@openssh-server "whoami"'
+                    sh 'ssh -p 2222 puzzler@openssh-server "mkdir -p ~/jenkins-techlab/${ARTIFACT}/1.0/"' 
+                    sh "scp -P 2222 target/*.jar  puzzler@openssh-server:~/jenkins-techlab/${ARTIFACT}/1.0/"
                 }
                 archiveArtifacts 'target/*.?ar'
                 junit 'target/**/*.xml'  // Requires JUnit plugin
@@ -69,3 +97,5 @@ where support for alternate ssh key files is missing, e.g. when installing packa
 <p width="100px" align="right"><a href="13_stages_locks_milestones.md">Stages, Locks and Milestones →</a></p>
 
 [← back to overview](../README.md)
+
+
