@@ -7,5 +7,3 @@ ARG docker_version=18.06.3-ce
 RUN curl -fsSL ${docker_url}docker-${docker_version}.tgz | \
 tar zxvf - --strip 1 -C /usr/bin docker/docker
 
-RUN groupadd -g 999 docker
-RUN usermod -a -G docker jenkins

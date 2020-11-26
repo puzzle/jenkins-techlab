@@ -22,8 +22,6 @@ services:
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_HOST=tcp://docker:2376
       - DOCKER_TLS_VERIFY=1
-    env_file:
-      - agent/env_file
     restart: on-failure
     depends_on:
       - jenkins
@@ -31,10 +29,20 @@ services:
       - jenkins-docker-certs:/certs/client:ro
       - jenkins_slave_docker_workdir:/home/jenkins:z
       - jenkins_slave_docker:/home/jenkins/.jenkins
-      - /var/run/docker.sock:/var/run/docker.sock #Mount docker host deamon into jenkins agent container
+  docker:
+    container_name: docker
+    networks:
+      - harbor
+    image: docker:dind
+    command: ["--insecure-registry=proxy:8080"]
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins_slave_docker_workdir:/home/jenkins:z
+    privileged: true
 volumes:
   jenkins_master_home:
   jenkins_slave_docker:
   jenkins-docker-certs:
   jenkins_slave_docker_workdir:
-
