@@ -34,6 +34,41 @@ pipeline {
 }
 ```
 
+To add values to the path there is a special syntax
+
+        environment {
+            PATH+MAVEN = '/path/to/maven'
+        }
+
+
+The ``PATH+<IDENTIFIER>`` syntax specifies
+that the given value should be prepended to the ``PATH`` environment variable, where ``<IDENTIFIER>`` is an arbitrary unique identifier, used to make the left hand side of the assignment unique.
+
+Lab 6.2: Environment (Scripted Syntax)
+--------------------------------------
+
+Create a new branch named lab-6.2 from branch lab-3.2 and change the contents of the Jenkinsfile to:
+
+```groovy
+properties([
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+])
+
+timestamps() {
+    timeout(time: 10, unit: 'MINUTES') {
+        node {
+            stage('Greeting') {
+                withEnv(['GREETINGS_TO=Jenkins Techlab']) {
+                    echo "Hello, ${env.GREETINGS_TO} !"
+                    // also available as env variable to a process:
+                    sh 'echo "Hello, $GREETINGS_TO !"'
+                }
+            }
+        }
+    }
+}
+```
+
 Lab 6.3: Predefined Environment Variables
 -----------------------------------------
 
