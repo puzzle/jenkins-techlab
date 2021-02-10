@@ -6,4 +6,3 @@ ARG docker_version=18.06.3-ce
 # install docker cli
 RUN curl -fsSL ${docker_url}docker-${docker_version}.tgz | \
 tar zxvf - --strip 1 -C /usr/bin docker/docker
-

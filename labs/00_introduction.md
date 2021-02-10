@@ -1,5 +1,4 @@
-Jenkins Pipeline Techlab
-========================
+# Jenkins Pipeline Techlab
 
 In the following guided and hands-on techlab we show the participants how to work, write and use Jenkins Pipelines.
 If you did not already see the slides please have a look at them under: [Slides](https://puzzle.github.io/jenkins-techlab/#/)
