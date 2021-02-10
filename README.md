@@ -1,12 +1,12 @@
 # Jenkins Pipeline Techlab
 
-This techlab is a hands on workshop where you learn on how to use and write jenkins pipelines in a continuous delivery perspective
+This technical lab is a hands-on workshop. You learn how to use and write Jenkins pipelines in a continuous delivery perspective.
 
 
 ## Content
 
-- [Introduction](labs/00_introduction.md)
-- [Getting started Slides](https://puzzle.github.io/jenkins-techlab)
+* [Introduction](labs/00_introduction.md)
+* [Getting started Slides](https://puzzle.github.io/jenkins-techlab)
 
 1. [Setup Environment](labs/01_setup.md)
 1. [First Steps](labs/02_first_steps.md)
@@ -28,22 +28,21 @@ This techlab is a hands on workshop where you learn on how to use and write jenk
 1. [Write / Migrate your own Projects to Jenkins Pipelines](labs/18_write_migrate_your_own_projects.md)
 
 
-
-
 ## Helpful Links and additional Documentation
 
-- [Introducing a New Way to Define Jenkins Pipelines](https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_new_way_to_define_jenkins_pipelines_1.pdf)
-- [Jenkins Book](https://jenkins.io/doc/book/)
-- [Jenkins Pipelines Syntax](https://jenkins.io/doc/book/pipeline/syntax/)
-- [Jenkins Pipelines Examples](https://jenkins.io/doc/pipeline/examples/)
-- [Jenkins Pipelines OpenShift Examples](https://github.com/openshift/origin/tree/master/examples/jenkins/pipeline)
-- [Glossary](https://jenkins.io/doc/book/glossary/)
+* [Introducing a New Way to Define Jenkins Pipelines](https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_new_way_to_define_jenkins_pipelines_1.pdf)
+* [Jenkins Book](https://jenkins.io/doc/book/)
+* [Jenkins Pipelines Syntax](https://jenkins.io/doc/book/pipeline/syntax/)
+* [Jenkins Pipelines Examples](https://jenkins.io/doc/pipeline/examples/)
+* [Jenkins Pipelines OpenShift Examples](https://github.com/openshift/origin/tree/master/examples/jenkins/pipeline)
+* [Glossary](https://jenkins.io/doc/book/glossary/)
 
 
 ## Contribution
 
 Please have a look at the [contribution guide](CONTRIBUTING.md)
 
+
 ## License
 
-This Techlab is licensed under the GNU General Public License v3.0 see [License File](LICENSE)
+This techlab is licensed under the GNU General Public License v3.0 see [License File](LICENSE)
