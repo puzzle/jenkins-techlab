@@ -2,6 +2,9 @@ version: '2.3'
 
 services:
 
+  ## Jenkins infrastructure ##
+
+  # Jenkins
   jenkins:
     container_name: jenkins
     build: ./master
@@ -14,6 +17,7 @@ services:
     volumes:
       - jenkins_master_home:/var/jenkins_home
 
+  # Jenkins Slave
   jenkins_slave_docker:
     container_name: jenkins_agent_docker
     build: ./agent
@@ -33,6 +37,7 @@ services:
       - jenkins_slave_docker_workdir:/home/jenkins:z
       - jenkins_slave_docker:/home/jenkins/.jenkins
 
+  # Jenkins Slave with docker
   docker:
     container_name: docker
     image: docker:dind
@@ -43,6 +48,94 @@ services:
       - jenkins-docker-certs:/certs/client
       - jenkins_slave_docker_workdir:/home/jenkins:z
     privileged: true
+
+
+  ## rocketchat infrastructure ##
+
+  # rocketchat 
+  rocketchat:
+    image: rocketchat/rocket.chat:latest
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          node main.js &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    restart: unless-stopped
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - PORT=3000
+      - ROOT_URL=http://localhost:3001
+      - MONGO_URL=mongodb://mongo:27017/rocketchat
+      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
+      - MAIL_URL=smtp://smtp.email
+      - OVERWRITE_SETTING_Show_Setup_Wizard=completed
+      - ADMIN_EMAIL=test@puzzle.ch
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASS=admin
+    depends_on:
+      - mongo
+    ports:
+      - 3000:3000
+    labels:
+      - "traefik.backend=rocketchat"
+      - "traefik.frontend.rule=Host: your.domain.tld"
+
+  # rocketchat db
+  mongo:
+    image: mongo:4.0
+    restart: unless-stopped
+    volumes:
+     - ./data/db:/data/db
+     #- ./data/dump:/dump
+    command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
+    labels:
+      - "traefik.enable=false"
+
+  # this container's job is just run the command to initialize the replica set.
+  # it will run the command and remove himself (it will not stay running)
+  mongo-init-replica:
+    image: mongo:4.0
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          mongo mongo/rocketchat --eval \"
+            rs.initiate({
+              _id: 'rs0',
+              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    depends_on:
+      - mongo
+
+  # hubot, the popular chatbot (add the bot user first and change the password before starting this image)
+  hubot:
+    image: rocketchat/hubot-rocketchat:latest
+    restart: unless-stopped
+    environment:
+      - ROCKETCHAT_URL=rocketchat:3000
+      - ROCKETCHAT_ROOM=GENERAL
+      - ROCKETCHAT_USER=bot
+      - ROCKETCHAT_PASSWORD=botpassword
+      - BOT_NAME=bot
+      - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASS=admin
+    depends_on:
+      - rocketchat
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - ./scripts:/home/hubot/scripts
+    # this is used to expose the hubot port for notifications on the host on port 3001, e.g. for hubot-jenkins-notifier
+    ports:
+      - 3001:8080
+
 
 volumes:
   jenkins_master_home:

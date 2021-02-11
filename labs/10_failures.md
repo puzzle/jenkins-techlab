@@ -20,24 +20,24 @@ Lab 10.1: Local Rocket.Chat Setup
 
 If you use the Local Docker Setup for the Techlab, you need to start a local Rocket.Chat instance and configure the Rocket.Chat Notification plugin.
 
-1. Start the local Rocket.Chat with docker-compose. Depending on your docker installation you need to run whis command with `sudo`:
-`docker-compose -f local_env/rocketchat-compose.yml up -d`
+1. Login to Rocket.Chat at <http://localhost:3000> with:
 
-2. Login to Rocket.Chat at http://localhost:3000 with:
     ```
     user: admin
     password: admin
     ```
-3. Open the Jenkins web interface and press `Manage Jenkins` ➡ `Configure System` and scroll down to `Global RocketChat Notifier Settings`
-4.  Set settings to to 
+
+2. Open the Jenkins web interface and press `Manage Jenkins` ➡ `Configure System` and scroll down to `Global RocketChat Notifier Settings`
+3. Set settings to to
+
     ```
     Rocket Server URL: http://rocketchat:3000
     Login Username: admin
     Login password: admin
     Channel: GENERAL
     ```
-5. Click on `Test Connection` if successful, save configuration.
 
+4. Click on `Test Connection` if successful, save configuration.
 
 
 Lab 10.2: Failures

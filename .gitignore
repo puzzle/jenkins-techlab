@@ -5,3 +5,4 @@ id_rsa.pub
 *.bak
 local_env/agent/env_file
 local_env/master/agent_connection_key
+local_env/data/
