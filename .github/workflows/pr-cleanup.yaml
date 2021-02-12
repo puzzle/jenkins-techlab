@@ -1,0 +1,36 @@
+name: PRCleanup
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: 'Remove PR Environment'
+        uses: 'deliverybot/helm@v1'
+        with:
+          # Task remove means to remove the helm release.
+          task: 'remove'
+          release: 'pr-${{ github.event.pull_request.number }}'
+          namespace: 'pitc-jenkins-techlab-test'
+          version: '${{ github.sha }}'
+          repository: 'https://acend.github.io/helm-charts/'
+          chart: 'acend-training-chart'
+          token: '${{ github.token }}'
+          helm: 'helm3'
+        env:
+          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG_TEST }}'
+      - name: Delete Tags on Quay
+        id: delete_tags
+        env:
+          PR_NUMBER: '${{ github.event.pull_request.number }}'
+          QUAYIO_API_TOKEN: '${{ secrets.QUAYIO_API_TOKEN }}'
+          REPOSITORY: '${{ github.repository }}'
+        run: |
+          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/${REPOSITORY}/tag/pr-${PR_NUMBER}

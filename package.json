@@ -1,13 +1,30 @@
 {
   "name": "jenkins-techlab",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "Apache-2.0",
-  "scripts": {
-    "start": "reveal-md jenkins-pipeline.md --theme puzzle",
-    "static": "reveal-md jenkins-pipeline.md --theme puzzle --static out"
+  "description": "Jenkins Techlab",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puzzle/jenkins-techlab.git"
+  },
+  "author": "Puzzle ITC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run mdlint"
+    }
   },
   "dependencies": {
-    "reveal-md": "^0.1.3"
+    "husky": "5.0.9",
+    "markdownlint": "0.23.0"
+  },
+  "scripts": {
+    "mdlint": "markdownlint --config .markdownlint.json content *.md"
+  },
+  "bugs": {
+    "url": "https://github.com/puzzle/jenkins-techlab/issues"
+  },
+  "homepage": "https://github.com/puzzle/jenkins-techlab#readme",
+  "devDependencies": {
+    "markdownlint": "0.23.0",
+    "markdownlint-cli": "0.26.0"
   }
 }
