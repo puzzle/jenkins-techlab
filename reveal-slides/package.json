@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "reveal-md jenkins-pipeline.md --theme puzzle",
-    "static": "reveal-md jenkins-pipeline.md --theme puzzle --static out"
+    "start": "reveal-md jenkins-pipeline.md --theme theme/puzzle.css",
+    "static": "reveal-md jenkins-pipeline.md --theme theme/puzzle.css --static out"
   },
   "dependencies": {
-    "reveal-md": "^0.1.3"
+    "reveal-md": "^5.0.0"
   }
 }
