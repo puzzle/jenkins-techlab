@@ -1,0 +1,32 @@
+acendTraining:
+  servicePort: 8080
+  deployments:
+    - 
+      name: puzzle
+      replicaCount: 1
+      image:
+        repository: quay.io/puzzle/jenkins-techlab
+        pullPolicy: Always
+        tag: ""
+        tagsuffix: ""
+      ingress:
+        annotations: 
+          kubernetes.io/ingress.class: nginx-public
+          kubernetes.io/tls-acme: "true"
+        appname: jenkins-techlab
+        domainmain: puzzle.ch
+        domain: k8s.puzzle.ch
+
+
+
+nameOverride: "jenkins-techlab"
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""

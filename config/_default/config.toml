@@ -1,0 +1,100 @@
+baseurl = "/"
+title = "Jenkins Techlab"
+
+enableGitInfo = true
+
+theme = ["docsy-puzzle", "docsy-plus", "docsy"]
+
+languageCode = "en-us"
+
+contentDir = "content/en"
+
+# default content language
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+# Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
+#pygmentsOptions = "linenos=table"
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "tango"
+
+# Configure how URLs look like per section.
+[permalinks]
+blog = "/:section/:year/:month/:day/:slug/"
+
+## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = true
+angledQuotes = false
+latexDashes = true
+
+# Image processing configuration.
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
+
+
+[Languages]
+[Languages.en]
+title = "Jenkins Techlab"
+languageName = "German"
+weight = 1
+
+
+# navigation
+[Languages.en.menu]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+
+[params]
+
+copyright = "Puzzle ITC GmbH"
+github_repo = "https://github.com/puzzle/jenkins-techlab"
+
+
+enabledModule = "base"
+
+# Enable Lunr.js offline search
+offlineSearch = true
+
+[params.ui]
+# Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = false
+#  Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+#  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+sidebar_search_disable = false
+#  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
+navbar_logo = true
+# Set to true to disable the About link in the site footer
+footer_about_disable = true
+
+############################## social links ##############################
+[params.links]
+[[params.links.developer]]
+name = "GitHub"
+icon = "fab fa-github" 
+url = "https://github.com/puzzle/jenkins-techlab"
+
+[[params.links.user]]
+name = "Twitter"
+icon = "fab fa-twitter"
+url = "https://twitter.com/puzzleitc"
+  
+[[params.links.user]]
+name = "LinkedIn"
+icon = "fab fa-linkedin-in"
+url = "https://linkedin.com/company/puzzle-itc"
