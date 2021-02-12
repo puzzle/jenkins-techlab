@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "husky": "5.0.9",
-    "markdownlint": "0.23.0"
+    "markdownlint": "0.23.1"
   },
   "scripts": {
     "mdlint": "markdownlint --config .markdownlint.json content *.md"
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/puzzle/jenkins-techlab#readme",
   "devDependencies": {
-    "markdownlint": "0.23.0",
+    "markdownlint": "0.23.1",
     "markdownlint-cli": "0.26.0"
   }
 }
