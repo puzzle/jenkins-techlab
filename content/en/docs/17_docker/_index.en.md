@@ -30,7 +30,7 @@ pipeline {
         timestamps()  // Timestamper Plugin
     }
     environment {
-        
+
     }
     stages {
         stage('Build') {

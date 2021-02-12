@@ -1,3 +1,5 @@
+# Todos
+
 * Getting results from shell steps <https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script>
 * Conditional stages <https://jenkins.io/doc/book/pipeline/syntax/#when>
 * (Multiple agents/nodes, stash/unstash)
@@ -12,9 +14,9 @@
 * OpenShift Jenkins Pipeline Plugin <https://github.com/openshift/jenkins-client-plugin>
 * Snippet Generator
 * Debugging (slides?)
-   * replay
-   * https://jenkins.io/doc/book/pipeline/development/
-   * ...?
+  * replay
+  * <https://jenkins.io/doc/book/pipeline/development/>
+  * ...?
 * Notification
   * mail
   * swoa committer only
@@ -27,4 +29,6 @@
 * Blue Ocean
 
 Slide:
+
 * Scripted Pipeline limitations/known issues <https://jenkins.io/doc/book/pipeline/syntax/#differences-from-plain-groovy>
+

@@ -32,7 +32,7 @@ Add a JDK:
 1. Under name enter `jdk11`
 1. Check `Install automatically`
 1. Under `Add Installer` select `Extract *.zip/*.tar.gz`
-    * Under `Download URL for binary archive` enter: "https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz"
+    * Under `Download URL for binary archive` enter: `https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz`
     * Under `Subdirectory of extracted archive` enter: "jdk-11"
 1. At the bottom of the page click `Apply`
 
