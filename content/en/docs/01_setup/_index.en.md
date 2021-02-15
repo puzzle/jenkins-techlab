@@ -40,8 +40,10 @@ to establish the connection.
 
 Set environment variables with your techlab username and password:
 
-    export TLUSER=<myusername>
-    export TLPASS=<mypassword>
+```s
+export TLUSER=<myusername>
+export TLPASS=<mypassword>
+```
 
 
 ### Task {{% param sectionnumber %}}.2: OpenShift Client
@@ -51,12 +53,16 @@ Set environment variables with your techlab username and password:
 
 1. Log into OpenShift:
 
-        oc login https://openshift.puzzle.ch -u ${TLUSER} -p "${TLPASS}"
+   ```s
+   oc login https://openshift.puzzle.ch -u ${TLUSER} -p "${TLPASS}"
+   ```
 
 1. Forward the JNLP port required for Jenkins Master <-> Slave communication
 
-        oc project pitc-jenkins-techlab
-        while oc port-forward `oc get pod -l name=jenkins -o jsonpath='{.items[0].metadata.name}'` 50000:50000 2222:2222; do :; done
+   ```s
+   oc project pitc-jenkins-techlab
+   while oc port-forward `oc get pod -l name=jenkins -o jsonpath='{.items[0].metadata.name}'` 50000:50000 2222:2222; do :; done
+   ```
 
 The ``while`` loop  is required because currently port-forward connections time out after one hour.
 Press ``CTRL-C`` ``CTRL-C`` to stop.
@@ -69,22 +75,30 @@ There are two ways to deploy the Jenkins Slave:
 
 #### with Docker
 
-    docker run --net=host csanchez/jenkins-swarm-slave -master https://jenkins-techlab.ose3-lab.puzzle.ch/ -disableSslVerification -tunnel localhost:50000 -executors 2 -name ${TLUSER} -labels ${TLUSER} -username ${TLUSER} -password "${TLPASS}"
+```s
+docker run --net=host csanchez/jenkins-swarm-slave -master https://jenkins-techlab.ose3-lab.puzzle.ch/ -disableSslVerification -tunnel localhost:50000 -executors 2 -name ${TLUSER} -labels ${TLUSER} -username ${TLUSER} -password "${TLPASS}"
+```
 
 
 #### or directly on your machine or in a VM
 
 1. Create a dedicated, unprivileged user:
 
-        sudo useradd jenkins-slave
+   ```s
+   sudo useradd jenkins-slave
+   ```
 
 1. Download Jenkins swarm client 3.4 into a location accessible by the new user:
 
-        curl -O https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.4/swarm-client-3.4.jar
+   ```s
+   curl -O https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.4/swarm-client-3.4.jar
+   ```
 
 1. Start Jenkins slave with new user:
 
-        sudo -u jenkins-slave -i java -jar swarm-client-3.4.jar -master https://jenkins-techlab.ose3-lab.puzzle.ch/ -disableSslVerification -tunnel localhost:50000 -executors 2 -name ${TLUSER} -labels ${TLUSER} -username ${TLUSER} -password "${TLPASS}"
+   ```s
+   sudo -u jenkins-slave -i java -jar swarm-client-3.4.jar -master https://jenkins-techlab.ose3-lab.puzzle.ch/ -disableSslVerification -tunnel localhost:50000 -executors 2 -name ${TLUSER} -labels ${TLUSER} -username ${TLUSER} -password "${TLPASS}"
+   ```
 
 **Warning:** Running the Jenkins slave directly on your machine with your default user
 will give techlab participants access to all your files.
