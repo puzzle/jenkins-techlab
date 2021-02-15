@@ -20,3 +20,4 @@ resources
 tmp/*
 reveal-slides/out
 local_env/data/
+**/misc
