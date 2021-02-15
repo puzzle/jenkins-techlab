@@ -19,3 +19,4 @@ resources
 .idea/
 tmp/*
 reveal-slides/out
+local_env/data/

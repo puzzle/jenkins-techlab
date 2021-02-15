@@ -22,10 +22,7 @@ on the other hand failure handling can become quite disruptive in scripted pipel
 
 If you use the Local Docker Setup for the Techlab, you need to start a local Rocket.Chat instance and configure the Rocket.Chat Notification plugin.
 
-1. Start the local Rocket.Chat with docker-compose. Depending on your docker installation you need to run whis command with `sudo`:
-`docker-compose -f local_env/rocketchat-compose.yml up -d`
-
-1. Login to Rocket.Chat at `http://localhost:3000` with:
+1. Login to Rocket.Chat at <http://localhost:3000> with:
 
     ```
     user: admin
