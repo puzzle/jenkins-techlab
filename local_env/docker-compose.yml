@@ -1,4 +1,4 @@
-version: '2.3'
+version: '2.4'
 
 services:
 
@@ -54,7 +54,7 @@ services:
 
   # rocketchat 
   rocketchat:
-    image: rocketchat/rocket.chat:latest
+    image: rocketchat/rocket.chat:3.11.0
     command: >
       bash -c
         "for i in `seq 1 30`; do
@@ -65,7 +65,7 @@ services:
         done; (exit $$s)"
     restart: unless-stopped
     volumes:
-      - ./uploads:/app/uploads
+      - ./data/rocketchat/uploads:/app/uploads
     environment:
       - PORT=3000
       - ROOT_URL=http://localhost:3001
@@ -89,8 +89,7 @@ services:
     image: mongo:4.0
     restart: unless-stopped
     volumes:
-     - ./data/db:/data/db
-     #- ./data/dump:/dump
+     - ./data/rocketchat/db:/data/db
     command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
     labels:
       - "traefik.enable=false"
@@ -123,6 +122,7 @@ services:
       - ROCKETCHAT_USER=bot
       - ROCKETCHAT_PASSWORD=botpassword
       - BOT_NAME=bot
+  # you can add more scripts as you'd like here, they need to be installable by npm
       - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics
       - ADMIN_USERNAME=admin
       - ADMIN_PASS=admin
@@ -131,7 +131,7 @@ services:
     labels:
       - "traefik.enable=false"
     volumes:
-      - ./scripts:/home/hubot/scripts
+      - ./data/rocketchat/scripts:/home/hubot/scripts
     # this is used to expose the hubot port for notifications on the host on port 3001, e.g. for hubot-jenkins-notifier
     ports:
       - 3001:8080
