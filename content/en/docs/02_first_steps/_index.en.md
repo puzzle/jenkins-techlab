@@ -47,7 +47,7 @@ If everything is configured correctly this will
 
 The multibranch pipeline scan trigger will also trigger builds of any jobs whose ``Jenkinsfile`` changes.
 
-You can only view but not edit the configuration of a job generated from a ``Jenkinsfile``. The ``Jenkinsfile`` is the single source of truth <https://en.wikipedia.org/wiki/Single_source_of_truth> for these jobs, the only thing that is configured directly in Jenkins is how to access the repositories. The next lab shows how to configure job properties like log rotation and build triggers in a ``Jenkinsfile``.
+You can only view but not edit the configuration of a job generated from a ``Jenkinsfile``. The ``Jenkinsfile`` is the [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth) for these jobs, the only thing that is configured directly in Jenkins is how to access the repositories. The next lab shows how to configure job properties like log rotation and build triggers in a ``Jenkinsfile``.
 
 Note:
 
