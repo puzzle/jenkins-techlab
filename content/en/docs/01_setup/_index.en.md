@@ -97,8 +97,8 @@ to establish the connection.
 Set environment variables with your techlab username and password:
 
 ```s
-export TLUSER=<myusername>
-export TLPASS=<mypassword>
+export TLUSER=MY_USER_NAME
+export TLPASS=MY_PASSWORD
 ```
 
 
