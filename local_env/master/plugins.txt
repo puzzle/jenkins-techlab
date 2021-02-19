@@ -3,6 +3,7 @@ branch-api
 pipeline-graph-analysis
 bouncycastle-api
 build-timeout
+custom-tools-plugin
 pipeline-stage-view
 workflow-multibranch
 pipeline-stage-tags-metadata
