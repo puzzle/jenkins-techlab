@@ -13,16 +13,19 @@ where he can provide the necessary arguments.
 ## Task {{% param sectionnumber %}}.1: Build Parameters (Declarative Syntax)
 
 
-In declarative pipelines parameters are declared with the ``parameters`` section.
+In declarative pipelines, parameters are declared with the ``parameters`` section.
+
 Create a new branch named ``lab-7.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
 
-```groovy
+```
+{{< highlight groovy "hl_lines=9-11 15" >}}
 pipeline {
     agent any
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
+        timestamps()  // Timestamper Plugin
+        disableConcurrentBuilds()
     }
     parameters {
         string(name: 'Greetings_to', defaultValue: 'Jenkins Techlab', description: 'Who to greet?')
@@ -35,11 +38,20 @@ pipeline {
         }
     }
 }
+{{< / highlight >}}
 ```
 
 Helper methods like ``string`` or ``booleanParam`` are used to declare the parameter types.
-The corresponding documentation should soon be available here: <https://jenkins.io/doc/book/pipeline/syntax/#parameters>.
-There is an open issue for the parameter documentation: [INFRA-1053](https://issues.jenkins-ci.org/browse/INFRA-1053).
-In the meantime use the snippet generator like described in the next lab to see all available types.
+The corresponding documentation is available here: <https://jenkins.io/doc/book/pipeline/syntax/#parameters>.
 
-**Note:** Use the "Build with Parameters" action on Jenkins master and change the greetings value. The build log output will show the changed greeting.
+You can also use the snippet generator, like described in the next lab, to see all available types.
+
+
+### Use parameters
+
+Go to the newly created pipeline for the new branch on Jenkins master.
+
+The first stage of the pipeline has to be run successfully such that the parameter is configured in the job.
+Then you can use the "Build with Parameters" action.
+
+Change the greetings value. The build log output will show the changed greeting.
