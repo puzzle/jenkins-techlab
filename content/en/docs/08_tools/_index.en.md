@@ -31,7 +31,7 @@ Before a tool can be used in a job it needs to be added to the global tool confi
 
 Add a JDK:
 
-1. Go to Dashboard > Manage Jenkins > [Global Tool Configuration](http://localhost:8080/configureTools/)
+1. Go to `Dashboard` ➡ `Manage Jenkins` ➡ [Global Tool Configuration](http://localhost:8080/configureTools/)
 1. Under JDK click `Add JDK`
 1. Under name enter `jdk11`
 1. Check `Install automatically`
@@ -44,7 +44,7 @@ Add a JDK:
 
 Add Maven:
 
-1. Go to Dashboard > Manage Jenkins > [Global Tool Configuration](http://localhost:8080/configureTools/)
+1. Go to `Dashboard` ➡ `Manage Jenkins` ➡ [Global Tool Configuration](http://localhost:8080/configureTools/)
 1. Under Maven click `Add Maven`
 1. Under name enter `maven36`
 1. Check `Install automatically`
@@ -119,7 +119,7 @@ Check the build log (Console Output) of the first run of this pipeline.
 
 The custom tools plugin enables the installation of any tool to the agent node. We will use it to configure the `nvm` tools we will use in `lab-16`.
 
-1. Go to Dashboard > Manage Jenkins > [Global Tool Configuration](http://localhost:8080/configureTools/)
+1. Go to `Dashboard` ➡ `Manage Jenkins` ➡ [Global Tool Configuration](http://localhost:8080/configureTools/)
 1. Click `Add Custom Tool`
 1. Under name enter `nvm`
 1. Check `Install automatically`
