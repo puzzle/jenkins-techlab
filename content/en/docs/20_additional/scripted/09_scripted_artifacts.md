@@ -6,19 +6,24 @@ sectionnumber: 9
 
 
 In scripted pipelines you too use the ``archive`` or ``archiveArtifact`` step for artifact archival.
-Create a new branch named ``lab-9.2`` from branch ``lab-9.1`` (the one
+Create a new branch named ``lab-9.3`` from branch ``lab-9.1`` (the one
 we merged the source into) and change the contents of the ``Jenkinsfile`` to:
+
+<!--
+        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
+-->
 
 ```groovy
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5'))
+  buildDiscarder(logRotator(numToKeepStr: '5')),
+  disableConcurrentBuilds()
 ])
 
 timestamps() {
     timeout(time: 10, unit: 'MINUTES') {
-        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
+        node {
             stage('Build') {
-                withEnv(["JAVA_HOME=${tool 'jdk11'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                withEnv(["JAVA_HOME=${tool 'jdk11'}", "PATH+MAVEN=${tool 'maven36'}/bin:${env.JAVA_HOME}/bin"]) {
                     checkout scm
                     sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
                     archiveArtifacts 'target/*.?ar'

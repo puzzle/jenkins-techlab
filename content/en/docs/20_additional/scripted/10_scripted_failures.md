@@ -4,20 +4,25 @@ weight: 2010
 sectionnumber: 10
 ---
 
-Create a new branch named ``lab-10.2`` from branch ``lab-9.2`` and change the content of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-10.2`` from branch ``lab-9.3`` and change the content of the ``Jenkinsfile`` to:
+
+<!--
+        node { // with hosted env use node(env.JOB_NAME.split('/')[0])
+-->
 
 ```groovy
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5'))
+  buildDiscarder(logRotator(numToKeepStr: '5')),
+  disableConcurrentBuilds()
 ])
 
 try {
     timestamps() {
         timeout(time: 10, unit: 'MINUTES') {
-            node { // with hosted env use node(env.JOB_NAME.split('/')[0])
+            node {
                 stage('Build') {
                     try {
-                        withEnv(["JAVA_HOME=${tool 'jdk11'}", "PATH+MAVEN=${tool 'maven35'}/bin:${env.JAVA_HOME}/bin"]) {
+                        withEnv(["JAVA_HOME=${tool 'jdk11'}", "PATH+MAVEN=${tool 'maven36'}/bin:${env.JAVA_HOME}/bin"]) {
                             checkout scm
                             sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
                             archiveArtifacts 'target/*.?ar'

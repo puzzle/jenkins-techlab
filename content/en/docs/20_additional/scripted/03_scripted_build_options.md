@@ -10,7 +10,7 @@ sectionnumber: 3
 In scripted pipelines build options/properties are configured through the ``properties`` step.
 The ``properties`` step replaces any existing build properties with the list given,
 therefore only a single instance should be used per pipeline.
-Create a new branch named ``lab-3.2`` from branch ``lab-2.2`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-3.2`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([

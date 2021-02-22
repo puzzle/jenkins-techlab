@@ -6,7 +6,7 @@ sectionnumber: 6
 
 ## Task {{% param sectionnumber %}}.2: Environment (Scripted Syntax)
 
-Create a new branch named lab-6.2 from branch lab-3.2 and change the contents of the Jenkinsfile to:
+Create a new branch named ``lab-6.5`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
