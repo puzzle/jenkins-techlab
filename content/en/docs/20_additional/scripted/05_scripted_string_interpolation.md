@@ -6,7 +6,7 @@ sectionnumber: 5
 
 **Note** parameters for scripted syntax are defined in the ``properties`` step.
 
-Create a new branch named lab-5.4 from branch lab-2.2 and change the contents of the Jenkinsfile to:
+Create a new branch named ``lab-5.4`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 node {
@@ -34,20 +34,18 @@ node {
 
 ## Task {{% param sectionnumber %}}.2: Using Environment Variables or Parameters within a string in a Pipeline
 
-Create a new branch named lab-5.5 from branch lab-3.2 and change the contents of the Jenkinsfile to:
+Create a new branch named ``lab-5.5`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
-pipeline {
-    agent any
-    parameters {
+properties([
+    parameters([
         string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
-    }
-    stages {
-        stage('Build') {
-            steps {
-                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} in company ${params.company_parameter}"
-            }
-        }
+    ])
+])
+
+node {
+    stage('Build') {
+        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} in company ${params.company_parameter}"
     }
 }
 ```
@@ -57,7 +55,7 @@ pipeline {
 
 ## Task {{% param sectionnumber %}}.3: Using values as params in a sh command
 
-Create a new branch named lab-5.6 from branch lab-3.2 and change the contents of the Jenkinsfile to:
+Create a new branch named ``lab-5.6`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([

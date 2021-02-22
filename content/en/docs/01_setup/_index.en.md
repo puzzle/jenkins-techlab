@@ -39,6 +39,13 @@ The prepared docker-compose file defines following container to be started and c
 ### Run Lab Infrastructure
 
 1. Follow the instructions here to install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/).
+1. Check out the lab git repository: <https://github.com/puzzle/jenkins-techlab>
+
+  ```s
+  git clone https://github.com/puzzle/jenkins-techlab.git
+  ```
+
+1. Run all following commands from the root folder of the `jenkins-techlab` git repository.
 1. **On first launch** Create ssh keys for master and slave:
 
   ```s
@@ -99,6 +106,33 @@ Create a user for the hubot chat bot.
   ```
 
 
+## Pause and restart the lab
+
+When you need a break and want to stop the containers to save resources, use docker-compose to stop the lab infrastructure.
+
+1. Run all following commands from the root folder of the `jenkins-techlab` git repository.
+1. Stop all containers:
+
+  ```s
+  docker-compose -f local_env/docker-compose.yml stop
+  ```
+
+Easily restart the infrastructure to continue the lab.
+
+1. Run all following commands from the root folder of the `jenkins-techlab` git repository.
+1. Start all containers:
+
+  ```s
+  docker-compose -f local_env/docker-compose.yml start
+  ```
+
+1. Check the state of the running components. Depending on your docker installation you may need to run this with `sudo`:
+
+  ```s
+  docker-compose -f local_env/docker-compose.yml ps
+  ```
+
+
 ## Reset Lab Infrastructure
 
 How to remove all infrastructure to start from scratch.
@@ -108,6 +142,14 @@ How to remove all infrastructure to start from scratch.
    ```s
    docker-compose -f local_env/docker-compose.yml down -v
    ```
+
+1. Check that all the lab volumes have been deleted.
+
+   ```s
+   docker volume ls
+   ```
+
+   The listed volumes should not start with `local_env_`. If you find such volumes, delete it manually (example for local_env_jenkins_master_home: `docker volume rm local_env_jenkins_master_home`).
 
 1. Remove ssh key files:
 

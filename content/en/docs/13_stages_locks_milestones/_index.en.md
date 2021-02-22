@@ -37,7 +37,7 @@ pipeline {
     }
     tools {
         jdk 'jdk11'
-        maven 'maven35'
+        maven 'maven36'
     }
     stages {
         stage('Build') {

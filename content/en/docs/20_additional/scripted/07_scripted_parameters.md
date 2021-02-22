@@ -5,7 +5,7 @@ sectionnumber: 7
 ---
 
 In scripted pipelines build parameters are configured as part of the ``properties`` step.
-Create a new branch named ``lab-7.2`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-7.2`` from branch ``lab-3.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 properties([
