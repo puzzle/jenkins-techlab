@@ -43,7 +43,7 @@ and supports various types of credentials like username/password, token, ssh key
     export PUB_KEY=ecdsa-sha2-nistp521 AAAAE2VjZH.......
     ```
 
-3. Open the Jenkins web gui, press `Manage Jenkins` → `Manage Credentials` and select the Global credentials from the list. ([Direct Link](http://localhost:8080/credentials/store/system/domain/_/)) Then click on `Add Credentials` in the left menu.
+3. Open the Jenkins web gui, press `Manage Jenkins` ➡ `Manage Credentials` and select the Global credentials from the list. ([Direct Link](http://localhost:8080/credentials/store/system/domain/_/)) Then click on `Add Credentials` in the left menu.
 
     ```
     Kind: SSH Username with private key
@@ -83,7 +83,7 @@ pipeline {
     }
     tools {
         jdk 'jdk11'
-        maven 'maven35'
+        maven 'maven36'
     }
     stages {
         stage('Build') {

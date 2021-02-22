@@ -11,7 +11,7 @@ Environment Variable are generally in pipelines available under the ``env`` name
 
 ## Task {{% param sectionnumber %}}.1: Environment (Declarative Syntax)
 
-Create a new branch named lab-6.1 from branch lab-3.1 and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-6.1`` from branch ``lab-3.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```
 {{< highlight groovy "hl_lines=9-11 15-18" >}}
@@ -62,7 +62,7 @@ Does the output meet your expectations?
 ## Task {{% param sectionnumber %}}.2: Environment (Scripted Syntax)
 
 
-Create a new branch named lab-6.2 from branch lab-6.1 and replace the content of the ``Jenkinsfile`` with:
+Create a new branch named ``lab-6.2`` from branch ``lab-6.1`` and replace the content of the ``Jenkinsfile`` with:
 
 ```groovy
 properties([

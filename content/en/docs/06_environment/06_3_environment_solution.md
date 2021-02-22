@@ -9,7 +9,7 @@ description: >
 
 ## Extended version of Lab 6.1: Environment (Declarative Syntax)
 
-Create a new branch named lab-6.3 from branch lab-6.1 and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-6.3`` from branch ``lab-6.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```
 {{< highlight groovy "hl_lines=15 18" >}}
@@ -43,7 +43,7 @@ pipeline {
 
 ## Extended version of Lab 6.4: Environment (Scripted Syntax)
 
-Create a new branch named lab-6.4 from branch lab-6.2 and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-6.4`` from branch ``lab-6.2`` and change the contents of the ``Jenkinsfile`` to:
 
 ```
 {{< highlight groovy "hl_lines=10 13" >}}

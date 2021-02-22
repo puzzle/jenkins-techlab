@@ -103,7 +103,7 @@ Use the following example pipeline to play with the string definitions you learn
 > **Note** since we use the declarative pipeline syntax to execute groovy code we use the ``script{...}`` section.
 > With the script block we are able to declare variables.
 
-Create a new branch named lab-5.1 from branch lab-2.1 and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-5.1`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -146,7 +146,7 @@ Does the output meet your expectations?
 
 All Environment Variables are available under ``${env.}``
 
-Create a new branch named lab-5.2 from branch lab-2.1 and change the contents of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-5.2`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -216,7 +216,7 @@ sh "echo \"join the puzzle ${company}\""
 
 Here a complete example.
 
-Create a new branch named lab-5.3 from branch lab-2.1 and change the contents of the Jenkinsfile to:
+Create a new branch named ``lab-5.3`` from branch ``lab-2.1`` and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
