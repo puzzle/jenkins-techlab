@@ -2,26 +2,24 @@
 title: "Solutions - Environment Solution"
 weight: 63
 sectionnumber: 6.3
+description: >
+   Solutions for Lab 6.3: Predefined Environment Variables
 ---
-
-
-Solutions for [Lab 6.3: Predefined Environment Variables](../)
 
 
 ## Extended version of Lab 6.1: Environment (Declarative Syntax)
 
-Create a new branch named lab-6.3 from branch lab-6.1 and change the contents of the Jenkinsfile to:
+Create a new branch named lab-6.3 from branch lab-6.1 and change the contents of the ``Jenkinsfile`` to:
 
-```groovy
+```
+{{< highlight groovy "hl_lines=15 18" >}}
 pipeline {
     agent any
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
-        timestamps()  // Requires the "Timestamper Plugin"
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
+        timestamps()  // Timestamper Plugin
+        disableConcurrentBuilds()
     }
     environment {
         GREETINGS_TO = 'Jenkins Techlab'
@@ -37,6 +35,7 @@ pipeline {
         }
     }
 }
+{{< / highlight >}}
 ```
 
 **Note:** Check the build log output on the Jenkins master.
@@ -44,15 +43,12 @@ pipeline {
 
 ## Extended version of Lab 6.4: Environment (Scripted Syntax)
 
+Create a new branch named lab-6.4 from branch lab-6.2 and change the contents of the ``Jenkinsfile`` to:
 
-Create a new branch named lab-6.4 from branch lab-6.2 and change the contents of the Jenkinsfile to:
-
-```groovy
+```
+{{< highlight groovy "hl_lines=10 13" >}}
 properties([
-    buildDiscarder(logRotator(numToKeepStr: '5')),
-    pipelineTriggers([
-        pollSCM('H/5 * * * *')
-    ])
+    buildDiscarder(logRotator(numToKeepStr: '5'))
 ])
 
 timestamps() {
@@ -69,6 +65,7 @@ timestamps() {
         }
     }
 }
+{{< / highlight >}}
 ```
 
 **Note:** Check the build log output on the Jenkins master.

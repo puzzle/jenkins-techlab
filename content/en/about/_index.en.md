@@ -25,6 +25,7 @@ Following tools and infrastructure is needed for this lab.
 
 1. [Docker](https://www.docker.com/) or docker alias pointing to [Podman](https://podman.io/)
 1. [Docker Compose](https://github.com/docker/compose)
+1. [Git version control system](https://git-scm.com/)
 1. Git Server, like [GitHub](https://github.com/), where you have access and can create public repositories
 
 

@@ -4,12 +4,10 @@ weight: 10
 sectionnumber: 10
 ---
 
-
 Solutions for [Lab 10.3: Mail notification](../)
 
 
 ## Extended version of Lab 10.1: Failures (Declarative Syntax)
-
 
 Mail step documentation: <https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#mail-mail>.
 The Snippet Generator in Jenkins is always a good help.

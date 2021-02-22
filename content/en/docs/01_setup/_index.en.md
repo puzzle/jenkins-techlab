@@ -45,18 +45,29 @@ The prepared docker-compose file defines following container to be started and c
   source local_env/create-ssh-keys.sh
   ```
 
+  > This creates two files, `local_env/agent/env_file` and `local_env/master/agent_connection_key`
+
 1. Start with docker-compose. Depending on your docker installation you may need to run this with `sudo`:
 
   ```s
   docker-compose -f local_env/docker-compose.yml up -d --build
   ```
 
+1. Check the state of the running components. Depending on your docker installation you may need to run this with `sudo`:
+
+  ```s
+  docker-compose -f local_env/docker-compose.yml ps
+  ```
+
+  > The hubot component is Restarting because of missing configuration.
+  > Mongo-init-replica has Exit state. It is an init container ans stops after it's work is done.
+
 1. Login to jenkins at <http://localhost:8080> with:
    * user: **default**
    * password: **default**
 
 
-## Local Rocket.Chat Setup
+### Local Rocket.Chat Setup
 
 Starting the local Docker setup for the first time, you must configure Rocket.Chat. Without that setup, the hubot container will restart endlessly.
 
@@ -74,12 +85,36 @@ Create a user for the hubot chat bot.
 
    ![Rocket.Chat Administration](./rocket-chat-user.png)
 
-1. Crate a User with following data:
+1. Create a User with following data:
    * Name: **bot**
    * Username: **bot**
    * Email: **bot@puzzle.ch**
    * Nickname: **bot**
    * Password: **botpassword**
+
+1. Check the state of the running components. Depending on your docker installation you may need to run this with `sudo`:
+
+  ```s
+  docker-compose -f local_env/docker-compose.yml ps
+  ```
+
+
+## Reset Lab Infrastructure
+
+How to remove all infrastructure to start from scratch.
+
+1. Stop and remove containers and volumes
+
+   ```s
+   docker-compose -f local_env/docker-compose.yml down -v
+   ```
+
+1. Remove ssh key files:
+
+   ```s
+   rm local_env/agent/env_file
+   rm local_env/master/agent_connection_key
+   ```
 
 <!--
 

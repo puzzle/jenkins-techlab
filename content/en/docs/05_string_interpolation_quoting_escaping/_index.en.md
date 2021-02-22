@@ -4,7 +4,6 @@ weight: 5
 sectionnumber: 5
 ---
 
-
 Using the Jenkins Pipelines we quite often need to somehow insert values from variables, parameters,
 env variables and so on into a string or a parameter of a function.
 
@@ -101,9 +100,10 @@ def doubleQuoted = "this is a double quote: \" "
 
 Use the following example pipeline to play with the string definitions you learned so far
 
-**Note** since we use the declarative pipeline syntax to execute groovy code we use the ``script{...}`` section
+> **Note** since we use the declarative pipeline syntax to execute groovy code we use the ``script{...}`` section.
+> With the script block we are able to declare variables.
 
-Create a new branch named lab-5.1 from branch lab-2.1 and change the contents of the Jenkinsfile to:
+Create a new branch named lab-5.1 from branch lab-2.1 and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -133,14 +133,20 @@ pipeline {
 }
 ```
 
-**Note:** Check the build log output on the Jenkins master.
+
+### Check build log output
+
+Go to the newly created pipeline for the new branch on Jenkins master.
+
+Check the build log (Console Output) of the first run of this pipeline.
+Does the output meet your expectations?
 
 
 ## Task {{% param sectionnumber %}}.2: Using Environment Variables or Parameters within a string in a Pipeline
 
 All Environment Variables are available under ``${env.}``
 
-Create a new branch named lab-5.2 from branch lab-2.1 and change the contents of the Jenkinsfile to:
+Create a new branch named lab-5.2 from branch lab-2.1 and change the contents of the ``Jenkinsfile`` to:
 
 ```groovy
 pipeline {
@@ -158,7 +164,13 @@ pipeline {
 }
 ```
 
-**Note:** Check the build log output on the Jenkins master.
+
+### Check build log for parameters
+
+Go to the newly created pipeline for the new branch on Jenkins master.
+
+Check the build log (Console Output) of the first run of this pipeline.
+Are the variables replaced by parameter and environment variables?
 
 
 ## Task {{% param sectionnumber %}}.3: Using values as params in a sh command
@@ -222,4 +234,10 @@ pipeline {
 }
 ```
 
-**Note:** Check the build log output on the Jenkins master.
+
+### Check build log
+
+Go to the newly created pipeline for the new branch on Jenkins master.
+
+Check the build log (Console Output) of the first run of this pipeline.
+Has the echo shell command run without errors?
