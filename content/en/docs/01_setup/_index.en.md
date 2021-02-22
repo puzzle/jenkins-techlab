@@ -103,25 +103,10 @@ Create a user for the hubot chat bot.
 
 How to remove all infrastructure to start from scratch.
 
-1. Stop the containers
+1. Stop and remove containers and volumes
 
    ```s
-   docker-compose -f local_env/docker-compose.yml stop
-   ```
-
-1. Remove the containers
-
-   ```s
-   docker-compose -f local_env/docker-compose.yml rm
-   ```
-
-1. Remove docker volumes:
-
-   ```s
-   docker volume rm local_env_jenkins_master_home
-   docker volume rm local_env_jenkins_slave_docker
-   docker volume rm local_env_jenkins-docker-certs
-   docker volume rm local_env_jenkins_slave_docker_workdir
+   docker-compose -f local_env/docker-compose.yml down -v
    ```
 
 1. Remove ssh key files:
