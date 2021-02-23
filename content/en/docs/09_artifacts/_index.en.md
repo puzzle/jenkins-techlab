@@ -129,3 +129,63 @@ See <https://jenkins.io/doc/pipeline/examples/#maven-and-jdk-specific-version> f
 ### Check Maven build of scripted pipeline
 
 Check the same things as you did by the declarative pipeline (job `lab-9.1`).
+
+
+## Additional Task {{% param sectionnumber %}}.3: Use Pipeline Maven Integration
+
+The `Pipeline Maven Integration` Plugin adds the `withMaven` step which adds default behavior to your Maven builds.
+
+Install the `Pipeline Maven Integration`:
+
+1. Go to `Dashboard` ➡ `Manage Jenkins` ➡ [Manage Plugins](http://localhost:8080/pluginManager/)
+1. Switch to the `Available` tab
+1. Enter `Pipeline Maven Integration` into the search field
+1. Select the check box in front of the `Pipeline Maven Integration` plugin
+1. At the bottom of the page click `Install without restart`
+
+Create a new branch named ``lab-9.3`` from branch ``lab-9.1`` (the one we merged the source into) and change the contents of the ``Jenkinsfile`` to:
+
+
+<!--
+```groovy
+pipeline {
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
+```
+-->
+
+```
+{{< highlight groovy "hl_lines=16-18" >}}
+pipeline {
+    agent any
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timeout(time: 10, unit: 'MINUTES')
+        timestamps()  // Timestamper Plugin
+        disableConcurrentBuilds()
+    }
+    tools {
+        jdk 'jdk11'
+        maven 'maven36'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                withMaven { // Requires Pipeline Maven Integration plugin
+                    sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"'
+                }
+            }
+        }
+    }
+}
+{{< / highlight >}}
+```
+
+
+### Check withMaven build and log
+
+Check the same things as you did by the declarative pipeline (job `lab-9.1`).
+
+Additional checks:
+
+* Does the job overview look the same?
+* Do you see changes in the build log output?
