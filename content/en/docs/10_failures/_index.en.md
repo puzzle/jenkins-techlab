@@ -55,7 +55,7 @@ pipeline {
 -->
 
 ```
-{{< highlight groovy "hl_lines=19-23 26-45" >}}
+{{< highlight groovy "hl_lines=19-23 26-48" >}}
 pipeline {
     agent any
     options {
@@ -83,22 +83,25 @@ pipeline {
     }
     post {
         success {
-            rocketSend
+            rocketSend (
                 avatar: 'https://chat.puzzle.ch/emoji-custom/success.png',
                 message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)",
                 rawMessage: true
+            )
         }
         unstable {
-            rocketSend
+            rocketSend (
                 avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png',
                 message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)",
                 rawMessage: true
+            )
         }
         failure {
-            rocketSend
+            rocketSend (
                 avatar: 'https://chat.puzzle.ch/emoji-custom/failure.png',
                 message: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)",
                 rawMessage: true
+            )
         }
     }
 }
