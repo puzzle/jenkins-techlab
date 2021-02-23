@@ -12,7 +12,7 @@ acendTraining:
       ingress:
         annotations: 
           kubernetes.io/ingress.class: nginx-public
-          kubernetes.io/tls-acme: "true"
+        useDefaultSecret: true
         appname: jenkins-techlab
         domainmain: puzzle.ch
         domain: k8s.puzzle.ch
