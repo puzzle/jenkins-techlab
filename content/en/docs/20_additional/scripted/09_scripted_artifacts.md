@@ -6,7 +6,7 @@ sectionnumber: 9
 
 
 In scripted pipelines you too use the ``archive`` or ``archiveArtifact`` step for artifact archival.
-Create a new branch named ``lab-9.3`` from branch ``lab-9.1`` (the one
+Create a new branch named ``lab-9.4`` from branch ``lab-9.1`` (the one
 we merged the source into) and change the contents of the ``Jenkinsfile`` to:
 
 <!--
