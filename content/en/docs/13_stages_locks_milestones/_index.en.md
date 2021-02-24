@@ -4,29 +4,33 @@ weight: 13
 sectionnumber: 13
 ---
 
+Stages are used to group steps together and to provide boundaries in for pipeline segments which are also used when visualizing pipelines, e.g. in the Jenkins or OpenShift web interface.
+In declarative pipelines some directives like ``post`` or ``agent`` can appear on ``stage`` as well as on the global level.  
 
-Stages are used to group steps together and to provide boundaries in for pipeline segments which
-are also used when visualizing pipelines, e.g. in the Jenkins or OpenShift web interface.
-In declarative pipelines some directives like ``post`` or ``agent`` can appear on ``stage`` as well as on the
-global level.  
-In this lab we split testing and deploying into their own stages and add ``milestone``, ``lock`` and ``input``
-steps to control the flow of builds through the pipeline.
+In this lab we split testing and deploying into their own stages and add ``milestone``, ``lock`` and ``input`` steps to control the flow of builds through the pipeline.
 
 
-## Task {{% param sectionnumber %}}.1: Stages, Locks and Milestones (Declarative Syntax)
+## Task {{% param sectionnumber %}}.1: Stages, Locks and Milestones
 
-Create a new branch named ``lab-13.1`` from branch
-``lab-12.1`` and change the content of the ``Jenkinsfile`` to:
+Create a new branch named ``lab-13.1`` from branch ``lab-12.1`` and change the content of the ``Jenkinsfile`` to:
+
+<!--
+```groovy
+pipeline {
+    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
+```
+-->
 
 ```groovy
 @Library('jenkins-techlab-exercise-library') _
 
 pipeline {
-    agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
+    agent any
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
+        disableConcurrentBuilds()
     }
     environment{
         M2_SETTINGS = credentials('m2_settings')
@@ -82,11 +86,9 @@ pipeline {
 }
 ```
 
-``milestone`` automatically aborts any earlier builds which haven't yet
-reached the milestone. ``lock`` is used to prevent two builds from
-using a non-shareable resource like a Selenium server and is most often seen
-in test stages. While ``input`` pauses a build and waits for user input.
-It accepts the same parameters type as build parameters but can appear
-anywhere in a build and allows the parameters to be computed.  
-See <https://jenkins.io/blog/2016/10/16/stage-lock-milestone/> for more information.
+``milestone`` automatically aborts any earlier builds which haven't yet reached the milestone.
 
+``lock`` is used to prevent two builds from using a non-shareable resource like a Selenium server and is most often seen
+in test stages. While ``input`` pauses a build and waits for user input.
+It accepts the same parameters type as build parameters but can appear anywhere in a build and allows the parameters to be computed.  
+See <https://jenkins.io/blog/2016/10/16/stage-lock-milestone/> for more information.
