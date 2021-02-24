@@ -142,5 +142,5 @@ Do a change in branch ``lab-10.1`` such that the message in the chat will be: "B
 **Note:** To change the build result in Jenkins from failed (red) to unstable (yellow), you have to extend the maven command by: ``-Dmaven.test.failure.ignore=true``.
 
 ```groovy
-sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -Dmaven.test.failure.ignore=true'
+sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true" -Dmaven.test.failure.ignore=true'
 ```
