@@ -16,7 +16,7 @@ jenkins:
   nodes:
   - permanent:
       name: "ssh-agent-docker"
-      numExecutors: 1
+      numExecutors: 3
       remoteFS: "/home/jenkins"
       retentionStrategy: "always"
       labelString: "docker"

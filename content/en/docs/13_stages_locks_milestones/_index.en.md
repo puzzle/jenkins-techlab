@@ -19,7 +19,7 @@ Create a new branch named ``lab-13.1`` from branch
 ``lab-12.1`` and change the content of the ``Jenkinsfile`` to:
 
 ```groovy
-@Library('jenkins-techlab-libraries') _
+@Library('jenkins-techlab-exercise-library') _
 
 pipeline {
     agent any // with hosted env use agent { label env.JOB_NAME.split('/')[0] }
