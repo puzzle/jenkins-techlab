@@ -34,12 +34,7 @@ pipeline {
 ```
 
 
-## Task {{% param sectionnumber %}}.2: Improve Ruby Lab
-
-Add additional Ruby lab with tests and artifact archiving.
-
-
-## Task {{% param sectionnumber %}}.3: Write Custom Step
+## Task {{% param sectionnumber %}}.2: Write Custom Step
 
 Write a custom step to move the above boilerplate code
 into a shared library.
