@@ -333,7 +333,7 @@ pipeline {
                 script {
                     openshift.withCluster("my-cluster") {
                         openshift.withCredentials("openshift-jenkins-external") {
-                            openshift.withProject("craaflaub-amm-test") {
+                            openshift.withProject(env.OPENSHIFT_PROJECT) {
                                 echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                                 println openshift.apply('-f', 'config/', '-l', "app=${APP_LABEL}").out
                             }
@@ -388,33 +388,89 @@ pipeline {
 > This also makes the build log visible inside the Jenkins Pipeline log.
 
 
-## Task {{% param sectionnumber %}}.5: Jenkins Pipeline in OpenShift
+## Task {{% param sectionnumber %}}.6: Deploy the application
 
-OpenShift 3.4 supports Jenkins pipelines as build strategy. OpenShift then spins up a Jenkins master as a Pod and runs the pipeline on it.
-In this techlab the Jenkins master is already running.
+Create an application by defining deployment, service and route.
 
-1. Create a file named ``pipeline.yml`` with the following content, replacing ``<myusername>`` with your user name.
+Create a file named `application.yaml` in a new folder `config` of your branch ``lab-18.1`` and add following resource definition:
 
-    ```yaml
-    apiVersion: v1
-    kind: BuildConfig
-    metadata:
-      name: <myusername>-pipeline
-    spec:
-      runPolicy: Serial
-      source:
-        type: Git
-        git:
-          uri: https://github.com/<myusername>/jenkins-techlab
-          ref: lab-13.1
-      strategy:
-        type: JenkinsPipeline
-        jenkinsPipelineStrategy:
-          jenkinsfilePath: Jenkinsfile
-    ```
+```YAML
+apiVersion: v1
+kind: List
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"application:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"application\")].image"}]
+    labels:
+        app: my-app
+    name: application
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deployment: application
+    strategy: {}
+    template:
+      metadata:
+        labels:
+          deployment: application
+      spec:
+        containers:
+        - image: 'application:latest'
+          name: application
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          resources: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+        app: my-app
+    name: application
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    selector:
+      deployment: application
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: my-app
+    name: application
+  spec:
+    port:
+      targetPort: 8080-tcp
+    tls:
+      termination: edge
+    to:
+      kind: Service
+      name: application
+      weight: 100
+    wildcardPolicy: None
+```
 
-2. Import it into OpenShift with: ``oc create -f pipeline.yml``
+The resources will automatically be created by the `'oc apply configuration` stage.
 
-You can now see the pipeline in Jenkins as well as in OpenShift, including a visualization of the various stages.
+> The triggers annotation will trigger an update of the application when the image changes.
+> The image is update after every successful build.
 
-Check out <https://blog.openshift.com/openshift-3-3-pipelines-deep-dive/> for further infos.
+
+### Check the application
+
+Find the route / url of the application.
+
+Do you get a page mentioning APPUiO?
