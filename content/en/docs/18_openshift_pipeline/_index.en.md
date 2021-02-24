@@ -204,8 +204,7 @@ oc policy add-role-to-user edit system:serviceaccount:$(oc project --short):jenk
 
 ## Task {{% param sectionnumber %}}.4: Test OpenShift integration
 
-Create a new branch named ``lab-18.2`` from branch ``lab-18.1`` and add following stage to the ``Jenkinsfile``:
-
+Add following stage to the ``Jenkinsfile`` of your branch ``lab-18.1``:
 
 <!--
 ```groovy
@@ -215,7 +214,7 @@ pipeline {
 -->
 
 ```
-{{< highlight groovy "hl_lines=24-41" >}}
+{{< highlight groovy "hl_lines=27-44" >}}
 pipeline {
     agent any
     options {
@@ -226,6 +225,9 @@ pipeline {
     }
     tools {
         oc 'oc4'
+    }
+    environment {
+        OPENSHIFT_PROJECT = '<TEST-PROJECT>'
     }
     stages {
         stage('oc test') {
@@ -244,7 +246,7 @@ pipeline {
                 script {
                     openshift.withCluster("my-cluster") {
                         openshift.withCredentials("openshift-jenkins-external") {
-                            openshift.withProject("<TEST-PROJECT>") {
+                            openshift.withProject(env.OPENSHIFT_PROJECT) {
                                 println "OC Version from Plugin:"
                                 println openshift.raw('version').out
                                 echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
@@ -263,6 +265,127 @@ pipeline {
 ```
 
 > Change `<TEST-PROJECT>` to the name of your project (ask teacher)
+
+
+## Task {{% param sectionnumber %}}.5: Pipeline managing OpenShift project
+
+We will now use the access to our project to create and build an application.
+
+
+### Define a BuildConfiguration
+
+The BuildConfiguration in OpenShift defines an image build for an application.
+
+Create a file named `build-config.yaml` in a new folder `config` of your branch ``lab-18.1`` and add following resource definition:
+
+```YAML
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      name: application
+      labels:
+        app: my-app
+    spec:
+      lookupPolicy:
+        local: false
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: application
+      labels:
+        app: my-app
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: application:latest
+      source:
+        git:
+          uri: https://github.com/appuio/example-php-sti-helloworld.git
+        type: Git
+      strategy:
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            name: php:7.3
+            namespace: openshift
+        type: Source
+```
+
+
+### Create a BuildConfiguration
+
+We use our Jenkins Pipeline to create the previously defined BuildConfiguration.
+
+Add following stage to the end of the ``Jenkinsfile`` of your branch ``lab-18.1``:
+
+```
+{{< highlight groovy "hl_lines=" >}}
+pipeline {
+
+...
+
+        stage('oc apply configuration') {
+            steps {
+                script {
+                    openshift.withCluster("my-cluster") {
+                        openshift.withCredentials("openshift-jenkins-external") {
+                            openshift.withProject("craaflaub-amm-test") {
+                                echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                                println openshift.apply('-f', 'config/', '-l', "app=${APP_LABEL}").out
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+{{< / highlight >}}
+```
+
+> `openshift.apply` takes the resource definition from the file `config/build-config.yaml` and applies it to the project.
+> This creates the resources.
+
+
+### Start the build
+
+It's time to start the application build.
+
+Add following stage to the end of the ``Jenkinsfile`` of your branch ``lab-18.1``:
+
+
+```
+{{< highlight groovy "hl_lines=" >}}
+pipeline {
+
+...
+
+        stage('build application') {
+            steps {
+                script {
+                    openshift.withCluster("my-cluster") {
+                        openshift.withCredentials("openshift-jenkins-external") {
+                            openshift.withProject(env.OPENSHIFT_PROJECT) {
+                                echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                                def bcSelector = openshift.selector("BuildConfig", [ app : env.APP_LABEL ]) // select build
+                                bcSelector.startBuild('--follow').out
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+{{< / highlight >}}
+```
+
+> The argument `--follow` is important for a build server. This will make Jenkins to wait until the build inside OpenShift is finished.
+> This also makes the build log visible inside the Jenkins Pipeline log.
 
 
 ## Task {{% param sectionnumber %}}.5: Jenkins Pipeline in OpenShift
