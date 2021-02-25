@@ -127,14 +127,15 @@ In case of a secret file ``MYVARNAME`` contains the filename of a temporary file
 Additionally we make use of the ``sshagent`` step which managed a dedicated SSH agent with the requested credential loaded.
 This is more secure than writing the key into a file and also works in scenarios where support for alternate ssh key files is missing, e.g. when installing packages in private Git repos through npm.
 
+
 ### Check artifact on SSH server
 
 Shell into the SSH server and check if the artifact was copied successfully.
 
 ```s
-docker-compose -f local_env/ssh-server-compose.yaml exec -u puzzler openssh-server bash 
+docker-compose -f local_env/ssh-server-compose.yaml exec -u puzzler openssh-server bash
 
 ls ~/jenkins-techlab/
 ```
 
-> On Windows with GitBash/MINGW use: `winpty docker-compose -f local_env/ssh-server-compose.yaml exec -u puzzler openssh-server bash `
+> On Windows with GitBash/MINGW use: `winpty docker-compose -f local_env/ssh-server-compose.yaml exec -u puzzler openssh-server bash`
