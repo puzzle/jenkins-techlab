@@ -91,6 +91,6 @@ Add the test stage to your ``Jenkinsfile``.
 -->
 
 
-## Task {{% param sectionnumber %}}.3: Write Custom Step
+## Additional Task {{% param sectionnumber %}}.3: Write Custom Step
 
 Write a custom step to move the above boilerplate code into a shared library.

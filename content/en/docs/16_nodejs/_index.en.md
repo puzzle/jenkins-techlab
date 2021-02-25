@@ -55,6 +55,6 @@ Check the build log (Console Output) of the first run of this pipeline.
 * Are the versions correct?
 
 
-## Task {{% param sectionnumber %}}.3: Write Custom Step
+## Additional Task {{% param sectionnumber %}}.3: Write Custom Step
 
 Write a custom step to move the above boilerplate code into a shared library.
