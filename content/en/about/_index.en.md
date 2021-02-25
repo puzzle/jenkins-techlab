@@ -19,7 +19,6 @@ If you find errors, bugs or missing information please help us to improve our te
 {{% blocks/section type="section" color="white" %}}
 
 
-
 ## Helpful Links and additional Documentation
 
 * [Introducing a New Way to Define Jenkins Pipelines](https://www.cloudbees.com/sites/default/files/2016-jenkins-world-introducing_a_new_way_to_define_jenkins_pipelines_1.pdf)
