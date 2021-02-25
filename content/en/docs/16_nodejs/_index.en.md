@@ -28,7 +28,7 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
         disableConcurrentBuilds()
-    } 
+    }
     environment {
         NVM_HOME = tool('nvm')
     }
