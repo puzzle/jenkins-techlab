@@ -90,7 +90,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
-        disableConcurrentBuilds()
+        // disableConcurrentBuilds() managed by locks and milestones
     }
     environment{
         ARTIFACT = "${env.JOB_NAME.split('/')[0]}-hello"

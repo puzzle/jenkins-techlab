@@ -196,7 +196,7 @@ Go to Administrator view ➡ `User Management` ➡ `Role Bindings`
 One-liner to add edit rights to the service account:
 
 ```s
-oc policy add-role-to-user edit system:serviceaccount:$(oc project --short):jenkins-externa
+oc policy add-role-to-user edit system:serviceaccount:$(oc project --short):jenkins-external
 ```
 
 > If you get errors, replace `$(oc project --short)` with the project name.
