@@ -57,7 +57,7 @@ Check the build log (Console Output) of the first run of this pipeline.
 
 ## Task {{% param sectionnumber %}}.2: Build Ruby Application
 
-Add some source code to your branch ``lab-18.1``:
+Add some source code to your branch ``lab-15.1``:
 
 ```bash
 git pull -s recursive -X ours --allow-unrelated-histories https://github.com/sclorg/ruby-ex.git
