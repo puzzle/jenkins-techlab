@@ -10,4 +10,3 @@ do
    oc new-project hannelore$i-test
    oc policy add-role-to-user admin hannelore$i -n hannelore$i-dev
 done
-

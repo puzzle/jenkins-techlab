@@ -17,3 +17,9 @@ Prepare projects on techlab cluster. Run scripts as cluster admin.
   ./admin/scripts/create-jenkins-sa.sh
   ```
 
+1. Give rights to ServiceAccount jenkins-external:
+
+  ```s
+  ./admin/scripts/create-jenkins-sa.sh
+  ```
+
