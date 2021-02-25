@@ -33,6 +33,8 @@ The **OpenShift Client Jenkins Plugin** plugin adds steps that directly interact
 
 Install the **OpenShift Client Jenkins Plugin** to your Jenkins master.
 
+1.Search for `openshift-client`.
+
 > See lab 9 if you need a guidance.
 
 
@@ -213,6 +215,8 @@ pipeline {
 ```
 -->
 
+> Change `<TEST-PROJECT>` to the name of your project (ask teacher)
+
 ```
 {{< highlight groovy "hl_lines=27-44" >}}
 pipeline {
@@ -263,8 +267,6 @@ pipeline {
 }
 {{< / highlight >}}
 ```
-
-> Change `<TEST-PROJECT>` to the name of your project (ask teacher)
 
 
 ## Task {{% param sectionnumber %}}.5: Pipeline managing OpenShift project
@@ -325,7 +327,11 @@ Add following stage to the end of the ``Jenkinsfile`` of your branch ``lab-18.1`
 ```
 {{< highlight groovy "hl_lines=" >}}
 pipeline {
-
+...
+    environment {
+        ...
+        APP_LABEL = 'my-app'
+    }
 ...
 
         stage('oc apply configuration') {
