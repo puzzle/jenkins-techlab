@@ -10,3 +10,10 @@ Prepare projects on techlab cluster. Run scripts as cluster admin.
   ```s
   ./admin/scripts/create-projects.sh
   ```
+
+1. Create ServiceAccount jenkins-external:
+
+  ```s
+  ./admin/scripts/create-jenkins-sa.sh
+  ```
+
