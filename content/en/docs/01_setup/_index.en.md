@@ -9,12 +9,18 @@ The techlab can be done with a local Docker setup.
 <!-- or if you are attending a instructor lead lab you will use the hosted lab environment -->
 
 
-## Local Docker Setup
+## Prerequisites
 
-The lab infrastructure is defined by an [docker-compose](https://docs.docker.com/compose/) file.
+Following tools and infrastructure is needed for this lab.
+
+1. [Docker](https://www.docker.com/) or docker alias pointing to [Podman](https://podman.io/)
+1. [Docker Compose](https://github.com/docker/compose)
+1. [Git version control system](https://git-scm.com/)
+1. Git Server, like [GitHub](https://github.com/), where you have access and can create public repositories
+1. On Windows, use [Git Bash](https://gitforwindows.org/)
 
 
-### Lab Components
+## Lab Components
 
 The prepared docker-compose file defines following container to be started and connected:
 
@@ -34,6 +40,11 @@ The prepared docker-compose file defines following container to be started and c
   * will stop after completion
 * Rocket.Chat bot: hubot:
   * chat bot
+
+
+## Start Docker Setup
+
+The lab infrastructure is defined by an [docker-compose](https://docs.docker.com/compose/) file.
 
 
 ### Run Lab Infrastructure
