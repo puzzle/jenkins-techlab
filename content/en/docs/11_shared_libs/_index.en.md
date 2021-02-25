@@ -51,7 +51,7 @@ A single library can provide any number of custom steps.
 
 Now we can rewrite our pipeline to use the new ``notifyPuzzleChat`` step, eliminating any duplicated code. Custom steps are used the same as built-in steps.
 
-Create a new branch named ``lab-11.2`` from branch ``lab-10.1`` (the one we merged the source into) and change the content of the ``Jenkinsfile``:
+Create a new branch named ``lab-11.2`` from branch ``lab-10.1`` and change the content of the ``Jenkinsfile``:
 
 * define the library with: `@Library('jenkins-techlab-exercise-library') _`
 * use your custom pipeline step inside the always block of post.
