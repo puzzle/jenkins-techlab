@@ -75,7 +75,7 @@ Then configure the Ruby build inside the ``Jenkinsfile`` by adding the build sta
         }
 ```
 
-<!--
+<!-- used later
 
 ## Task {{% param sectionnumber %}}.3: Test Ruby Application
 
