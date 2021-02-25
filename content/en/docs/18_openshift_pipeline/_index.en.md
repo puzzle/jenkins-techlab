@@ -406,10 +406,10 @@ items:
   metadata:
     labels:
         app: my-app
+    name: application
   annotations:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"application:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"application\")].image"}]
-    name: application
   spec:
     replicas: 1
     selector:
