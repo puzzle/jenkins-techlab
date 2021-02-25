@@ -295,7 +295,7 @@ items:
         app: my-app
     spec:
       lookupPolicy:
-        local: false
+        local: true
   - apiVersion: v1
     kind: BuildConfig
     metadata:
