@@ -347,7 +347,9 @@ pipeline {
                 }
             }
         }
-    }
+
+...
+
 }
 {{< / highlight >}}
 ```
@@ -361,7 +363,6 @@ pipeline {
 It's time to start the application build.
 
 Add following stage to the end of the ``Jenkinsfile`` of your branch ``lab-18.1``:
-
 
 ```
 {{< highlight groovy "hl_lines=" >}}
@@ -384,7 +385,9 @@ pipeline {
                 }
             }
         }
-    }
+
+...
+
 }
 {{< / highlight >}}
 ```
@@ -394,6 +397,11 @@ pipeline {
 
 
 ## Task {{% param sectionnumber %}}.6: Deploy the application
+
+We need the configuration of the application deployment. Afterwards we can trigger the deployment by our pipeline.
+
+
+### Define deployment
 
 Create an application by defining deployment, service and route.
 
@@ -409,9 +417,6 @@ items:
     labels:
         app: my-app
     name: application
-  annotations:
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"application:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"application\")].image"}]
   spec:
     replicas: 1
     selector:
@@ -468,10 +473,48 @@ items:
     wildcardPolicy: None
 ```
 
-The resources will automatically be created by the `'oc apply configuration` stage.
+The resources will automatically be created by the `oc apply configuration` stage.
 
-> The triggers annotation will trigger an update of the application when the image changes.
-> The image is update after every successful build.
+
+### Deploy the application
+
+The resources are ready. Update the pipeline to set the image and do a rollout.
+
+Add following stage to the end of the ``Jenkinsfile`` of your branch ``lab-18.1``:
+
+```
+{{< highlight groovy "hl_lines=" >}}
+pipeline {
+
+...
+
+        stage('deploy application') {
+            steps {
+                script {
+                    openshift.withCluster(env.OPENSHIFT_CLUSTER) {
+                        openshift.withCredentials(env.OPENSHIFT_CREDENTIALS) {
+                            openshift.withProject(env.OPENSHIFT_PROJECT) {
+                                echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                                // update image of deployment to latest built image (built in previous stage)
+                                println openshift.raw("set image deployment/application application=image-registry.openshift-image-registry.svc:5000/${OPENSHIFT_PROJECT}/application:latest").out
+                                // start the application deployment
+                                println openshift.raw('rollout restart deploy/application').out
+                                // wait for the application deployment
+                                println openshift.raw('rollout status deploy/application').out
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+
+...
+
+}
+{{< / highlight >}}
+```
+
+> The `rollout status` command waits for the deployment/rollout to finish.
 
 
 ### Check the application
