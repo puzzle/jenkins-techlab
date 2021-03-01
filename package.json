@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "husky": "5.1.1",
+    "husky": "5.1.2",
     "markdownlint": "0.23.1"
   },
   "scripts": {
