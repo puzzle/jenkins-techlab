@@ -6,6 +6,9 @@
   "MD004": {
     "style": "asterisk"
   },
+  "MD009": {
+    "br_spaces": 2
+  },
   "MD012": {
     "maximum": 2
   },
