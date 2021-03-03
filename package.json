@@ -7,16 +7,12 @@
     "url": "git+https://github.com/puzzle/jenkins-techlab.git"
   },
   "author": "Puzzle ITC",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run mdlint"
-    }
-  },
   "dependencies": {
     "husky": "5.1.3"
   },
   "scripts": {
-    "mdlint": "markdownlint --config .markdownlint.json content *.md"
+    "mdlint": "markdownlint --config .markdownlint.json content *.md",
+    "prepare": "husky install"
   },
   "bugs": {
     "url": "https://github.com/puzzle/jenkins-techlab/issues"
