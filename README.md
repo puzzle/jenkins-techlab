@@ -117,6 +117,13 @@ npm install
 npm run mdlint
 ```
 
+Npm not installed? no problem
+
+```bash
+export HUGO_VERSION=$(grep "FROM klakegg/hugo" Dockerfile | sed 's/FROM klakegg\/hugo://g' | sed 's/ AS builder//g')
+docker run --rm --interactive -v $(pwd):/src klakegg/hugo:${HUGO_VERSION}-ci /bin/bash -c "set -euo pipefail;npm install; npm run mdlint;"
+```
+
 
 ## Github Actions
 
@@ -167,8 +174,3 @@ helm install --dry-run --repo https://acend.github.io/helm-charts/  <release> ac
 ## Contributions
 
 If you find errors, bugs or missing information please help us improve and have a look at the [Contribution Guide](CONTRIBUTING.md).
-
-
-## License
-
-This techlab is licensed under the GNU General Public License v3.0 see [License File](LICENSE)

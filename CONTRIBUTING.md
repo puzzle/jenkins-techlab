@@ -1,11 +1,13 @@
 # How to contribute to the jenkins pipeline techlab
 
+:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
+
 
 ## Did you find a bug
 
-* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/puzzle/jenkins-techlab/issues).
+* **Ensure the bug was not already reported** by searching on GitHub under [Issues](/../../issues).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/puzzle/jenkins-techlab/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem, [open a new one](/../../issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
 
 ## Did you write a patch that fixes a bug
@@ -24,6 +26,6 @@
 
 ## Do you have questions about the techlab
 
-* Ask your question as an issue on GitHub
+* Ask your question as an issue on GitHub.
 
 Thanks!
