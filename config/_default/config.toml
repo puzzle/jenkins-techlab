@@ -13,7 +13,6 @@ contentDir = "content/en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
-
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
 # Highlighting config
@@ -42,13 +41,11 @@ resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
 
-
 [Languages]
 [Languages.en]
 title = "Jenkins Techlab"
 languageName = "German"
 weight = 1
-
 
 # navigation
 [Languages.en.menu]
@@ -58,12 +55,9 @@ weight = 1
     [markup.goldmark.renderer]
       unsafe = true
 
-
 [params]
-
 copyright = "Puzzle ITC GmbH"
 github_repo = "https://github.com/puzzle/jenkins-techlab"
-
 
 enabledModule = "base"
 
@@ -86,14 +80,14 @@ footer_about_disable = true
 [params.links]
 [[params.links.developer]]
 name = "GitHub"
-icon = "fab fa-github" 
+icon = "fab fa-github"
 url = "https://github.com/puzzle/jenkins-techlab"
 
 [[params.links.user]]
 name = "Twitter"
 icon = "fab fa-twitter"
 url = "https://twitter.com/puzzleitc"
-  
+
 [[params.links.user]]
 name = "LinkedIn"
 icon = "fab fa-linkedin-in"
