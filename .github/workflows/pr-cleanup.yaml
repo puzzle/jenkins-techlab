@@ -7,12 +7,13 @@ jobs:
   deployment:
     runs-on: 'ubuntu-latest'
     steps:
-      - 
+      -
         name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: 'Remove PR Environment'
+      -
+        name: 'Remove PR Environment Helm Release'
         uses: 'deliverybot/helm@v1'
         with:
           # Task remove means to remove the helm release.
@@ -26,7 +27,8 @@ jobs:
           helm: 'helm3'
         env:
           KUBECONFIG_FILE: '${{ secrets.KUBECONFIG_TEST }}'
-      - name: Delete Tags on Quay
+      -
+        name: Delete Tags on Quay
         id: delete_tags
         env:
           PR_NUMBER: '${{ github.event.pull_request.number }}'
