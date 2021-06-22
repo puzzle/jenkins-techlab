@@ -1,27 +1,5 @@
 {
   "extends": [
-    "config:base"
-  ],
-  "git-submodules": {
-    "enabled": true
-  },
-  "packageRules": [
-    {
-      "matchDepTypes": ["devDependencies"],
-      "matchPackagePatterns": ["husky", "markdownlint-cli"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackagePatterns": ["klakegg/hugo", "nginxinc/nginx-unprivileged"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true
-    },
-    {
-      "matchManagers": ["git-submodules"],
-      "matchPackageNames": ["themes/docsy-plus", "themes/docsy-acend", "themes/docsy-puzzle"],
-      "automerge": true
-    }
+    "github>acend/hugo-training-template"
   ]
 }
