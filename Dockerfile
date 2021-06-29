@@ -1,4 +1,4 @@
-FROM klakegg/hugo:0.84.2-ext-ubuntu AS builder
+FROM klakegg/hugo:0.84.3-ext-ubuntu AS builder
 
 ARG TRAINING_HUGO_ENV=default
 
