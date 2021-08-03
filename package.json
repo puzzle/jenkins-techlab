@@ -8,6 +8,7 @@
   },
   "author": "Puzzle ITC",
   "scripts": {
+    "start": "bash -c \"docker run --rm --interactive --publish 8080:8080 -v $(pwd):/src:Z klakegg/hugo:$(grep \"FROM klakegg/hugo\" Dockerfile | sed 's/FROM klakegg\\/hugo://g' | sed 's/ AS builder//g') server -p 8080 --bind 0.0.0.0\"",
     "mdlint": "markdownlint --config .markdownlint.json content *.md",
     "prepare": "husky install"
   },
