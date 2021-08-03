@@ -9,6 +9,9 @@ languageCode = "en-us"
 
 contentDir = "content/en"
 
+[minify]
+disableSVG = true
+
 # default content language
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
@@ -50,10 +53,20 @@ weight = 1
 # navigation
 [Languages.en.menu]
 
+[[Languages.en.menu.main]]
+weight = 10
+name = "Puzzle ITC GmbH"
+url = "https://www.puzzle.ch"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+  # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+  style = "tango"
+  # Uncomment if you want your chosen highlight style used for code blocks without a specified language
+  # guessSyntax = "true"
 
 [params]
 copyright = "Puzzle ITC GmbH"
