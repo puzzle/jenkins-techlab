@@ -44,7 +44,7 @@ Further, specialized environments can be added in the `config` directory.
 ### Docsy theme usage
 
 * [Official docsy documentation](https://www.docsy.dev/docs/)
-* [Docsy Plus](https://github.com/puzzle/docsy-plus/)
+* [Docsy Plus](https://github.com/acend/docsy-plus/)
 
 
 ### Update submodules for theme updates
