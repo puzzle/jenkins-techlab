@@ -18,6 +18,6 @@
   "homepage": "https://github.com/puzzle/jenkins-techlab#readme",
   "devDependencies": {
     "husky": "7.0.4",
-    "markdownlint-cli": "0.31.0"
+    "markdownlint-cli": "0.31.1"
   }
 }
