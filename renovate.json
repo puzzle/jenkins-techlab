@@ -1,5 +1,6 @@
 {
   "extends": [
     "github>acend/hugo-training-template"
-  ]
+  ],
+  "ignoreDeps": ["mongo"]
 }
