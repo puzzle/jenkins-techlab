@@ -4,13 +4,13 @@ weight: 2
 sectionnumber: 2
 ---
 
-In this lab we create our first Jenkins pipelines.
+In this lab we create our first Jenkins pipeline.
 Jenkins has the ability to automatically create Jobs based on Git repositories containing a ``Jenkinsfile``:
 
 * Multibranch: Jenkins automatically manages jobs based on Jenkinsfiles in branches of a single Git repository.
 * Organization Folder: Jenkins automatically manages jobs for Jenkinsfiles in a set of Git repositories. (Currently GitHub and Bitbucket), including pull requests and forks.
 
-In these labs we use the former method so that each participant can configure its labs independently.
+In these labs we use the former method, so that each participant can configure its labs independently.
 A ``Jenkinsfile`` provides a single source of truth for a build job <https://en.wikipedia.org/wiki/Single_source_of_truth>.
 
 
@@ -47,7 +47,7 @@ If everything is configured correctly this will
 
 The multibranch pipeline scan trigger will also trigger builds of any jobs whose ``Jenkinsfile`` changes.
 
-You can only view but not edit the configuration of a job generated from a ``Jenkinsfile``. The ``Jenkinsfile`` is the [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth) for these jobs, the only thing that is configured directly in Jenkins is how to access the repositories. The next lab shows how to configure job properties like log rotation and build triggers in a ``Jenkinsfile``.
+You can only view but not edit the configuration of a job generated from a ``Jenkinsfile``. The ``Jenkinsfile`` is the [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth) for these jobs, the only thing that is configured directly in Jenkins, is how to access the repositories. The next lab shows how to configure job properties like log rotation and build triggers in a ``Jenkinsfile``.
 
 Note:
 
