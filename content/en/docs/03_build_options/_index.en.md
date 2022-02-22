@@ -4,7 +4,7 @@ weight: 3
 sectionnumber: 3
 ---
 
-When using multibranch pipelines you can no longer configure build options (declarative syntax)
+When using multibranch pipelines, you can no longer configure build options (declarative syntax)
 or build properties (scripted syntax) through the web interface. For single branch ``Jenkinsfile``
 pipelines configuring build options/properties in the ``Jenkinsfile`` is recommended as well in
 order to obtain a [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth).
