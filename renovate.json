@@ -2,5 +2,5 @@
   "extends": [
     "github>acend/hugo-training-template"
   ],
-  "ignoreDeps": ["mongo", "rocketchat/rocket.chat"]
+  "ignoreDeps": ["mongo", "rocketchat/rocket.chat", "jenkins/jenkins"]
 }
