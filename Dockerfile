@@ -21,7 +21,7 @@ COPY --from=builder /src/public /
 
 RUN wkhtmltopdf --outline-depth 4 --enable-internal-links --enable-local-file-access  ./pdf/index.html /pdf.pdf
 
-FROM nginxinc/nginx-unprivileged:1.22-alpine
+FROM nginxinc/nginx-unprivileged:1.23-alpine
 
 LABEL maintainer puzzle.ch
 LABEL org.opencontainers.image.title "puzzle.ch's Jenkins Techlab"
