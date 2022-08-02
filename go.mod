@@ -1,6 +1,6 @@
 module github.com/puzzle/jenkins-techlab
 
-go 1.18
+go 1.19
 
 require (
 	github.com/acend/docsy-acend v0.0.0-20220406070448-8027986336dc // indirect
