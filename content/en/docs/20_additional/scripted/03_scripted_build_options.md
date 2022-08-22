@@ -29,7 +29,7 @@ timestamps() {
 }
 ```
 
-This configures the same job properties as the declarative pipeline in [Lab 3.1](#lab-31-build-options).
+This configures the same job properties as the declarative pipeline in [Lab 3.1](../../../03_build_options/#task-31-build-options).
 
 In scripted pipelines job properties are configured through steps. The usage of a step depends on its implementation.
 Use the "Snippet Generator" ("Pipeline Syntax" in the sidebar) to find the correct syntax.
