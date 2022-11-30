@@ -143,7 +143,7 @@ A full example can be found in [lab-16](../16_nodejs/).
 ### Task {{% param sectionnumber %}}.1.2: Custom Tools (Docker Agent)
 
 
-Jenkis can also use a container image as a build environment. In this case all the required tools are present in the image and the source files are mounted in the image.
+Jenkins can also use a container image as a build environment. In this case all the required tools are present in the image and the source files are mounted in the image.
 
 ```groovy
     agent {
