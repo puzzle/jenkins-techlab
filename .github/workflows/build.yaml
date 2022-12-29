@@ -83,7 +83,14 @@ jobs:
           TRAINING_NAMESPACE: 'pitc-jenkins-techlab-test'
           TRAINING_VERSION: '${{ github.sha }}'
         run: |
-          helm upgrade $TRAINING_HELM_RELEASE acend-training-chart --install --wait --kubeconfig $HOME/.kube/config  --namespace=$TRAINING_NAMESPACE --set=app.name=$HELM_RELEASE --set=app.version=$TRAINING_VERSION --repo=https://acend.github.io/helm-charts/ --values=helm-chart/values.yaml --atomic
+          helm upgrade $TRAINING_HELM_RELEASE acend-training-chart --install --wait \
+            --kubeconfig $HOME/.kube/config \
+            --namespace=$TRAINING_NAMESPACE \
+            --set=app.name=$HELM_RELEASE \
+            --set=app.version=$TRAINING_VERSION \
+            --repo=https://acend.github.io/helm-charts/ \
+            --values=helm-chart/values.yaml \
+            --atomic
       -
         name: Redeploy Deployments
         env:
@@ -91,7 +98,9 @@ jobs:
           TRAINING_HELM_NAME: 'jenkins-techlab-puzzle'
           TRAINING_NAMESPACE: 'pitc-jenkins-techlab-test'
         run: |
-          kubectl rollout restart deployment/${TRAINING_HELM_RELEASE}-${TRAINING_HELM_NAME} --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl rollout restart deployment/${TRAINING_HELM_RELEASE}-${TRAINING_HELM_NAME} \
+            --kubeconfig $HOME/.kube/config \
+            --namespace $TRAINING_NAMESPACE
       -
         name: Comment PR Environments in PR
         uses: marocchino/sticky-pull-request-comment@v2
