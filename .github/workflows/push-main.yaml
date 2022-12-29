@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
 
 jobs:
   build:
@@ -95,4 +94,3 @@ jobs:
           TRAINING_NAMESPACE: 'pitc-jenkins-techlab-prod'
         run: |
           kubectl rollout restart deployment/${TRAINING_HELM_RELEASE}-${TRAINING_HELM_NAME} --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
-

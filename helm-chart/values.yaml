@@ -10,13 +10,11 @@ acendTraining:
         tag: ""
         tagsuffix: ""
       ingress:
-        annotations: 
-          kubernetes.io/ingress.class: nginx-public
+        emptyTLS: true
         useDefaultSecret: true
         appname: jenkins-techlab
         domainmain: puzzle.ch
-        domain: k8s.puzzle.ch
-
+        domain: ocp-internal.cloudscale.puzzle.ch
 
 
 nameOverride: "jenkins-techlab"
