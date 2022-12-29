@@ -92,7 +92,7 @@ jobs:
             --set=app.version=$TRAINING_VERSION \
             --repo=https://acend.github.io/helm-charts/ \
             --values=helm-chart/values.yaml \
-            --set-string=acendTraining.deployments[0].ingress.labels.prod=true \
+            --set-string=acendTraining.deployments[0].ingress.labels.public=true \
             --atomic
       -
         name: Redeploy Deployments
