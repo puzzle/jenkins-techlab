@@ -99,5 +99,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
            PR Environments: 
-           *  puzzle <https://jenkins-techlab-pr-${{ github.event.pull_request.number }}.k8s.puzzle.ch>
+           *  puzzle <https://jenkins-techlab-pr-${{ github.event.pull_request.number }}.ocp-internal.cloudscale.puzzle.ch>
 
