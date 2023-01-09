@@ -46,6 +46,23 @@ The prepared docker-compose file defines following container to be started and c
 
 The lab infrastructure is defined by an [docker-compose](https://docs.docker.com/compose/) file.
 
+In case you're already aware of [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/), feel free to use the `make` commands.
+
+```s
+make <command>
+
+build                   Build or rebuild services
+up                      Create and start containers
+start                   Create and start containers. Detached mode: Run containers in the background
+setup                   Build or rebuild services and create and start containers in detached mode
+stop                    Stop services
+restart                 Stop services and create and start containers in detached mode
+bash                    Execute bash in a running container (c=jenkins|jenkins_slave_docker|docker|rocketchat|mongo|mongo-init-replica|hubot)
+ps                      List containers
+logs                    View output from containers with following the log output. Shows the last 100 lines of the tail
+clean                   Stop and remove resources, also removes named volumes declared in the `volumes` section of the Compose file
+```
+
 
 ### Run Lab Infrastructure
 

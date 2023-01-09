@@ -35,5 +35,5 @@ ps: ## List containers
 logs: ## View output from containers with following the log output. Shows the last 100 lines of the tail
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) logs --tail=100 -f 
 
-clean: ## Stop and remove resources and remove named volumes declared in the `volumes` section of the Compose file
+clean: ## Stop and remove resources, also removes named volumes declared in the `volumes` section of the Compose file
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down -v
