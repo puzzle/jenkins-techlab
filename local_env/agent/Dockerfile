@@ -12,7 +12,7 @@ FROM jenkins/ssh-agent
 
 # install git
 RUN apt-get update && apt-get install -y \
-	git \
+	git curl \
 	&& rm -rf /var/lib/apt/lists/*
 
 # copy docker from "downloader" build stage
