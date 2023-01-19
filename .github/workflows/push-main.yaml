@@ -18,7 +18,7 @@ jobs:
         name: Set up npm for linting
         uses: actions/setup-node@v3
         with:
-          node-version: '15.x'
+          node-version: 'latest'
       -
         name: Lint Markdown
         run: npm ci && npm run mdlint
