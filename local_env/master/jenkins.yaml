@@ -31,8 +31,6 @@ unclassified:
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"
-  pipeline-model-docker:
-    dockerLabel: "docker"
 credentials:
   system:
     domainCredentials:

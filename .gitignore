@@ -1,6 +1,7 @@
 Thumbs.db
 .DS_Store
 .dist
+.hugo_build.lock
 .tmp
 .sass-cache
 npm-debug.log

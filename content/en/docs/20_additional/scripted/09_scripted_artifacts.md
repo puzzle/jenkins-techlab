@@ -38,7 +38,7 @@ timestamps() {
 In scripted pipelines you have to check out the repository containing the jobs ``Jenkinsfile``
 with ``checkout scm``. ``scm`` is a variable referencing the repository containing the ``Jenkinsfile``.  
 ``junit`` is a special artifact archival step which provides special support
-for JUnit test reports. Is is also useful outside of JUnit as there are other tools
+for JUnit test reports. It is also useful outside of JUnit as there are other tools
 which generate JUnit test reports, e.g. Selenium or SoapUI.
 These examples use the recommended options for Maven in pipeline jobs.
 See <https://jenkins.io/doc/pipeline/examples/#maven-and-jdk-specific-version> for details.

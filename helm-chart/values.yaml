@@ -17,9 +17,6 @@ acendTraining:
         appname: jenkins-techlab
         domainmain: puzzle.ch
         domain: ocp.cloudscale.puzzle.ch
-
-
-
 nameOverride: "jenkins-techlab"
 fullnameOverride: ""
 
