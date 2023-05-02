@@ -1,8 +1,7 @@
 acendTraining:
   servicePort: 8080
   deployments:
-    - 
-      name: puzzle
+    - name: puzzle
       replicaCount: 1
       image:
         repository: quay.io/puzzle/jenkins-techlab
@@ -10,12 +9,14 @@ acendTraining:
         tag: ""
         tagsuffix: ""
       ingress:
-        annotations: 
-          kubernetes.io/ingress.class: nginx-public
+        emptyTLS: true
+        ingressClassName: openshift-public
+        labels:
+          public: "true"
         useDefaultSecret: true
         appname: jenkins-techlab
         domainmain: puzzle.ch
-        domain: k8s.puzzle.ch
+        domain: ocp.cloudscale.puzzle.ch
 
 
 
