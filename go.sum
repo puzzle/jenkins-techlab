@@ -3,6 +3,7 @@ github.com/acend/docsy-acend v0.0.0-20220406070448-8027986336dc h1:kNDPVcZCXsbJx
 github.com/acend/docsy-acend v0.0.0-20220406070448-8027986336dc/go.mod h1:92hTJB3aPssEooTK+gv0i84vwTjah30HKaLGdupJaPA=
 github.com/acend/docsy-plus v0.0.0-20220428195954-da462686a1f4 h1:NH8RTlmPMcTPxfZYlqYWWcqoQ5STebCQikKByJVRnAA=
 github.com/acend/docsy-plus v0.0.0-20220428195954-da462686a1f4/go.mod h1:FUTTPmi3S92rVMbCYqXdGNxixdyqACBrFTK7dOuMttQ=
+github.com/acend/docsy-plus v0.0.0-20230303095323-1af8d88aadc7/go.mod h1:YDHqf+DCZcx5HvKGzaBluPmLfgHQ2GKkYjggvF98jR4=
 github.com/google/docsy v0.4.0 h1:Eyt2aiDC1fnw/Qq/9xnIqUU5n5Yyk4c8gX3nBDdTv/4=
 github.com/google/docsy v0.4.0/go.mod h1:vJjGkHNaw9bO42gpFTWwAUzHZWZEVlK46Kx7ikY5c7Y=
 github.com/google/docsy/dependencies v0.4.0 h1:FXwyjtuFfPIPBauU2t7uIAgS6VYfJf+OD5pzxGvkQsQ=
