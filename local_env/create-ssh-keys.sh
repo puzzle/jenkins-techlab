@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ssh-keygen -t rsa -b 4096 -N "" -f techlab.key -C ""
+ssh-keygen -t ed25519 -N "" -f techlab.key -C ""
 
 TECHLAB_PUBLIC_KEY="$(cat techlab.key.pub)"
 

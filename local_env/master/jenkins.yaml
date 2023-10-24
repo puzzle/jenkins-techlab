@@ -11,8 +11,6 @@ jenkins:
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
-  remotingSecurity:
-    enabled: true
   nodes:
   - permanent:
       name: "ssh-agent-docker"
@@ -23,7 +21,7 @@ jenkins:
       launcher:
         ssh:
           credentialsId: "bf5bb957-18bc-45ca-baa8-e7e3cb652405"
-          host: "jenkins_slave_docker"
+          host: "jenkins_agent_docker"
           port: 22
           javaPath: "^${JAVA_HOME}/bin/java"
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
