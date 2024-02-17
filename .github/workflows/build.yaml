@@ -55,7 +55,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
       -
         name: Archive vulnerability scan results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: trivy-results-build
           path: trivy-results.txt
