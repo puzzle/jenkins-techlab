@@ -8,6 +8,6 @@
     "static": "reveal-md jenkins-pipeline.md --theme theme/puzzle.css --static out"
   },
   "dependencies": {
-    "reveal-md": "^5.0.0"
+    "reveal-md": "^6.0.0"
   }
 }
