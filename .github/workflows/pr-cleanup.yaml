@@ -25,7 +25,7 @@ jobs:
       -
         name: Create KUBECONFIG
         env:
-          KUBE_CONFIG: '${{ secrets.KUBECONFIG_TEST }}'
+          KUBE_CONFIG: '${{ secrets.KUBECONFIG_TEST_AV2 }}'
         run: |
           mkdir -p $HOME/.kube
           echo "$KUBE_CONFIG" > $HOME/.kube/config
@@ -33,7 +33,7 @@ jobs:
         name: Remove PR Environment Helm Release
         env:
           TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
-          TRAINING_NAMESPACE: 'pitc-jenkins-techlab-test'
+          TRAINING_NAMESPACE: 'pitc-cicd-jenkins-techlab-test'
           TRAINING_VERSION: '${{ github.sha }}'
         run: |
           helm uninstall $TRAINING_HELM_RELEASE --kubeconfig $HOME/.kube/config  --namespace=$TRAINING_NAMESPACE
