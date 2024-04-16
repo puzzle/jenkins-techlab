@@ -74,7 +74,7 @@ jobs:
       -
         name: Create KUBECONFIG
         env:
-          KUBE_CONFIG: '${{ secrets.KUBECONFIG }}'
+          KUBE_CONFIG: '${{ secrets.KUBECONFIG_PROD_AV2 }}'
         run: |
           mkdir -p $HOME/.kube
           echo "$KUBE_CONFIG" > $HOME/.kube/config
@@ -82,7 +82,7 @@ jobs:
         name: Deploy Helm Release
         env:
           TRAINING_HELM_RELEASE: 'latest'
-          TRAINING_NAMESPACE: 'pitc-jenkins-techlab-prod'
+          TRAINING_NAMESPACE: 'pitc-cicd-jenkins-techlab-prod'
           TRAINING_VERSION: '${{ github.sha }}'
         run: |
           helm upgrade $TRAINING_HELM_RELEASE acend-training-chart --install --wait \
@@ -99,7 +99,7 @@ jobs:
         env:
           TRAINING_HELM_RELEASE: 'latest'
           TRAINING_HELM_NAME: 'jenkins-techlab-puzzle'
-          TRAINING_NAMESPACE: 'pitc-jenkins-techlab-prod'
+          TRAINING_NAMESPACE: 'pitc-cicd-jenkins-techlab-prod'
         run: |
           kubectl rollout restart deployment/${TRAINING_HELM_RELEASE}-${TRAINING_HELM_NAME} \
             --kubeconfig $HOME/.kube/config \
