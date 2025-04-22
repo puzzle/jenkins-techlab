@@ -1,0 +1,21 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "github>acend/hugo-training-template"
+    ],
+    "packageRules": [
+        {
+            "description": "Automerge GitHub Action updates",
+            "matchPackageNames": ["/actions/*/"],
+            "matchUpdateTypes": ["patch", "minor"],
+            "automerge": true
+        },
+        {
+            "description": "Automerge dev-dependencies",
+            "matchDepTypes": ["devDependencies"],
+            "matchUpdateTypes": ["patch", "minor"],
+            "automerge": true
+          }
+    ],
+    "ignoreDeps": ["mongo", "rocketchat/rocket.chat", "jenkins/jenkins"]
+}

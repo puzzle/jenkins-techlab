@@ -1,7 +1,6 @@
 Thumbs.db
 .DS_Store
 .dist
-.hugo_build.lock
 .tmp
 .sass-cache
 npm-debug.log
@@ -11,6 +10,7 @@ public
 .env
 resources
 .idea/
+.hugo_build.lock
 id_rsa
 id_rsa.pub
 *.bak

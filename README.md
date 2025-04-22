@@ -27,14 +27,15 @@ The slides will be generated in the `public/slides/intro` directory
 
 This site is built using the static page generator [Hugo](https://gohugo.io/).
 
-The page uses the [docsy theme](https://github.com/google/docsy) which is included as a Git Submodule.
-Docsy is being enhanced using [docsy-plus](https://github.com/acend/docsy-plus/) as well as [docsy-puzzle](https://github.com/puzzle/docsy-puzzle/)
+The page uses the [docsy theme](https://github.com/google/docsy) which is included as a Hugo Module.
+Docsy is being enhanced using [docsy-plus](https://github.com/acend/docsy-plus/) as well as
+[docsy-acend](https://github.com/acend/docsy-acend/) and [docsy-puzzle](https://github.com/puzzle/docsy-puzzle/)
 for brand specific settings.
 
-After cloning the main repo, you need to initialize the submodule like this:
+After cloning the main repo, you need to initialize the Hugo Module like this:
 
 ```bash
-git submodule update --init --recursive
+hugo mod get
 ```
 
 The default configuration uses the puzzle setup from [config/_default](config/_default/config.toml).
@@ -52,11 +53,14 @@ Further, specialized environments can be added in the `config` directory.
 Run the following command to update all submodules with their newest upstream version:
 
 ```bash
-git submodule update --remote
+hugo mod get -u
 ```
 
 
-## Build using Docker
+## Build production image locally
+
+
+### Docker
 
 Build the image:
 
@@ -67,11 +71,11 @@ docker build -t puzzle/jenkins-techlab:latest .
 Run it locally:
 
 ```bash
-docker run -i -p 8080:8080 puzzle/jenkins-techlab
+docker run --rm -p 8080:8080 puzzle/jenkins-techlab
 ```
 
 
-### Using Buildah and Podman
+### Buildah and Podman
 
 Build the image:
 
@@ -79,11 +83,13 @@ Build the image:
 buildah build-using-dockerfile -t puzzle/jenkins-techlab:latest .
 ```
 
-Run it locally with the following command. Beware that `--rmi` automatically removes the built image when the container stops, so you either have to rebuild it or remove the parameter from the command.
+Run it locally:
 
 ```bash
-podman run --rm --rmi --interactive --publish 8080:8080 localhost/puzzle/jenkins-techlab
+podman run --rm --rmi --publish 8080:8080 localhost/puzzle/jenkins-techlab
 ```
+
+**Note:** Beware that `--rmi` automatically removes the built image when the container stops, so you either have to rebuild it or remove the parameter from the command.
 
 
 ## How to develop locally
@@ -92,16 +98,16 @@ To develop locally we don't want to rebuild the entire container image every tim
 We simply mount the working directory into a running container, where hugo is started in the server mode.
 
 ```bash
-export HUGO_VERSION=$(grep "FROM klakegg/hugo" Dockerfile | sed 's/FROM klakegg\/hugo://g' | sed 's/ AS builder//g')
-docker run \
-  --rm --interactive \
-  --publish 8081:8081 \
-  -v $(pwd):/src \
-  klakegg/hugo:${HUGO_VERSION} \
-  server -p 8081 --bind 0.0.0.0
+export HUGO_VERSION=$(grep "FROM docker.io/floryn90/hugo" Dockerfile | sed 's/FROM docker.io\/floryn90\/hugo://g' | sed 's/ AS builder//g')
+docker run --rm --publish 8080:8080 -v $(pwd):/src docker.io/floryn90/hugo:${HUGO_VERSION} server -p 8080
 ```
 
-Access the local documentation: <localhost:8081>
+Use the following command to set the hugo environment
+
+```bash
+export HUGO_VERSION=$(grep "FROM docker.io/floryn90/hugo" Dockerfile | sed 's/FROM docker.io\/floryn90\/hugo://g' | sed 's/ AS builder//g')
+docker run --rm --publish 8080:8080 -v $(pwd):/src docker.io/floryn90/hugo:${HUGO_VERSION} server --environment=<environment> -p 8080
+```
 
 
 ## Linting of Markdown content
@@ -109,7 +115,7 @@ Access the local documentation: <localhost:8081>
 Markdown files are linted with <https://github.com/DavidAnson/markdownlint>.
 Custom rules are in `.markdownlint.json`.
 There's a GitHub Action `.github/workflows/markdownlint.yaml` for CI.
-For local checks, you can either use Visual Studio Code with the corresponding extension (markdownlint), or the command line like this:
+For local checks, you can either use Visual Studio Code with the corresponding extension, or the command line like this:
 
 ```shell script
 npm install
@@ -119,8 +125,14 @@ npm run mdlint
 Npm not installed? no problem
 
 ```bash
-export HUGO_VERSION=$(grep "FROM klakegg/hugo" Dockerfile | sed 's/FROM klakegg\/hugo://g' | sed 's/ AS builder//g')
-docker run --rm --interactive -v $(pwd):/src klakegg/hugo:${HUGO_VERSION}-ci /bin/bash -c "set -euo pipefail;npm install; npm run mdlint;"
+export HUGO_VERSION=$(grep "FROM docker.io/floryn90/hugo" Dockerfile | sed 's/FROM docker.io\/floryn90\/hugo://g' | sed 's/ AS builder//g')
+docker run --rm -v $(pwd):/src docker.io/floryn90/hugo:${HUGO_VERSION}-ci /bin/bash -c "npm install && npm run mdlint"
+```
+
+Automatically fix errors if possible:
+
+```bash
+npm run mdlint-fix
 ```
 
 

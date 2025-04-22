@@ -4,7 +4,7 @@ on:
     types: [closed]
 
 jobs:
-  deployment:
+  pr-cleanup:
     runs-on: 'ubuntu-latest'
     steps:
       -
