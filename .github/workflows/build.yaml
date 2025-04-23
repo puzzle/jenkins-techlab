@@ -9,7 +9,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       -
@@ -107,6 +107,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
-
            PR Environments:
            *  puzzle <https://jenkins-techlab-pr-${{ github.event.pull_request.number }}.ocp.cloudscale.puzzle.ch>

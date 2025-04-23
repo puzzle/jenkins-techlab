@@ -11,12 +11,14 @@ acendTraining:
       ingress:
         emptyTLS: true
         ingressClassName: openshift-public
+        useDefaultSecret: true
         labels:
           public: "true"
-        useDefaultSecret: true
         appname: jenkins-techlab
         domainmain: puzzle.ch
         domain: ocp.cloudscale.puzzle.ch
+
+
 nameOverride: "jenkins-techlab"
 fullnameOverride: ""
 

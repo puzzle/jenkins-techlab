@@ -84,8 +84,8 @@ breadcrumb_disable = false
 sidebar_search_disable = false
 #  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
 navbar_logo = true
-# Set to true to disable the About link in the site footer
-footer_about_disable = true
+# Set to false to disable the About link in the site footer
+footer_about_enable = false
 
 ############################## social links ##############################
 [params.links]
@@ -106,6 +106,9 @@ url = "https://linkedin.com/company/puzzle-itc"
 
 # puzzle design
 [module]
+  # uncomment line below for temporary local development of module
+  # replacements = "github.com/google/docsy -> ../../docsy"
+  # replacements = "github.com/acend/docsy-plus -> ../../docsy-plus"
   [module.hugoVersion]
     extended = true
     min = "0.100.0"
