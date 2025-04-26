@@ -24,7 +24,7 @@ RUN wkhtmltopdf --outline-depth 4 \
     --enable-internal-links --enable-local-file-access \
     /pdf/index.html /pdf.pdf
 
-FROM docker.io/nginxinc/nginx-unprivileged:1.27-alpine
+FROM docker.io/nginxinc/nginx-unprivileged:1.28-alpine
 USER root
 COPY nginx.conf /etc/nginx/nginx.conf
 USER 101
