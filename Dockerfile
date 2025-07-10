@@ -25,16 +25,17 @@ RUN wkhtmltopdf --outline-depth 4 \
     /pdf/index.html /pdf.pdf
 
 FROM docker.io/nginxinc/nginx-unprivileged:1.29-alpine
+
+LABEL maintainer="Puzzle ITC <https://www.puzzle.ch/>"
+LABEL org.opencontainers.image.authors="Puzzle ITC <https://www.puzzle.ch/>"
+LABEL org.opencontainers.image.title="puzzle.ch's Jenkins Techlab"
+LABEL org.opencontainers.image.description="Container with puzzle.ch's Jenkins Techlab content"
+LABEL org.opencontainers.image.source="https://github.com/puzzle/jenkins-techlab/"
+LABEL org.opencontainers.image.licenses="CC-BY-SA-4.0"
+
 USER root
 COPY nginx.conf /etc/nginx/nginx.conf
 USER 101
-
-LABEL maintainer=puzzle.ch
-LABEL org.opencontainers.image.title="puzzle.ch's Jenkins Techlab"
-LABEL org.opencontainers.image.description="Container with puzzle.ch's Jenkins Techlab content"
-LABEL org.opencontainers.image.authors="puzzle.ch"
-LABEL org.opencontainers.image.source="https://github.com/puzzle/jenkins-techlab/"
-LABEL org.opencontainers.image.licenses="CC-BY-SA-4.0"
 
 EXPOSE 8080
 
