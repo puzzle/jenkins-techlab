@@ -104,7 +104,7 @@ jobs:
           TAG: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.BUILD_VERSION }}
           DIGEST: ${{ needs.build_push_image.outputs.digest }}
         run: |
-          COSIGN_EXPERIMENTAL=1 cosign sign --yes ${TAG}@${DIGEST}
+          cosign sign --yes ${TAG}@${DIGEST}
 
   verify_image:
     runs-on: ubuntu-latest
