@@ -1,48 +1,59 @@
 name: PRCleanup
+
 on:
   pull_request:
     types: [closed]
+  workflow_dispatch:
 
 jobs:
-  pr-cleanup:
-    runs-on: 'ubuntu-latest'
+  cleanup_helm:
+    runs-on: ubuntu-latest
+    env:
+      TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
+      TRAINING_NAMESPACE: 'pitc-cicd-jenkins-techlab-test'
+      KUBE_CONFIG_PATH: '$HOME/.kube'
+      KUBE_CONFIG_FILENAME: 'config'
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
-      -
-        name: 'Install Helm'
+          sparse-checkout: |
+            scripts
+          sparse-checkout-cone-mode: false
+
+      - name: Install Helm
         uses: azure/setup-helm@v4
         with:
-          version: v3.6.2
-      -
-        name: Install Kubectl
+          version: 'latest'
+
+      - name: Install Kubectl
         uses: azure/setup-kubectl@v4
         with:
-          version: v1.21.2
-      -
-        name: Create KUBECONFIG
+          version: 'latest'
+          
+      - name: Create KUBECONFIG
         env:
           KUBE_CONFIG: '${{ secrets.KUBECONFIG_TEST_AV2 }}'
-        run: |
-          mkdir -p $HOME/.kube
-          echo "$KUBE_CONFIG" > $HOME/.kube/config
-      -
-        name: Remove PR Environment Helm Release
-        env:
-          TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
-          TRAINING_NAMESPACE: 'pitc-cicd-jenkins-techlab-test'
-          TRAINING_VERSION: '${{ github.sha }}'
-        run: |
-          helm uninstall $TRAINING_HELM_RELEASE --kubeconfig $HOME/.kube/config  --namespace=$TRAINING_NAMESPACE
-      -
-        name: Delete Tags on Quay
-        id: delete_tags
-        env:
-          PR_NUMBER: '${{ github.event.pull_request.number }}'
-          QUAYIO_API_TOKEN: '${{ secrets.QUAYIO_API_TOKEN }}'
-          REPOSITORY: '${{ github.repository }}'
-        run: |
-          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/${REPOSITORY}/tag/pr-${PR_NUMBER}
+        run: bash ./scripts/create_kubeconfig.sh
+      - name: Remove PR Environment Helm Release
+        run: bash ./scripts/remove_helm_release.sh
+
+  cleanup_registry:
+    runs-on: ubuntu-latest
+    needs: cleanup_helm
+    env:
+      ORG: '${{ github.repository_owner }}'
+      PACKAGE_NAME: '${{ github.event.repository.name }}'
+      PACKAGE_TYPE: 'container'
+      TAG: "pr-${{ github.event.pull_request.number }}"
+      LOGIN_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+          sparse-checkout-cone-mode: false
+          fetch-depth: 0
+      - name: Run registry cleanup script
+        run: bash ./scripts/cleanup_registry.sh
