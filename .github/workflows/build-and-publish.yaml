@@ -98,7 +98,7 @@ jobs:
       - name: Install cosign
         uses: sigstore/cosign-installer@v3.8.2
         with:
-          cosign-release: 'v2.2.5'
+          cosign-release: 'v2.2.4'
       - name: Sign Docker image with cosign
         env:
           TAG: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.BUILD_VERSION }}
