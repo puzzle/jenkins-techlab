@@ -1,4 +1,4 @@
-name: Techlab Puzzle Build and Publish
+name: Jenkins Techlab Puzzle Build and Publish
 
 permissions:
   contents: read
@@ -104,7 +104,7 @@ jobs:
           TAG: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.BUILD_VERSION }}
           DIGEST: ${{ needs.build_push_image.outputs.digest }}
         run: |
-          cosign sign --yes ${TAG}@${DIGEST}
+          COSIGN_EXPERIMENTAL=1 cosign sign --yes ${TAG}@${DIGEST}
 
   verify_image:
     runs-on: ubuntu-latest
