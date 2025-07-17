@@ -4,7 +4,7 @@ acendTraining:
     - name: puzzle
       replicaCount: 1
       image:
-        repository: quay.io/puzzle/jenkins-techlab
+        repository: ghcr.io/puzzle/jenkins-techlab
         pullPolicy: Always
         tag: ""
         tagsuffix: ""
