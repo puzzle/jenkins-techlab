@@ -1,15 +1,29 @@
-name: PRCleanup
+name: Pull Request Cleanup
 
 on:
   pull_request:
     types: [closed]
   workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Optional PR number to use for cleanup'
+        required: false
+        type: string
+
+env:
+  ORG: '${{ github.repository_owner }}'
+  PACKAGE_NAME: '${{ github.event.repository.name }}'
+  PACKAGE_TYPE: 'container'
+  TAG: >-
+    pr-${{ github.event.pull_request.number || inputs.pr_number }}
+  LOGIN_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   cleanup_helm:
     runs-on: ubuntu-latest
     env:
-      TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
+      TRAINING_HELM_RELEASE: >-
+        pr-${{ github.event.pull_request.number || inputs.pr_number }}
       TRAINING_NAMESPACE: 'pitc-cicd-jenkins-techlab-test'
       KUBE_CONFIG_PATH: '$HOME/.kube'
       KUBE_CONFIG_FILENAME: 'config'
@@ -41,12 +55,6 @@ jobs:
   cleanup_registry:
     runs-on: ubuntu-latest
     needs: cleanup_helm
-    env:
-      ORG: '${{ github.repository_owner }}'
-      PACKAGE_NAME: '${{ github.event.repository.name }}'
-      PACKAGE_TYPE: 'container'
-      TAG: "pr-${{ github.event.pull_request.number }}"
-      LOGIN_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -57,3 +65,17 @@ jobs:
           fetch-depth: 0
       - name: Run registry cleanup script
         run: bash ./scripts/cleanup_registry.sh
+
+  cleanup_signatures:
+    runs-on: ubuntu-latest
+    needs: cleanup_registry
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+          sparse-checkout-cone-mode: false
+          fetch-depth: 0
+      - name: Run signatures cleanup script
+        run: bash ./scripts/cleanup_signatures.sh
