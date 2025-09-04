@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up npm for linting
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 'latest'
       - name: Cache npm dependencies
