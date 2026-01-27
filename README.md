@@ -2,10 +2,12 @@
 
 This technical lab is a hands-on workshop. You learn how to use and write Jenkins pipelines in a continuous delivery perspective.
 
+
 ## Techlab last given
 
-- Before 2023
-- last update 07.2025
+* Before 2023
+* last update 07.2025
+
 
 ## Content Sections
 
