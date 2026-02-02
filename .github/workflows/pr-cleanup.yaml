@@ -29,7 +29,7 @@ jobs:
       KUBE_CONFIG_FILENAME: 'config'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           sparse-checkout: |
             scripts
@@ -57,7 +57,7 @@ jobs:
     needs: cleanup_helm
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           sparse-checkout: |
             scripts
@@ -71,7 +71,7 @@ jobs:
     needs: cleanup_registry
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           sparse-checkout: |
             scripts
