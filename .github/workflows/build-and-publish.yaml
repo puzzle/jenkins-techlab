@@ -73,7 +73,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push Docker image
         id: build-push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile
