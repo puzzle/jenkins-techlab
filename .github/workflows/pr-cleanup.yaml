@@ -36,7 +36,7 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Install Helm
-        uses: azure/setup-helm@v4
+        uses: azure/setup-helm@v5
         with:
           version: 'latest'
 

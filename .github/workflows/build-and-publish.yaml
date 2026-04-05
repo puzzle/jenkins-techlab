@@ -151,7 +151,7 @@ jobs:
           sparse-checkout-cone-mode: false
           fetch-depth: 0
       - name: 'Install Helm'
-        uses: azure/setup-helm@v4
+        uses: azure/setup-helm@v5
         with:
           version: 'latest'
       - name: Install Kubectl
